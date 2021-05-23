@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<!--
+<title>Crafting Interpreters</title>
+-->
+<title>手工制作解释器</title>
+<!-- Tell mobile browsers we're optimized for them and they don't need to crop
+     the viewport. -->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="index.css" />
+
+<!-- Oh, God, Source Code Pro is so beautiful it makes me want to cry. -->
+<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="image/favicon.png" />
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42804721-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+<body>
+
+<!-- <div class="scrim"></div> -->
+
+<article>
+
+<a href="contents.html"><img src="image/logotype.png" title="Crafting Interpreters" class="logotype"></a>
+
+<main>
+<!--
+<blockquote>A handbook for making programming languages.</blockquote>
+-->
+<blockquote>一本制作编程语言的行路指南。</blockquote>
+
+<!--
+<p>This book contains everything you need to implement a full-featured,
+efficient scripting language. You&#8217;ll learn both high-level concepts around
+parsing and semantics and gritty details like bytecode representation and
+garbage collection. Your brain will light up with new ideas, and your hands will
+get dirty and calloused. It&#8217;s a blast.</p>
+-->
+<p>本书囊括了实现一门功能齐全、稳定高效的脚本编程语言你所需要知晓的一切。你既可以学习到围绕制作程序语言的核心概念（如：词法分析、语法解析），还能深入理解语言实现的具体细节（如：字节码表示，垃圾收集等）。你的大脑将因新知变得熠熠生辉，你的双手将因实操变得伤痕累累，相信这一定会是段很有意义的经历。
+</p>
+
+<!--
+<p>Starting from <code>main()</code>, you build a language that features rich
+syntax, dynamic typing, garbage collection, lexical scope, first-class
+functions, closures, classes, and inheritance. All packed into a few thousand
+lines of clean, fast code that you thoroughly understand because you write each
+one yourself.</p>
+-->
+<p>从主函数 <code>main()</code> 开始，你将逐步构建起一门羽翼丰满的编程语言，逐步为其添加
+语法实现、动态类型、垃圾收集、词法作用域、一等公民函数、闭包、类与继承等功能。所有功能都会在仅
+数千行简洁、高效的代码中被实现，你对这些代码了然于胸，因为这些代码将由你亲手写下。
+
+<!--
+<p>And you can read the whole book, for free, online:</p>
+-->
+<p>而且，你可以完全免费地在线阅读此书：</p>
+
+<!--
+<p class="center">
+<a class="button" href="contents.html">Start Reading!</a>
+</p>
+-->
+<p class="center">
+<a class="button" href="contents.html">开始阅读！</a>
+</p>
+
+<!--
+<h2>I Want to Hold the Book in My Hands</h2>
+-->
+<h2>我想要手握一本实体书</h2>
+
+<!--
+<p>Call me old-fashioned, but the word &ldquo;book&rdquo; to me still implies
+ink and flattened rectangles of wood pulp. This book is not quite there yet. The
+chapters are written, but I am still designing the print edition. If you want to
+know when that&#8217;s ready, have I got the mailing list for you:</p>
+-->
+<p>
+我也许有点老土赶不上时代了，但对我而言，“书本”一词仍意味着印刷油墨和原木纸浆。
+只可惜，这本书还没有被印刷成册呢。内容章节已经写好，但我仍然在设计最终印刷版的版式。
+如果你也想知道此书何时能印刷出版，可以在下方留下你的邮箱地址，我会把你加入到邮件列表中，及时通知你：
+</p>
+
+<div class="sign-up">
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+  <form action="//gameprogrammingpatterns.us7.list-manage.com/subscribe/post?u=0952ca43ed2536d6717766b88&amp;id=6e96334109" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="你的邮箱地址" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0952ca43ed2536d6717766b88_6e96334109" tabindex="-1" value=""></div>
+    <input type="submit" value="Sign me up!" name="subscribe" id="mc-embedded-subscribe" class="button">
+  </form>
+  </div>
+  <!--End mc_embed_signup-->
+  <!--
+  <p class="small">(I post about once a month. Don&#8217;t worry, I won&#8217;t spam you.)</p>
+  -->
+  <p class="small">（我大概只会一个月发送一回邮件，不用担心被我邮件轰炸啦 ^_^）</p>
+</div>
+
+<h2>你是谁?</h2>
+
+<!--
+<p>I&#8217;m Bob Nystrom. I got bitten by the language bug ten years ago when
+I was on paternity leave with a lot of free time between middle of the night
+feedings. Since then, I've cobbled together a <a href="http://wren.io/"
+target="_blank">number</a> <a href="http://magpie-lang.org/"
+target="_blank">of</a> <a href="http://finch.stuffwithstuff.com/"
+target="_blank">languages</a> <a href="https://github.com/munificent/vigil"
+target="_blank">of</a> <a href="https://github.com/munificent/jasic"
+target="_blank">various</a> <a href="https://github.com/munificent/lark"
+target="_blank">ilk</a> before worming my way into an honest-to-God, full-time
+programming language job. Today, I work at Google on the
+<a href="http://dart.dev/" target="_blank">Dart language</a>.</p>
+-->
+<p>我的名字叫 Bob Nystrom。大约 10 年前，我被自己拼拼凑凑做出来的程序语言 bug 困扰得头疼不已，
+那时候我正在休陪产假，晚上有很多空闲时间可以捣鼓。从那时我才发现，原来我真的很喜欢程序语言开发啊，
+于是，我遵从本心，投身于全职程序设计语言开发工作。现在，我在谷歌公司（Google）开发
+<a href="http://dart.dev/" target="_blank"> Dart 语言 </a>。
+
+<!--
+<p>Before I fell in love with languages, I developed games at Electronic Arts
+for eight years. I wrote the best-selling book &ldquo;<a
+href="http://gameprogrammingpatterns.com/" target="_blank">Game Programming
+Patterns</a>&rdquo; based on what I learned there. You can read that book for
+free too, because I love you.</p>
+-->
+<p>
+在我爱上程序语言之前，我在美国艺电公司（Electronic Arts）做了 8 年的游戏开发工作。
+根据在艺电学到的游戏开发知识，我当时写了本书，卖得还不错 <a href="http://gameprogrammingpatterns.com/" target="_blank">《Game Programming Patterns》</a>。现在你同样可以免费阅读它，因为我很爱你们呀。 w(ﾟДﾟ)w
+</p>
+
+<!--
+<p>If you want to get in touch, you can email me at <code>bob</code> at this
+site's domain or find me (<a href="https://twitter.com/intent/user?screen_name=munificentbob"
+target="_blank"><code>@munificentbob</code></a>) on twitter. If you can&#8217;t
+get enough of my writing, I also have <a
+href="http://journal.stuffwithstuff.com/" target="_blank">a blog</a>. If you
+like the book, you&#8217;ll probably like it too.</p>
+-->
+<p>
+如果想联系我，你可以给我发邮件（<code>bob@craftinginterpreters.com</code>），
+或者你也可以在 Twitter 上找到我（<a href="https://twitter.com/intent/user?screen_name=munificentbob"
+target="_blank"><code>@munificentbob</code></a>）。
+如果你觉得我的书写得不错，我还有个 <a href="http://journal.stuffwithstuff.com/" target="_blank"> 个人博客 </a>，
+也许你也会喜欢。
+</p>
+
+</main>
+</article>
+</body>
+</html>
