@@ -1,3 +1,5 @@
+# 《Crafting Interpreters》中文版（翻译进行中）
+
 This is the repo used for the in-progress book "[Crafting Interpreters][]". It
 contains the Markdown text of the book, full implementations of both
 interpreters, as well as the build system to weave the two together into the
