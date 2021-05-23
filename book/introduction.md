@@ -105,8 +105,8 @@ real language lives and breathes. My hope is that when you read other, more
 theoretical books later, the concepts there will firmly stick in your mind,
 adhered to this tangible substrate.
 -->
-这也是我对你的期望。我希望你通过动手实操对一门真正的程序设计语言如何诞生留下一个坚实的印象，如此一来，
-以后当你在阅读其他更具理论性的著作时，这些核心概念将深深镌刻进你的大脑，你可以更加充分地理解它们。
+这也是我对你的期望。我希望你通过动手实操，对一门真正程序设计语言的诞生过程留下一个坚实的印象，如此一来，
+以后当你在阅读其他更具理论性的书籍著作时，这些核心概念将深深镌刻进你的大脑，你可以更加充分地理解它们。
 
 <!--
 ## Why Learn This Stuff?
@@ -134,8 +134,8 @@ justify. Fortunately, it isn't.
 但是程序设计语言略有不同，
 -->
 我敢肯定地说，你们中的大多数人创造出一门被广为使用的通用程序设计语言的可能性微乎其微，
-毕竟，即使把这个世界上被广为应用程序语言的设计者们都拉出来，还不够塞满一辆大众巴士呢，
-如果学习编译原理的**唯一**理由就是要加入这群精英创造世界流行的程序设计语言，这很令人费解。
+毕竟，即使把这个世界上被广为应用程序语言的设计者们都拉出来，还塞不满一辆大众巴士呢，
+如果学习编译原理的**唯一**理由就是要加入这群精英，创造世界流行的程序设计语言，这无疑令人费解。
 幸运的是，事实并非如此。
 
 <!--
@@ -185,65 +185,118 @@ needing to debug and maintain it and poke around in its guts.
 但如果当现有的程序库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。
 即使当你想要重用一些现有的代码时，你也将不可避免地对其进行调试和维护，深入研究其原理。
 
+<!--
 ### Languages are great exercise
+-->
+### 实现程序设计语言是对个人编程技艺极好地磨练
 
+<!--
 Long distance runners sometimes train with weights strapped to their ankles or
 at high altitudes where the atmosphere is thin. When they later unburden
 themselves, the new relative ease of light limbs and oxygen-rich air enables
 them to run farther and faster.
+-->
+长跑运动员时常会在脚踝绑上重物，或是去到在氧气稀薄的高海拔地区训练自身。
+当他们卸下重负，来到富氧地区比赛时，他们的四肢变得轻盈，脚步变得稳健，跑得更快更远。
 
+<!--
 Implementing a language is a real test of programming skill. The code is complex
 and performance critical. You must master recursion, dynamic arrays, trees,
 graphs, and hash tables. You probably use hash tables at least in your
 day-to-day programming, but do you *really* understand them? Well, after we've
 crafted our own from scratch, I guarantee you will.
+-->
+实现一门程序设计语言是对编程技艺一次极好地磨练。代码复杂艰深，对代码性能也有着至关重要的要求。
+你必须很好地掌握递归、动态数组、树、图、哈希表等关键技术。
+你也许经常在日常编程中使用哈希表数据结构，但你是否**真正**理解它了呢？
+当我们从头开始完成语言解释器之后，我保证你对这些基础算法数据结构的认知会更上一层楼。
 
+<!--
 While I intend to show you that an interpreter isn't as daunting as you might
 believe, implementing one well is still a challenge. Rise to it, and you'll come
 away a stronger programmer, and smarter about how you use data structures and
 algorithms in your day job.
+-->
+尽管我想努力向你传达，实现一枚程序语言解释器并不如你想象的那般困难，但实际上这仍是一个巨大的挑战。
+克服它，你会变得更加强大，在日常工作中，你也将更加聪明地运用算法与数据结构。
 
+<!--
 ### One more reason
+-->
+### 还有一个原因
 
+<!--
 This last reason is hard for me to admit, because it's so close to my heart.
 Ever since I learned to program as a kid, I felt there was something magical
 about languages. When I first tapped out BASIC programs one key at a time I
 couldn't conceive how BASIC *itself* was made.
+-->
+最后一个原因我其实有点难以启齿，因为这是我内心深处最为真切的想法。
+在我还是一个孩童时，就觉得程序设计语言非常的神奇，我一个字符一个字符敲下了一支 BASIC 程序，
+程序也正常运行了，但我却不知道 BASIC 语言是如何工作的。
 
+<!--
 Later, the mixture of awe and terror on my college friends' faces when talking
 about their compilers class was enough to convince me language hackers were a
 different breed of human -- some sort of wizards granted privileged access to
 arcane arts.
+-->
+后来我上了大学，同上编译原理课的同学对我说，程序语言黑客简直是另一种人类，
+就像会施展奥术的巫师一样，说这话时脸上还充满了敬畏之情。
 
+<!--
 It's a charming <span name="image">image</span>, but it has a darker side. *I*
 didn't feel like a wizard, so I was left thinking I lacked some inborn quality
 necessary to join the cabal. Though I've been fascinated by languages ever since
 I doodled made-up keywords in my school notebook, it took me decades to muster
 the courage to try to really learn them. That "magical" quality, that sense of
 exclusivity, excluded *me*.
+-->
+那可真是幅迷人的<span name="image">画面</span>。但我并不觉得我自己像个巫师，也许我天生就缺少一些加入巫师集团的特质。
+从那时起，我被程序设计语言深深吸引，我在学校笔记本上涂满了拼凑而成关于程序语言的关键字。
+在往后数十年时间里，我都在学习它们，探索着程序设计语言"魔盒"背后的奥秘。
+
+说不定，你也与我有同样的感受呢。
 
 <aside name="image">
 
+<!--
 And its practitioners don't hesitate to play up this image. Two of the seminal
 texts on programming languages feature a [dragon][] and a [wizard][] on their
 covers.
+-->
+程序设计语言领域的奠基者们似乎从不吝啬扮演这一形象。
+两本在程序设计语言领域极富开创性的教科书就分别选用了“龙”与”巫师“形象作为封面，
+也就是大名鼎鼎的[《龙书》][dragon]与[《巫师书》][wizard]。
 
 [dragon]: https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools
 [wizard]: https://mitpress.mit.edu/sites/default/files/sicp/index.html
 
 </aside>
 
+<!--
 When I did finally start cobbling together my own little interpreters, I quickly
 learned that, of course, there is no magic at all. It's just code, and the
 people who hack on languages are just people.
+-->
+当我真正开始动手制作一枚小编译器的时候，我意识到，这其中并没有什么"神奇魔法"，仅是一堆代码罢了，
+而创造程序语言的也仅是普通人而已。
 
+<!--
 There *are* a few techniques you don't often encounter outside of languages, and
 some parts are a little difficult. But not more difficult than other obstacles
 you've overcome. My hope is that if you've felt intimidated by languages and
 this book helps you overcome that fear, maybe I'll leave you just a tiny bit
 braver than you were before.
+-->
+当然，实现一门程序设计语言多少会涉及一些你在外头很少见到的技术，其中某些部分确实有点难度，
+但也不会比你一路走来所克服的困难难上多少。如果你曾对程序设计语言和编译原理心生畏惧，
+希望这本书可以帮你克服恐惧，为你带来些许勇气。
 
+<!--
 And, who knows, maybe you *will* make the next great language. Someone has to.
+-->
+说不定，你就是下个知名程序设计语言的创造者呢！
 
 ## How the Book Is Organized
 
