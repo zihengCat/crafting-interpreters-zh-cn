@@ -1,47 +1,70 @@
 # 简介
 
-> 童话胜于现实，不仅是因为童话告诉我们巨龙存在，
-> 更是因为它们告诉我们巨龙可以被打败。
->
-> <cite>尼尔·盖曼，<em>卡洛琳（《鬼妈妈》）</em></cite>
-
 <!--
 > Fairy tales are more than true: not because they tell us that dragons exist,
 > but because they tell us that dragons can be beaten.
 >
 > <cite>G.K. Chesterton by way of Neil Gaiman, <em>Coraline</em></cite>
 -->
+> 童话胜于现实，不仅是因为童话告诉我们巨龙存在，
+> 更是因为它们告诉我们巨龙可以被打败。
+>
+> <cite>尼尔·盖曼，<em>卡洛琳（《鬼妈妈》）</em></cite>
+
+<!--
 I'm really excited we're going on this journey together. This is a book on
 implementing interpreters for programming languages. It's also a book on how to
 design a language worth implementing. It's the book I wish I'd had when I first
 started getting into languages, and it's the book I've been writing in my <span
 name="head">head</span> for nearly a decade.
+-->
+很高兴我们能携手开启这段旅程。这是一本关于如何实现程序语言解释器的书。
+这也是一本关于如何设计一门程序语言的书。这是本我初入程序设计语言领域就想要拥有的书，
+这是本我 10 年前就<span name="head">想写</span>的书。
 
 <aside name="head">
 
+<!--
 To my friends and family, sorry I've been so absentminded!
+-->
+不好意思，朋友，我好像有点语无伦次了！
 
 </aside>
 
+<!--
 In these pages, we will walk step-by-step through two complete interpreters for
 a full-featured language. I assume this is your first foray into languages, so
 I'll cover each concept and line of code you need to build a complete, usable,
 fast language implementation.
+-->
+在这本书中，我们将一步一脚印地为一门五脏俱全程序设计语言实现两枚解释器（Interpreters）。
+我会预设这是你初次涉足程序设计语言开发领域，所以你不需要有任何的心理负担。我将详细阐述构建
+完整、可用、高效的语言解释器所需要的每一个基本概念及其代码实现。
 
+<!--
 In order to cram two full implementations inside one book without it turning
 into a doorstop, this text is lighter on theory than others. As we build each
 piece of the system, I will introduce the history and concepts behind it. I'll
 try to get you familiar with the lingo so that if you ever find yourself at a
 <span name="party">cocktail party</span> full of PL (programming language)
 researchers, you'll fit in.
+-->
+为了将两枚解释器的完整实现塞到一本书中而又不使得该书变得臃肿不堪，我选择不在编译理论部分着墨过多。
+当在我们逐步搭建系统的各个部分时，我再向你介绍关于这部分的历史与其背后的概念。
+我会努力让你理解，那些在<span name="party">鸡尾酒晚会</span>上的程序设计语言研究者们所说的“行话”，
+相信你很快就能了解适应。
 
 <aside name="party">
 
+<!--
 Strangely enough, a situation I have found myself in multiple times. You
 wouldn't believe how much some of them can drink.
+-->
+说实在话，在很多场合，我都发现那些家伙们有些是真的很能喝酒，你都没法想象。
 
 </aside>
 
+<!--
 But we're mostly going to spend our brain juice getting the language up and
 running. This is not to say theory isn't important. Being able to reason
 precisely and <span name="formal">formally</span> about syntax and semantics is
@@ -49,9 +72,15 @@ a vital skill when working on a language. But, personally, I learn best by
 doing. It's hard for me to wade through paragraphs full of abstract concepts and
 really absorb them. But if I've coded something, run it, and debugged it, then I
 *get* it.
+-->
+但在大部分情况下，我们都将绞尽脑汁先让我们的程序运行起来。这并不意味着理论不重要，
+能够正确且<span name="formal">形式化</span>地推导语法和语义是开发程序设计语言一项至关重要的技能。
+但是，我个人还是喜欢边做边学。通读大段大段充斥抽象概念的段落并充分理解其含义对我来说太过困难，
+但如果让我写几行代码，跑一跑，跟踪 debug 一下，我很快就可以*掌握*它。
 
 <aside name="formal">
 
+<!--
 Static type systems in particular require rigorous formal reasoning. Hacking on
 a type system has the same feel as proving a theorem in mathematics.
 
@@ -60,16 +89,31 @@ Curry and William Alvin Howard showed that they are two sides of the same coin:
 [the Curry-Howard isomorphism][].
 
 [the curry-howard isomorphism]: https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence
+-->
+静态类型系统尤其需要严格的形式推导。骇入静态类型系统与证明数学定理有着相似的感觉。
+事实证明这不是巧合。在上世纪初，美国数学家哈斯凯尔·柯里和逻辑学家威廉·阿尔文·霍瓦德
+就证明了它们正是同一枚硬币的一体两面：
+[柯里-霍华德同构][]
+
+[柯里-霍华德同构]: https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence
 
 </aside>
 
+<!--
 That's my goal for you. I want you to come away with a solid intuition of how a
 real language lives and breathes. My hope is that when you read other, more
 theoretical books later, the concepts there will firmly stick in your mind,
 adhered to this tangible substrate.
+-->
+这也是我对你的期望。我希望你通过动手实操对一门真正的程序设计语言如何诞生留下一个坚实的印象，如此一来，
+以后当你在阅读其他更具理论性的著作时，这些核心概念将深深镌刻进你的大脑，你可以更加充分地理解它们。
 
+<!--
 ## Why Learn This Stuff?
+-->
+## 为什么要学习这玩意儿？
 
+<!--
 Every introduction to every compiler book seems to have this section. I don't
 know what it is about programming languages that causes such existential doubt.
 I don't think ornithology books worry about justifying their existence. They
@@ -81,32 +125,65 @@ language are slim. The designers of the world's widely used languages could fit
 in a Volkswagen bus, even without putting the pop-top camper up. If joining that
 elite group was the *only* reason to learn languages, it would be hard to
 justify. Fortunately, it isn't.
+-->
 
+似乎每一本关于编译原理的书都会在开头简介部分来上这么一段，告诉读者为什么要学习编译原理。
+我不知道造成这种"存在性怀疑"的程序设计语言是什么。
+<!--
+正如我不认为鸟类学书籍是为了证明鸟儿的存在性一样，作者会预设读者都是爱鸟之人，然后开始教学。
+但是程序设计语言略有不同，
+-->
+我敢肯定地说，你们中的大多数人创造出一门被广为使用的通用程序设计语言的可能性微乎其微，
+毕竟，即使把这个世界上被广为应用程序语言的设计者们都拉出来，还不够塞满一辆大众巴士呢，
+如果学习编译原理的**唯一**理由就是要加入这群精英创造世界流行的程序设计语言，这很令人费解。
+幸运的是，事实并非如此。
+
+<!--
 ### Little languages are everywhere
+-->
+### 小众语言无处不在
 
+<!--
 For every successful general-purpose language, there are a thousand successful
 niche ones. We used to call them "little languages", but inflation in the jargon
 economy led to the name "domain-specific languages". These are pidgins
 tailor-built to a specific task. Think application scripting languages, template
 engines, markup formats, and configuration files.
+-->
+对于每一支成功的通用程序设计语言，都会有上千种其他语言与其相辅相成。我们通常将它们称为“小众语言”。
+但这一称呼其实并不准确，更加确切的称呼应该是：领域特定语言（Domain-specific Languages、DSL）。
+领域特定语言被设计用以某些特定的任务，如：应用程序脚本、模版引擎、标记格式、配置文件等。
 
 <span name="little"></span><img src="image/introduction/little-languages.png" alt="A random selection of little languages." />
 
 <aside name="little">
 
+随机筛选了一些你可能遇到过的"小众语言"。
+<!--
 A random selection of some little languages you might run into.
+-->
 
 </aside>
 
+<!--
 Almost every large software project needs a handful of these. When you can, it's
 good to reuse an existing one instead of rolling your own. Once you factor in
 documentation, debuggers, editor support, syntax highlighting, and all of the
 other trappings, doing it yourself becomes a tall order.
+-->
+几乎每个大型软件项目都需要用到其中的一个或多个。
+如果可以的话，最好是复用一支已经存在的领域特定语言而不是自己再创造一个，
+因为一旦使用自己编写的小众语言替换，在文档撰写、程序调试、编辑器支持、语法高亮等方面，
+都将遇到许多不必要的麻烦。
 
+<!--
 But there's still a good chance you'll find yourself needing to whip up a parser
 or other tool when there isn't an existing library that fits your needs. Even
 when you are reusing some existing implementation, you'll inevitably end up
 needing to debug and maintain it and poke around in its guts.
+-->
+但如果当现有的程序库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。
+即使当你想要重用一些现有的代码时，你也将不可避免地对其进行调试和维护，深入研究其原理。
 
 ### Languages are great exercise
 
