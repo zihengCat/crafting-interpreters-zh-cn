@@ -1,0 +1,21 @@
+Print:
+
+- Remove chapter numbers from Challenges and Design Note running headers.
+
+- Old style numbers in running text (but not in headings).
+
+- Go through and see if there are more hyperlinks that should become asides.
+
+Web:
+
+- Remove "not done" script, templates and styles.
+
+- Replace "work in progress" header with something about print edition.
+
+- Add snippets for remaining chapters to compile_snippets to pin down which
+  snippets reach a working point.
+
+- Fix the extra paragraph tags on the aside images in "Classes and Instances"
+  and "Closures".
+
+- Add acknowledgements and dedication pages.
