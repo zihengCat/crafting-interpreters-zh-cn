@@ -18,9 +18,9 @@ design a language worth implementing. It's the book I wish I'd had when I first
 started getting into languages, and it's the book I've been writing in my <span
 name="head">head</span> for nearly a decade.
 -->
-很高兴我们能携手开启这段旅程。这是一本关于如何实现程序语言解释器的书。
+很高兴我们能一起携手开启这段旅程。这是一本关于如何实现程序语言解释器的书。
 这也是一本关于如何设计一门程序语言的书。这是本我初入程序设计语言领域就想要拥有的书，
-这是本我 10 年前就<span name="head">想写</span>的书。
+这是本我 10 年前就在我<span name="head">脑海</span>中回转的书。
 
 <aside name="head">
 
@@ -51,8 +51,7 @@ researchers, you'll fit in.
 -->
 为了将两枚解释器的完整实现塞到一本书中而又不使得该书变得臃肿不堪，我选择不在编译理论部分着墨过多。
 当在我们逐步搭建系统的各个部分时，我再向你介绍关于这部分的历史与其背后的概念。
-我会努力让你理解，那些在<span name="party">鸡尾酒晚会</span>上的程序设计语言研究者们所说的“行话”，
-相信你很快就能了解适应。
+我会努力让你理解，那些在<span name="party">鸡尾酒晚会</span>上的程序设计语言研究者们所说的"行话"，相信你很快就能了解适应这些话了。
 
 <aside name="party">
 
@@ -150,9 +149,9 @@ economy led to the name "domain-specific languages". These are pidgins
 tailor-built to a specific task. Think application scripting languages, template
 engines, markup formats, and configuration files.
 -->
-对于每一支成功的通用程序设计语言，都会有上千种其他语言与其相辅相成。我们通常将它们称为“小众语言”。
-但这一称呼其实并不准确，更加确切的称呼应该是：领域特定语言（Domain-specific Languages、DSL）。
-领域特定语言被设计用以某些特定的任务，如：应用程序脚本、模版引擎、标记格式、配置文件等。
+对于任何一支成功的通用程序设计语言，都会有上千种其他语言与其相辅相成。我们通常将它们称为"小众语言"。
+但这一称呼其实并不准确，更为确切的称呼应该是：领域特定语言（Domain-specific Languages、DSL）。
+领域特定语言被设计用以完成某些特定任务，如：应用程序脚本、模版引擎、标记格式、配置文件等。
 
 <span name="little"></span><img src="image/introduction/little-languages.png" alt="A random selection of little languages." />
 
@@ -188,7 +187,7 @@ needing to debug and maintain it and poke around in its guts.
 <!--
 ### Languages are great exercise
 -->
-### 实现程序设计语言是对个人编程技艺极好地磨练
+### 锻炼个人编程技艺
 
 <!--
 Long distance runners sometimes train with weights strapped to their ankles or
@@ -206,7 +205,7 @@ graphs, and hash tables. You probably use hash tables at least in your
 day-to-day programming, but do you *really* understand them? Well, after we've
 crafted our own from scratch, I guarantee you will.
 -->
-实现一门程序设计语言是对编程技艺一次极好地磨练。代码复杂艰深，对代码性能也有着至关重要的要求。
+实现一门程序设计语言是对编程技艺一次极好地磨练。代码实现复杂艰深，对代码性能也有着至关重要的要求。
 你必须很好地掌握递归、动态数组、树、图、哈希表等关键技术。
 你也许经常在日常编程中使用哈希表数据结构，但你是否**真正**理解它了呢？
 当我们从头开始完成语言解释器之后，我保证你对这些基础算法数据结构的认知会更上一层楼。
@@ -233,7 +232,7 @@ couldn't conceive how BASIC *itself* was made.
 -->
 最后一个原因我其实有点难以启齿，因为这是我内心深处最为真切的想法。
 在我还是一个孩童时，就觉得程序设计语言非常的神奇，我一个字符一个字符敲下了一支 BASIC 程序，
-程序也正常运行了，但我却不知道 BASIC 语言是如何工作的。
+程序正常运行，但我却不知道 BASIC 语言是如何工作的。
 
 <!--
 Later, the mixture of awe and terror on my college friends' faces when talking
@@ -265,9 +264,9 @@ And its practitioners don't hesitate to play up this image. Two of the seminal
 texts on programming languages feature a [dragon][] and a [wizard][] on their
 covers.
 -->
-程序设计语言领域的奠基者们似乎从不吝啬扮演这一形象。
-两本在程序设计语言领域极富开创性的教科书就分别选用了“龙”与”巫师“形象作为封面，
-也就是大名鼎鼎的[《龙书》][dragon]与[《巫师书》][wizard]。
+程序设计语言领域的奠基者们似乎从不吝啬饰演这一形象。
+两本在程序设计语言领域极富开创性的教科书分别选用了“龙”和”巫师“形象作封面，
+即是大名鼎鼎的[《龙书》][dragon]与[《巫师书》][wizard]。
 
 [dragon]: https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools
 [wizard]: https://mitpress.mit.edu/sites/default/files/sicp/index.html
@@ -296,28 +295,46 @@ braver than you were before.
 <!--
 And, who knows, maybe you *will* make the next great language. Someone has to.
 -->
-说不定，你就是下个知名程序设计语言的创造者呢！
+说不定，下个知名程序设计语言的创造者就是你呢！
 
+<!--
 ## How the Book Is Organized
+-->
+## 本书是如何组织的
 
+<!--
 This book is broken into three parts. You're reading the first one now. It's a
 couple of chapters to get you oriented, teach you some of the lingo that
 language hackers use, and introduce you to Lox, the language we'll be
 implementing.
+-->
+本书主要分为三个部分，你目前正在阅读的正是第一部分。第一部分通过几个章节带你快速进入程序设计语言的世界，为你讲解程序设计语言开发者们时常挂在嘴边的那些"术语"。第一部分还将带你认识 Lox ，
+我们将要实现的程序设计语言。
 
+<!--
 Each of the other two parts builds one complete Lox interpreter. Within those
 parts, each chapter is structured the same way. The chapter takes a single
 language feature, teaches you the concepts behind it, and walks you through an
 implementation.
+-->
+之后的两大部分，分别带你构建一支完整的 Lox 解释器。这两部分的章节组织也大同小异，每章取一个语言特性，讲解其背后的核心概念，带你完整实现一遍代码。
 
+<!--
 It took a good bit of trial and error on my part, but I managed to carve up the
 two interpreters into chapter-sized chunks that build on the previous chapters
 but require nothing from later ones. From the very first chapter, you'll have a
 working program you can run and play with. With each passing chapter, it grows
 increasingly full-featured until you eventually have a complete language.
+-->
+为了将两枚解释器的庞杂内容切分成各个内容适中的篇章，让各个篇章之间尽可能相对独立不相互影响，
+可着实费了我一番功夫。从第一个篇章开始，你就可以写出一支可以运行的解释器程序了，随着章节推进，
+这支小解释器程序逐步成长，羽翼渐丰，直到你完整实现出全部功能。
 
+<!--
 Aside from copious, scintillating English prose, chapters have a few other
 delightful facets:
+-->
+除了内容丰富、语句清晰的主体内容外，章节还会包含以下数个讨喜的部分：
 
 ### The code
 
