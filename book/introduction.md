@@ -325,7 +325,7 @@ working program you can run and play with. With each passing chapter, it grows
 increasingly full-featured until you eventually have a complete language.
 -->
 为了将两枚解释器的庞杂内容切分成各个内容适中的篇章，让各个篇章之间尽可能相对独立不相互影响，
-可着实费了我一番功夫。从第一个篇章开始，你就可以写出一支可以运行的解释器程序了，随着章节推进，
+可着实费了我一番功夫。从第一个篇章开始，你就可以写出一支可以运行的解释器程序，随着章节推进，
 这支小解释器程序逐步成长，羽翼渐丰，直到你完整实现出全部功能。
 
 <!--
@@ -334,71 +334,112 @@ delightful facets:
 -->
 除了内容丰富、语句清晰的主体内容外，每个章节还会包含以下数个讨喜的部分：
 
+<!--
 ### The code
+-->
+### 代码
 
+<!--
 We're about *crafting* interpreters, so this book contains real code. Every
 single line of code needed is included, and each snippet tells you where to
 insert it in your ever-growing implementation.
+-->
+既然我们要开发一枚货真价实的程序语言解释器，代码部分自然是不可或缺的啦。任何一行重要的实现代码都将被包含其中详细阐释。贴出的代码片段还会贴心地告诉你应在何处插入这段代码。
 
+<!--
 Many other language books and language implementations use tools like [Lex][]
 and <span name="yacc">[Yacc][]</span>, so-called **compiler-compilers**, that
 automatically generate some of the source files for an implementation from some
 higher-level description. There are pros and cons to tools like those, and
 strong opinions -- some might say religious convictions -- on both sides.
+-->
+许多讲授程序设计语言开发的书籍都会借助一些类似<span name="yacc">[Lex][]、[Yacc][]</span>这样的**编译器编译程序（Compiler-compilers）**，让编译器编译程序帮忙自动生成一些源代码文件，
+这么做有人说好，有人说不好，争论双方各执己见，各有各的道理。
 
 <aside name="yacc">
 
+<!--
 Yacc is a tool that takes in a grammar file and produces a source file for a
 compiler, so it's sort of like a "compiler" that outputs a compiler, which is
 where we get the term "compiler-compiler".
+-->
+Yacc 是一个可以接收固定格式语法文件，为语法生成编译器源文件的辅助工具。这听起来像是可以生成"编译器"的编译器，所以我们就为这类工具起了个专业的名词：编译器编译程序。
 
+<!--
 Yacc wasn't the first of its ilk, which is why it's named "Yacc" -- *Yet
 Another* Compiler-Compiler. A later similar tool is [Bison][], named as a pun on
 the pronunciation of Yacc like "yak".
+-->
+Yacc 不是其同类产品中的第一个，这也是为什么它被命名为 Yacc 的原因："*Yet Another* Compiler-Compiler"，在它之后还有[Bison][]这样的工具诞生。Yacc 的发音类似于："yak"。
 
 <img src="image/introduction/yak.png" alt="A yak.">
 
 [bison]: https://en.wikipedia.org/wiki/GNU_bison
 
+<!--
 If you find all of these little self-references and puns charming and fun,
 you'll fit right in here. If not, well, maybe the language nerd sense of humor
 is an acquired taste.
+-->
+如果你觉得这些小贴士和双关语很有意思，那你可真是我的同类。但如果你体会不到，也无伤大雅，
+也许是程序语言书呆子们的幽默感一点也不好笑吧，哈哈。
 
 </aside>
 
+<!--
 We will abstain from using them here. I want to ensure there are no dark corners
 where magic and confusion can hide, so we'll write everything by hand. As you'll
 see, it's not as bad as it sounds, and it means you really will understand each
 line of code and how both interpreters work.
+-->
+在这本书中，我们不会使用这些辅助工具。我想确保在实现程序设计语言的道路上不会有任何黑暗的角落和神奇的魔法，我们将完完整整地写下全部代码，你也将充分理解写下的每一行代码如何在解释器里工作。
 
 [lex]: https://en.wikipedia.org/wiki/Lex_(software)
 [yacc]: https://en.wikipedia.org/wiki/Yacc
 
+<!--
 A book has different constraints from the "real world" and so the coding style
 here might not always reflect the best way to write maintainable production
 software. If I seem a little cavalier about, say, omitting `private` or
 declaring a global variable, understand I do so to keep the code easier on your
 eyes. The pages here aren't as wide as your IDE and every character counts.
+-->
+写在书中的代码与"真实世界"的代码总会有一些不同，某些代码风格也不是编写可维护软件代码的最佳方式。如果被你发现，比如说：漏写了个`private`，声明了一个全局变量，还请不要见怪。我力求代码简洁易懂，而且，这里书页的宽度也比不上集成开发环境（IDE）。
 
+<!--
 Also, the code doesn't have many comments. That's because each handful of lines
 is surrounded by several paragraphs of honest-to-God prose explaining it. When
 you write a book to accompany your program, you are welcome to omit comments
 too. Otherwise, you should probably use `//` a little more than I do.
+-->
+另外，书中的代码不会带有太多的注释，这是因为每行代码的意义都会周围的几个段落被详细地解释清楚。如果以后你也提笔撰写一本自己的技术书，我也推荐使用这样的技术文风：少注释，多解释。
 
+<!--
 While the book contains every line of code and teaches what each means, it does
 not describe the machinery needed to compile and run the interpreter. I assume
 you can slap together a makefile or a project in your IDE of choice in order to
 get the code to run. Those kinds of instructions get out of date quickly, and
 I want this book to age like XO brandy, not backyard hooch.
+-->
+虽然书中包含了每一行需要实现的代码和对代码的解释，但我没有加入如何让解释器程序编译运行起来的描述性文本。这是因为我相信你有能力快速撰写一份`Makefile`或是使用 IDE 建立一个工程项目，从而让代码运行起来，相信我，这不是什么难事，而且，描述如何让程序编译执行的文字很快就会过时，新的代码工具层出不穷。我希望这本书能像白兰地酒那样，越老越醇香。
 
+<!--
 ### Snippets
+-->
+### 代码片段
 
+<!--
 Since the book contains literally every line of code needed for the
 implementations, the snippets are quite precise. Also, because I try to keep the
 program in a runnable state even when major features are missing, sometimes we
 add temporary code that gets replaced in later snippets.
+-->
+除了包含实现解释器所需的代码之外，本书还会包含一些描述精准的代码片段。这是因为我需要让解释器程序在缺失某些主体功能的情况下也能正常运行，所以我会使用代码片段告诉你如何添加上临时性代码，以及后续如何替换掉它们。
 
+<!--
 A snippet with all the bells and whistles looks like this:
+-->
+一份典型的代码片段长这样：
 
 <div class="codehilite"><pre class="insert-before">
       default:
@@ -416,50 +457,89 @@ replace 1 line</div>
 </pre></div>
 <div class="source-file-narrow"><em>lox/Scanner.java</em>, in <em>scanToken</em>(), replace 1 line</div>
 
+<!--
 In the center, you have the new code to add. It may have a few faded out lines
 above or below to show where it goes in the existing surrounding code. There is
 also a little blurb telling you in which file and where to place the snippet. If
 that blurb says "replace _ lines", there is some existing code between the faded
 lines that you need to remove and replace with the new snippet.
+-->
+可以看到，在代码片段的中心位置，有需要添加的代码，这部分代码被着重显示。新增代码上下环绕几行颜色偏淡已经存在的上下文代码。侧边会有个简短提示，告诉你应在哪个文件的哪个位置插入代码。如果提示文字中有诸如"替换_行"的描述，这就表示你需要先移除此处的旧代码，再替换上代码片段中的新代码。
 
+<!--
 ### Asides
+-->
+### 旁白
 
+<!--
 <span name="joke">Asides</span> contain biographical sketches, historical
 background, references to related topics, and suggestions of other areas to
 explore. There's nothing that you *need* to know in them to understand later
 parts of the book, so you can skip them if you want. I won't judge you, but I
 might be a little sad.
+-->
+<span name="joke">旁白</span>通常包含一些简单草图、章节历史背景、相关主题的参考内容以及对其他领域的建议，忽略这部分内容*完全不影响*你阅读接下来的章节内容。所以，你可以放心地忽略它们。忽略这部分的内容我也不会怪你，只是，我可能有点难过啦。
 
 <aside name="joke">
 
+<!--
 Well, some asides do, at least. Most of them are just dumb jokes and amateurish
 drawings.
+-->
+好吧，有些旁白确实如我所言那般，但更多的都是一些小笑话和随手涂鸦罢了。
 
 </aside>
 
+<!--
 ### Challenges
+-->
+### 挑战
 
+<!--
 Each chapter ends with a few exercises. Unlike textbook problem sets, which tend
 to review material you already covered, these are to help you learn *more* than
 what's in the chapter. They force you to step off the guided path and explore on
 your own. They will make you research other languages, figure out how to
 implement features, or otherwise get you out of your comfort zone.
+-->
+在每个章节的结尾部分，会带有几道练习题。与教科书后的习题集不同，本书的练习题旨在帮助你复习你已经学到的内容，引导你去思考章节内容之外的东西。习题迫使你走出既定的引导路线去探索更多，这对你研究其他语言的功能实现大有裨益。不是有句话这么说嘛：你要勇于跳出舒适区。
 
+<!--
 <span name="warning">Vanquish</span> the challenges and you'll come away with a
 broader understanding and possibly a few bumps and scrapes. Or skip them if you
 want to stay inside the comfy confines of the tour bus. It's your book.
+-->
+努力<span name="warning">克服</span>这些挑战，你必然会有新的感悟与收获，亦或是，你也可以简单地跳过它们，继续前进。
 
 <aside name="warning">
 
+<!--
 A word of warning: the challenges often ask you to make changes to the
 interpreter you're building. You'll want to implement those in a copy of your
 code. The later chapters assume your interpreter is in a pristine
 ("unchallenged"?) state.
+-->
+注意：这些习题挑战时常会需要你修改已经实现的语言解释器代码，你最好是拷贝一份代码来做题，后续章节会以未经修改的原始代码状态（没做挑战习题）为起点继续前进。
 
 </aside>
 
+<!--
 ### Design notes
+-->
+### 设计笔记
 
+<!--
+大多数“编程语言”书籍都是严格的编程语言
+*实施*书籍。他们很少讨论如何*设计*
+正在实施的语言。实现很有趣，因为它是如此
+name =“ benchmark”>精确定义的</ span>。我们程序员似乎有一个
+对黑白事物（一和零）的亲和力。
+
+大多数描写"程序设计语言"的书都会描述
+
+实现程序设计语言之所以有趣，是因为
+我们程序员似乎都对精确的事物十分着迷，
+-->
 Most "programming language" books are strictly programming language
 *implementation* books. They rarely discuss how one might happen to *design* the
 language being implemented. Implementation is fun because it is so <span

@@ -14,8 +14,9 @@ you!
 
 | 英   | 中    |
 | :--- | :--- |
-| Programming Language(s) | 程序设计语言 |
-| Interpreter(s) | 解释器 |
+| Programming Language | 程序设计语言 |
+| Interpreter | 解释器 |
+| Compiler | 编译器 |
 | ... | ... |
 
 > 表：翻译术语表
