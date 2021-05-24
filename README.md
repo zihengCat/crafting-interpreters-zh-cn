@@ -10,6 +10,16 @@ final site.
 If you find an error or have a suggestion, please do file an issue here. Thank
 you!
 
+# 翻译术语表
+
+| 英   | 中    |
+| :--- | :--- |
+| Programming Language(s) | 程序设计语言 |
+| Interpreter(s) | 解释器 |
+| ... | ... |
+
+> 表：翻译术语表
+
 ## Contributing
 
 One of the absolute best things about writing a book online and putting it out
