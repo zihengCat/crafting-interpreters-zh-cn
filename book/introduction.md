@@ -20,14 +20,14 @@ name="head">head</span> for nearly a decade.
 -->
 很高兴我们能一起携手开启这段旅程。这是一本关于如何实现程序语言解释器的书。
 这也是一本关于如何设计一门程序语言的书。这是本我初入程序设计语言领域就想要拥有的书，
-这是本我 10 年前就在我<span name="head">脑海</span>中回转的书。
+这是本我 10 年前就在我<span name="head">脑海</span>中构思的书。
 
 <aside name="head">
 
 <!--
 To my friends and family, sorry I've been so absentminded!
 -->
-不好意思，朋友，我好像有点语无伦次了！
+不好意思，朋友，我好像有点语无伦次了...
 
 </aside>
 
@@ -50,8 +50,8 @@ try to get you familiar with the lingo so that if you ever find yourself at a
 researchers, you'll fit in.
 -->
 为了将两枚解释器的完整实现塞到一本书中而又不使得该书变得臃肿不堪，我选择不在编译理论部分着墨过多。
-当在我们逐步搭建系统的各个部分时，我再向你介绍关于这部分的历史与其背后的概念。
-我会努力让你理解，那些在<span name="party">鸡尾酒晚会</span>上的程序设计语言研究者们所说的"行话"，相信你很快就能了解适应这些话了。
+当我们逐步搭建起编译系统的各个部分之时，我再向你介绍关于这部分的历史与其背后的概念。
+我会努力让你理解那些在<span name="party">鸡尾酒晚会</span>上的程序设计语言研究者们所说的"行话"，相信你很快就能理解适应这些"术语"了。
 
 <aside name="party">
 
@@ -72,9 +72,9 @@ doing. It's hard for me to wade through paragraphs full of abstract concepts and
 really absorb them. But if I've coded something, run it, and debugged it, then I
 *get* it.
 -->
-但在大部分情况下，我们都将绞尽脑汁先让我们的程序运行起来。这并不意味着理论不重要，
+在大部分情况下，我们都将绞尽脑汁先让我们的程序运行起来。这并不意味着理论不重要，
 能够正确且<span name="formal">形式化</span>地推导语法和语义是开发程序设计语言一项至关重要的技能。
-但是，我个人还是喜欢边做边学。通读大段大段充斥抽象概念的段落并充分理解其含义对我来说太过困难，
+但是，我个人还是喜欢边做边学。通读大段大段充斥抽象概念的段落并充分理解其含义对我来说实在是太过困难，
 但如果让我写几行代码，跑一跑，跟踪 debug 一下，我很快就可以*掌握*它。
 
 <aside name="formal">
@@ -104,8 +104,7 @@ real language lives and breathes. My hope is that when you read other, more
 theoretical books later, the concepts there will firmly stick in your mind,
 adhered to this tangible substrate.
 -->
-这也是我对你的期望。我希望你通过动手实操，对一门真正程序设计语言的诞生过程留下一个坚实的印象，如此一来，
-以后当你在阅读其他更具理论性的书籍著作时，这些核心概念将深深镌刻进你的大脑，你可以更加充分地理解它们。
+这也是我对你的期望。我希望你通过动手实操，对一门真正程序设计语言的诞生过程留下一个坚实的印象，如此一来，以后当你在阅读其他更具理论性的书籍著作时，这些核心概念将深深镌刻进你的大脑，使得你可以更加充分地理解它们。
 
 <!--
 ## Why Learn This Stuff?
@@ -134,7 +133,7 @@ justify. Fortunately, it isn't.
 -->
 我敢肯定地说，你们中的大多数人创造出一门被广为使用的通用程序设计语言的可能性微乎其微，
 毕竟，即使把这个世界上被广为应用程序语言的设计者们都拉出来，还塞不满一辆大众巴士呢，
-如果学习编译原理的**唯一**理由就是要加入这群精英，创造世界流行的程序设计语言，这无疑令人费解。
+如果学习编译原理的**唯一**理由就是要加入这群精英，创造出世界流行的程序设计语言，这无疑令人费解。
 幸运的是，事实并非如此。
 
 <!--
@@ -171,9 +170,9 @@ documentation, debuggers, editor support, syntax highlighting, and all of the
 other trappings, doing it yourself becomes a tall order.
 -->
 几乎每个大型软件项目都需要用到其中的一个或多个。
-如果可以的话，最好是复用一支已经存在的领域特定语言而不是自己再创造一个，
+如果可以的话，最好是复用一支已经存在的领域特定语言，而不是自己再创造一个，
 因为一旦使用自己编写的小众语言替换，在文档撰写、程序调试、编辑器支持、语法高亮等方面，
-都将遇到许多不必要的麻烦。
+你都将面临许多不必要的麻烦。
 
 <!--
 But there's still a good chance you'll find yourself needing to whip up a parser
@@ -181,13 +180,12 @@ or other tool when there isn't an existing library that fits your needs. Even
 when you are reusing some existing implementation, you'll inevitably end up
 needing to debug and maintain it and poke around in its guts.
 -->
-但如果当现有的程序库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。
-即使当你想要重用一些现有的代码时，你也将不可避免地对其进行调试和维护，深入研究其原理。
+但如果当现有的领域特定语言代码库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。即使你想要重用一些现有的代码，你也将不可避免地对其进行调试和维护，深入研究其原理。
 
 <!--
 ### Languages are great exercise
 -->
-### 锻炼个人编程技艺
+### 着实锻炼编程技艺
 
 <!--
 Long distance runners sometimes train with weights strapped to their ankles or
@@ -222,7 +220,7 @@ algorithms in your day job.
 <!--
 ### One more reason
 -->
-### 还有一个原因
+### 另一个原因
 
 <!--
 This last reason is hard for me to admit, because it's so close to my heart.
@@ -317,7 +315,7 @@ parts, each chapter is structured the same way. The chapter takes a single
 language feature, teaches you the concepts behind it, and walks you through an
 implementation.
 -->
-之后的两大部分，分别带你构建一支完整的 Lox 解释器。这两部分的章节组织也大同小异，每章取一个语言特性，讲解其背后的核心概念，带你完整实现一遍代码。
+之后的两大部分，都将分别带你构建一支完整的 Lox 解释器。这两部分的章节组织也大同小异，每章取一个语言特性，讲解其背后的核心概念，带你完整实现一遍代码。
 
 <!--
 It took a good bit of trial and error on my part, but I managed to carve up the
@@ -334,7 +332,7 @@ increasingly full-featured until you eventually have a complete language.
 Aside from copious, scintillating English prose, chapters have a few other
 delightful facets:
 -->
-除了内容丰富、语句清晰的主体内容外，章节还会包含以下数个讨喜的部分：
+除了内容丰富、语句清晰的主体内容外，每个章节还会包含以下数个讨喜的部分：
 
 ### The code
 

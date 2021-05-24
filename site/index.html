@@ -5,7 +5,7 @@
 <!--
 <title>Crafting Interpreters</title>
 -->
-<title>手工制作解释器</title>
+<title>解释器设计与实现</title>
 <!-- Tell mobile browsers we're optimized for them and they don't need to crop
      the viewport. -->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -39,7 +39,7 @@
 <!--
 <blockquote>A handbook for making programming languages.</blockquote>
 -->
-<blockquote>一本制作编程语言的行路指南。</blockquote>
+<blockquote>一本程序设计语言开发的行路指南。</blockquote>
 
 <!--
 <p>This book contains everything you need to implement a full-featured,
@@ -48,7 +48,7 @@ parsing and semantics and gritty details like bytecode representation and
 garbage collection. Your brain will light up with new ideas, and your hands will
 get dirty and calloused. It&#8217;s a blast.</p>
 -->
-<p>本书囊括了实现一门功能齐全、稳定高效的脚本编程语言你所需要知晓的一切。你既可以学习到围绕制作程序语言的核心概念（如：词法分析、语法解析），还能深入理解语言实现的具体细节（如：字节码表示，垃圾收集等）。你的大脑将因新知变得熠熠生辉，你的双手将因实操变得伤痕累累，相信这一定会是段很有意义的经历。
+<p>本书囊括了实现一门功能齐全、稳定高效的脚本程序设计语言你所需要知晓的一切。你既可以学习到围绕程序设计语言的核心概念（如：词法分析、语法解析），还能深入理解语言实现的具体细节（如：字节码表示，垃圾收集等）。你的大脑将因新知变得熠熠生辉，你的双手将因实操变得伤痕累累，相信这一定会是段很有意义的经历。
 </p>
 
 <!--
@@ -58,14 +58,14 @@ functions, closures, classes, and inheritance. All packed into a few thousand
 lines of clean, fast code that you thoroughly understand because you write each
 one yourself.</p>
 -->
-<p>从主函数 <code>main()</code> 开始，你将逐步构建起一门羽翼丰满的编程语言，逐步为其添加
-语法实现、动态类型、垃圾收集、词法作用域、一等公民函数、闭包、类与继承等功能。所有功能都会在仅
-数千行简洁、高效的代码中被实现，你对这些代码了然于胸，因为这些代码将由你亲手写下。
+<p>从主函数 <code>main()</code> 开始，你将逐步构建起一门羽翼丰满的程序设计语言，
+逐步为其添加语法实现、动态类型、垃圾收集、词法作用域、一等公民函数、闭包、类与继承等功能。
+所有功能都会在仅数千行简洁、高效的代码中被实现，你对这些代码了然于胸，因为这些代码将由你亲手写下。
 
 <!--
 <p>And you can read the whole book, for free, online:</p>
 -->
-<p>而且，你可以完全免费地在线阅读此书：</p>
+<p>你可以完全免费地在线阅读此书：</p>
 
 <!--
 <p class="center">
@@ -88,9 +88,10 @@ chapters are written, but I am still designing the print edition. If you want to
 know when that&#8217;s ready, have I got the mailing list for you:</p>
 -->
 <p>
-我也许有点老土赶不上时代了，但对我而言，“书本”一词仍意味着印刷油墨和原木纸浆。
-只可惜，这本书还没有被印刷成册呢。内容章节已经写好，但我仍然在设计最终印刷版的版式。
-如果你也想知道此书何时能印刷出版，可以在下方留下你的邮箱地址，我会把你加入到邮件列表中，及时通知你：
+或许，我有点老土赶不上时代了，但对我而言，“书本”一词仍意味着印刷油墨和原木纸浆。
+只可惜，这本书还没有被印刷成册。章节内容都已经写好，但我仍然在设计最终印刷的版式。
+如果你也想知道此书何时能印刷出版，可以在下方留下你的邮箱地址，我会把你加入到邮件列表中，
+及时通知你：
 </p>
 
 <div class="sign-up">
@@ -126,8 +127,8 @@ programming language job. Today, I work at Google on the
 <a href="http://dart.dev/" target="_blank">Dart language</a>.</p>
 -->
 <p>我的名字叫 Bob Nystrom。大约 10 年前，我被自己拼拼凑凑做出来的程序语言 bug 困扰得头疼不已，
-那时候我正在休陪产假，晚上有很多空闲时间可以捣鼓。从那时我才发现，原来我真的很喜欢程序语言开发啊，
-于是，我遵从本心，投身于全职程序设计语言开发工作。现在，我在谷歌公司（Google）开发
+那时候我正在休陪产假，晚上有很多空闲时间可以捣鼓。从那时我才发现，原来我真的很喜欢程序设计语言开发啊，
+于是，我便遵从本心，投身于全职程序设计语言开发相关工作。现在，我在谷歌公司（Google）开发
 <a href="http://dart.dev/" target="_blank"> Dart 语言 </a>。
 
 <!--
@@ -138,8 +139,8 @@ Patterns</a>&rdquo; based on what I learned there. You can read that book for
 free too, because I love you.</p>
 -->
 <p>
-在我爱上程序语言之前，我在美国艺电公司（Electronic Arts）做了 8 年的游戏开发工作。
-根据在艺电学到的游戏开发知识，我当时写了本书，卖得还不错 <a href="http://gameprogrammingpatterns.com/" target="_blank">《Game Programming Patterns》</a>。现在你同样可以免费阅读它，因为我很爱你们呀。 w(ﾟДﾟ)w
+在爱上程序设计语言之前，我在美国艺电公司（Electronic Arts）做了 8 年的游戏开发工作。
+基于在艺电学到的游戏开发知识，我当时写了本书，卖得还不错呢 <a href="http://gameprogrammingpatterns.com/" target="_blank">《Game Programming Patterns》</a>。现在，你同样可以免费阅读到它。至于你问我为什么要免费？因为我爱你们呀。 w(ﾟДﾟ)w
 </p>
 
 <!--
@@ -151,10 +152,10 @@ href="http://journal.stuffwithstuff.com/" target="_blank">a blog</a>. If you
 like the book, you&#8217;ll probably like it too.</p>
 -->
 <p>
-如果想联系我，你可以给我发邮件（<code>bob@craftinginterpreters.com</code>），
-或者你也可以在 Twitter 上找到我（<a href="https://twitter.com/intent/user?screen_name=munificentbob"
+如果你想联系我，可以给我发邮件（<code>bob@craftinginterpreters.com</code>），
+或是在 Twitter 上找到我（<a href="https://twitter.com/intent/user?screen_name=munificentbob"
 target="_blank"><code>@munificentbob</code></a>）。
-如果你觉得我的书写得不错，我还有个 <a href="http://journal.stuffwithstuff.com/" target="_blank"> 个人博客 </a>，
+如果你觉得我的书写得不错，我还有个<a href="http://journal.stuffwithstuff.com/" target="_blank">个人博客</a>，
 也许你也会喜欢。
 </p>
 
