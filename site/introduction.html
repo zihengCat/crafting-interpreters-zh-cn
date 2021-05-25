@@ -38,12 +38,10 @@
 <h3><a href="#top">Introduction<small>1</small></a></h3>
 
 <ul>
-    <li><a href="#why-learn-this-stuff"><small>1.1</small> Why Learn This Stuff?</a></li>
-    <li><a href="#为什么要学习这玩意儿？"><small>1.2</small> 为什么要学习这玩意儿？</a></li>
-    <li><a href="#how-the-book-is-organized"><small>1.3</small> How the Book Is Organized</a></li>
-    <li><a href="#本书是如何组织的"><small>1.4</small> 本书是如何组织的</a></li>
-    <li><a href="#the-first-interpreter"><small>1.5</small> The First Interpreter</a></li>
-    <li><a href="#the-second-interpreter"><small>1.6</small> The Second Interpreter</a></li>
+    <li><a href="#为什么要学习这玩意儿？"><small>1.1</small> 为什么要学习这玩意儿？</a></li>
+    <li><a href="#本书是如何组织的"><small>1.2</small> 本书是如何组织的</a></li>
+    <li><a href="#第一支解释器"><small>1.3</small> 第一支解释器</a></li>
+    <li><a href="#the-second-interpreter"><small>1.4</small> The Second Interpreter</a></li>
     <li class="divider"></li>
     <li class="end-part"><a href="#challenges">Challenges</a></li>
     <li class="end-part"><a href="#design-note"><small>note</small>What&#x27;s in a Name?</a></li>
@@ -72,12 +70,10 @@
 <h3><a href="#top">Introduction<small>1</small></a></h3>
 
 <ul>
-    <li><a href="#why-learn-this-stuff"><small>1.1</small> Why Learn This Stuff?</a></li>
-    <li><a href="#为什么要学习这玩意儿？"><small>1.2</small> 为什么要学习这玩意儿？</a></li>
-    <li><a href="#how-the-book-is-organized"><small>1.3</small> How the Book Is Organized</a></li>
-    <li><a href="#本书是如何组织的"><small>1.4</small> 本书是如何组织的</a></li>
-    <li><a href="#the-first-interpreter"><small>1.5</small> The First Interpreter</a></li>
-    <li><a href="#the-second-interpreter"><small>1.6</small> The Second Interpreter</a></li>
+    <li><a href="#为什么要学习这玩意儿？"><small>1.1</small> 为什么要学习这玩意儿？</a></li>
+    <li><a href="#本书是如何组织的"><small>1.2</small> 本书是如何组织的</a></li>
+    <li><a href="#第一支解释器"><small>1.3</small> 第一支解释器</a></li>
+    <li><a href="#the-second-interpreter"><small>1.4</small> The Second Interpreter</a></li>
     <li class="divider"></li>
     <li class="end-part"><a href="#challenges">Challenges</a></li>
     <li class="end-part"><a href="#design-note"><small>note</small>What&#x27;s in a Name?</a></li>
@@ -116,9 +112,7 @@
   <p class="small">(I post about once a month. Don&#8217;t worry, I won&#8217;t spam you.)</p>
 </div>
 
-<!--
-# 简介
---><!--
+<h1><a href="#简介" name="简介"><small>1&#8202;.&#8202;0</small>简介</a></h1><!--
 > Fairy tales are more than true: not because they tell us that dragons exist,
 > but because they tell us that dragons can be beaten.
 >
@@ -200,9 +194,9 @@ theoretical books later, the concepts there will firmly stick in your mind,
 adhered to this tangible substrate.
 -->
 <p>这也是我对你的期望。我希望你通过动手实操，对一门真正程序设计语言的诞生过程留下一个坚实的印象，如此一来，以后当你在阅读其他更具理论性的书籍著作时，这些核心概念将深深镌刻进你的大脑，使得你可以更加充分地理解它们。</p><!--
-## Why Learn This Stuff?
+-- Why Learn This Stuff?
 -->
-<h2><a href="#为什么要学习这玩意儿？" name="为什么要学习这玩意儿？"><small>1&#8202;.&#8202;2</small>为什么要学习这玩意儿？</a></h2><!--
+<h2><a href="#为什么要学习这玩意儿？" name="为什么要学习这玩意儿？"><small>1&#8202;.&#8202;1</small>为什么要学习这玩意儿？</a></h2><!--
 Every introduction to every compiler book seems to have this section. I don't
 know what it is about programming languages that causes such existential doubt.
 I don't think ornithology books worry about justifying their existence. They
@@ -224,9 +218,9 @@ justify. Fortunately, it isn't.
 毕竟，即使把这个世界上被广为应用程序语言的设计者们都拉出来，还塞不满一辆大众巴士呢，
 如果学习编译原理的<strong>唯一</strong>理由就是要加入这群精英，创造出世界流行的程序设计语言，这无疑令人费解。
 幸运的是，事实并非如此。</p><!--
-### Little languages are everywhere
+--- Little languages are everywhere
 -->
-<h3><a href="#小众语言无处不在" name="小众语言无处不在"><small>1&#8202;.&#8202;2&#8202;.&#8202;2</small>小众语言无处不在</a></h3><!--
+<h3><a href="#小众语言无处不在" name="小众语言无处不在"><small>1&#8202;.&#8202;1&#8202;.&#8202;1</small>小众语言无处不在</a></h3><!--
 For every successful general-purpose language, there are a thousand successful
 niche ones. We used to call them "little languages", but inflation in the jargon
 economy led to the name "domain-specific languages". These are pidgins
@@ -257,9 +251,9 @@ when you are reusing some existing implementation, you'll inevitably end up
 needing to debug and maintain it and poke around in its guts.
 -->
 <p>但如果当现有的领域特定语言代码库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。即使你想要重用一些现有的代码，你也将不可避免地对其进行调试和维护，深入研究其原理。</p><!--
-### Languages are great exercise
+--- Languages are great exercise
 -->
-<h3><a href="#着实锻炼编程技艺" name="着实锻炼编程技艺"><small>1&#8202;.&#8202;2&#8202;.&#8202;4</small>着实锻炼编程技艺</a></h3><!--
+<h3><a href="#着实锻炼编程技艺" name="着实锻炼编程技艺"><small>1&#8202;.&#8202;1&#8202;.&#8202;2</small>着实锻炼编程技艺</a></h3><!--
 Long distance runners sometimes train with weights strapped to their ankles or
 at high altitudes where the atmosphere is thin. When they later unburden
 themselves, the new relative ease of light limbs and oxygen-rich air enables
@@ -284,9 +278,9 @@ algorithms in your day job.
 -->
 <p>尽管我想努力向你传达，实现一枚程序语言解释器并不如你想象的那般困难，但实际上这仍是一个巨大的挑战。
 克服它，你会变得更加强大，在日常工作中，你也将更加聪明地运用算法与数据结构。</p><!--
-### One more reason
+--- One more reason
 -->
-<h3><a href="#另一个原因" name="另一个原因"><small>1&#8202;.&#8202;2&#8202;.&#8202;6</small>另一个原因</a></h3><!--
+<h3><a href="#另一个原因" name="另一个原因"><small>1&#8202;.&#8202;1&#8202;.&#8202;3</small>另一个原因</a></h3><!--
 This last reason is hard for me to admit, because it's so close to my heart.
 Ever since I learned to program as a kid, I felt there was something magical
 about languages. When I first tapped out BASIC programs one key at a time I
@@ -340,9 +334,9 @@ braver than you were before.
 And, who knows, maybe you *will* make the next great language. Someone has to.
 -->
 <p>说不定，下个知名程序设计语言的创造者就是你呢！</p><!--
-## How the Book Is Organized
+-- How the Book Is Organized
 -->
-<h2><a href="#本书是如何组织的" name="本书是如何组织的"><small>1&#8202;.&#8202;4</small>本书是如何组织的</a></h2><!--
+<h2><a href="#本书是如何组织的" name="本书是如何组织的"><small>1&#8202;.&#8202;2</small>本书是如何组织的</a></h2><!--
 This book is broken into three parts. You're reading the first one now. It's a
 couple of chapters to get you oriented, teach you some of the lingo that
 language hackers use, and introduce you to Lox, the language we'll be
@@ -369,9 +363,9 @@ Aside from copious, scintillating English prose, chapters have a few other
 delightful facets:
 -->
 <p>除了内容丰富、语句清晰的主体内容外，每个章节还会包含以下数个讨喜的部分：</p><!--
-### The code
+--- The code
 -->
-<h3><a href="#代码" name="代码"><small>1&#8202;.&#8202;4&#8202;.&#8202;2</small>代码</a></h3><!--
+<h3><a href="#代码" name="代码"><small>1&#8202;.&#8202;2&#8202;.&#8202;1</small>代码</a></h3><!--
 We're about *crafting* interpreters, so this book contains real code. Every
 single line of code needed is included, and each snippet tells you where to
 insert it in your ever-growing implementation.
@@ -429,9 +423,9 @@ get the code to run. Those kinds of instructions get out of date quickly, and
 I want this book to age like XO brandy, not backyard hooch.
 -->
 <p>虽然书中包含了每一行需要实现的代码和对代码的解释，但我没有加入如何让解释器程序编译运行起来的描述性文本。这是因为我相信你有能力快速撰写一份<code>Makefile</code>或是使用 IDE 建立一个工程项目，从而让代码运行起来，相信我，这不是什么难事，而且，描述如何让程序编译执行的文字很快就会过时，新的代码工具层出不穷。我希望这本书能像白兰地酒那样，越老越醇香。</p><!--
-### Snippets
+--- Snippets
 -->
-<h3><a href="#代码片段" name="代码片段"><small>1&#8202;.&#8202;4&#8202;.&#8202;4</small>代码片段</a></h3><!--
+<h3><a href="#代码片段" name="代码片段"><small>1&#8202;.&#8202;2&#8202;.&#8202;2</small>代码片段</a></h3><!--
 Since the book contains literally every line of code needed for the
 implementations, the snippets are quite precise. Also, because I try to keep the
 program in a runnable state even when major features are missing, sometimes we
@@ -463,9 +457,9 @@ that blurb says "replace _ lines", there is some existing code between the faded
 lines that you need to remove and replace with the new snippet.
 -->
 <p>可以看到，在代码片段的中心位置，有需要添加的代码，这部分代码被着重显示。新增代码上下环绕几行颜色偏淡已经存在的上下文代码。侧边会有个简短提示，告诉你应在哪个文件的哪个位置插入代码。如果提示文字中有诸如&ldquo;替换_行&ldquo;的描述，这就表示你需要先移除此处的旧代码，再替换上代码片段中的新代码。</p><!--
-### Asides
+--- Asides
 -->
-<h3><a href="#旁注" name="旁注"><small>1&#8202;.&#8202;4&#8202;.&#8202;6</small>旁注</a></h3><!--
+<h3><a href="#旁注" name="旁注"><small>1&#8202;.&#8202;2&#8202;.&#8202;3</small>旁注</a></h3><!--
 <span name="joke">Asides</span> contain biographical sketches, historical
 background, references to related topics, and suggestions of other areas to
 explore. There's nothing that you *need* to know in them to understand later
@@ -479,9 +473,9 @@ drawings.
 -->
 <p>好吧，有些旁注确实如我所言那般，但更多的都是一些小笑话和随手涂鸦罢了。</p>
 </aside><!--
-### Challenges
+--- Challenges
 -->
-<h3><a href="#挑战" name="挑战"><small>1&#8202;.&#8202;4&#8202;.&#8202;8</small>挑战</a></h3><!--
+<h3><a href="#挑战" name="挑战"><small>1&#8202;.&#8202;2&#8202;.&#8202;4</small>挑战</a></h3><!--
 Each chapter ends with a few exercises. Unlike textbook problem sets, which tend
 to review material you already covered, these are to help you learn *more* than
 what's in the chapter. They force you to step off the guided path and explore on
@@ -502,9 +496,9 @@ code. The later chapters assume your interpreter is in a pristine
 -->
 <p>给你一点提示：这些习题挑战时常会需要你修改已经实现的语言解释器代码，你最好是拷贝一份代码来做题，后续章节会以未经修改的原始代码状态（没做挑战习题）为起点继续前进。</p>
 </aside><!--
-### Design notes
+--- Design notes
 -->
-<h3><a href="#设计笔记" name="设计笔记"><small>1&#8202;.&#8202;4&#8202;.&#8202;10</small>设计笔记</a></h3><!--
+<h3><a href="#设计笔记" name="设计笔记"><small>1&#8202;.&#8202;2&#8202;.&#8202;5</small>设计笔记</a></h3><!--
 Most "programming language" books are strictly programming language
 *implementation* books. They rarely discuss how one might happen to *design* the
 language being implemented. Implementation is fun because it is so <span
@@ -527,7 +521,7 @@ of the equation becomes paramount. Things like which features are easy to learn,
 how to balance innovation and familiarity, what syntax is more readable and to
 whom.
 -->
-<p>就我个人而言，我觉得这个世界只需要实现<span name="fortran"> FORTRAN 77 </span>这一门语言就足够了。如果有一天，你自己开始着手设计一门<em>全新的</em>程序语言，这时候，一些考虑“人”的因素就会显示出来，比如：哪些语言特性简单易学，如何平衡语言的创新性与相似性，语法上是否更应该注重可读性，这门语言的目标人群是哪些等等等等。</p>
+<p>就我个人而言，我觉得这个世界只需要实现<span name="fortran"> FORTRAN 77 </span>这一门语言就足够了。如果有一天，你自己开始着手设计一门<em>全新</em>的程序语言，这时候，一些考虑“人”的因素就会显示出来，比如：哪些语言特性简单易学，如何平衡语言的创新性与相似性，语法上是否更应该注重可读性，这门语言的目标人群是哪些等等等等。</p>
 <aside name="fortran"><!--
 Hopefully your new language doesn't hardcode assumptions about the width of a
 punched card into its grammar.
@@ -541,8 +535,10 @@ expert on this -- I don't know if anyone really is -- so take these with a large
 pinch of salt. That should make them tastier food for thought, which is my main
 aim.
 -->
-<p>上述的这些都是你的新语言能否成功的重要因素。我也希望你的语言能大获成功，所以在部分章节的结尾，我会留下&ldquo;“设计笔记”，一篇从程序语言使用者视角出发探讨程序语言设计的小短文。当然，我个人并不是这方面的专家，写得不好也请别见怪，糊上一把盐吞下去吧，味道能好不少。如果我写的这些内容能够发人深思，那我的目的也就达到了。</p>
-<h2><a href="#the-first-interpreter" name="the-first-interpreter"><small>1&#8202;.&#8202;5</small>The First Interpreter</a></h2>
+<p>上述的这些都是你的新语言能否成功的重要因素。我也希望你的语言能大获成功，所以在部分章节的结尾，我会留下“设计笔记”，一篇从程序语言使用者视角出发，探讨程序语言设计的小短文。当然，我个人并不是这方面的专家，写得不好也请别见怪，糊上一把盐吞下去吧，味道能好不少。如果我写的这些内容能够发人深思，那我的目的也就达到了。</p><!--
+-- The First Interpreter
+-->
+<h2><a href="#第一支解释器" name="第一支解释器"><small>1&#8202;.&#8202;3</small>第一支解释器</a></h2>
 <p>We&rsquo;ll write our first interpreter, jlox, in <span name="lang">Java</span>. The
 focus is on <em>concepts</em>. We&rsquo;ll write the simplest, cleanest code we can to
 correctly implement the semantics of the language. This will get us comfortable
@@ -589,7 +585,7 @@ know another object-oriented language, like C# or C++, you can muddle through.</
 very fast, but it&rsquo;s correct. However, we are only able to accomplish that by
 building on the Java virtual machine&rsquo;s own runtime facilities. We want to learn
 how Java <em>itself</em> implements those things.</p>
-<h2><a href="#the-second-interpreter" name="the-second-interpreter"><small>1&#8202;.&#8202;6</small>The Second Interpreter</a></h2>
+<h2><a href="#the-second-interpreter" name="the-second-interpreter"><small>1&#8202;.&#8202;4</small>The Second Interpreter</a></h2>
 <p>So in the next part, we start all over again, but this time in C. C is the
 perfect language for understanding how an implementation <em>really</em> works, all the
 way down to the bytes in memory and the code flowing through the CPU.</p>

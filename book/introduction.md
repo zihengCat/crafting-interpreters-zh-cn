@@ -1,6 +1,4 @@
-<!--
 # 简介
--->
 
 <!--
 > Fairy tales are more than true: not because they tell us that dragons exist,
@@ -109,7 +107,7 @@ adhered to this tangible substrate.
 这也是我对你的期望。我希望你通过动手实操，对一门真正程序设计语言的诞生过程留下一个坚实的印象，如此一来，以后当你在阅读其他更具理论性的书籍著作时，这些核心概念将深深镌刻进你的大脑，使得你可以更加充分地理解它们。
 
 <!--
-## Why Learn This Stuff?
+-- Why Learn This Stuff?
 -->
 ## 为什么要学习这玩意儿？
 
@@ -139,7 +137,7 @@ justify. Fortunately, it isn't.
 幸运的是，事实并非如此。
 
 <!--
-### Little languages are everywhere
+--- Little languages are everywhere
 -->
 ### 小众语言无处不在
 
@@ -185,7 +183,7 @@ needing to debug and maintain it and poke around in its guts.
 但如果当现有的领域特定语言代码库无法满足你的需求时，你还是需要勉为其难地手写一枚解析器或者类似的工具以满足需求。即使你想要重用一些现有的代码，你也将不可避免地对其进行调试和维护，深入研究其原理。
 
 <!--
-### Languages are great exercise
+--- Languages are great exercise
 -->
 ### 着实锻炼编程技艺
 
@@ -220,7 +218,7 @@ algorithms in your day job.
 克服它，你会变得更加强大，在日常工作中，你也将更加聪明地运用算法与数据结构。
 
 <!--
-### One more reason
+--- One more reason
 -->
 ### 另一个原因
 
@@ -298,7 +296,7 @@ And, who knows, maybe you *will* make the next great language. Someone has to.
 说不定，下个知名程序设计语言的创造者就是你呢！
 
 <!--
-## How the Book Is Organized
+-- How the Book Is Organized
 -->
 ## 本书是如何组织的
 
@@ -337,7 +335,7 @@ delightful facets:
 除了内容丰富、语句清晰的主体内容外，每个章节还会包含以下数个讨喜的部分：
 
 <!--
-### The code
+--- The code
 -->
 ### 代码
 
@@ -426,7 +424,7 @@ I want this book to age like XO brandy, not backyard hooch.
 虽然书中包含了每一行需要实现的代码和对代码的解释，但我没有加入如何让解释器程序编译运行起来的描述性文本。这是因为我相信你有能力快速撰写一份`Makefile`或是使用 IDE 建立一个工程项目，从而让代码运行起来，相信我，这不是什么难事，而且，描述如何让程序编译执行的文字很快就会过时，新的代码工具层出不穷。我希望这本书能像白兰地酒那样，越老越醇香。
 
 <!--
-### Snippets
+--- Snippets
 -->
 ### 代码片段
 
@@ -469,7 +467,7 @@ lines that you need to remove and replace with the new snippet.
 可以看到，在代码片段的中心位置，有需要添加的代码，这部分代码被着重显示。新增代码上下环绕几行颜色偏淡已经存在的上下文代码。侧边会有个简短提示，告诉你应在哪个文件的哪个位置插入代码。如果提示文字中有诸如"替换_行"的描述，这就表示你需要先移除此处的旧代码，再替换上代码片段中的新代码。
 
 <!--
-### Asides
+--- Asides
 -->
 ### 旁注
 
@@ -493,7 +491,7 @@ drawings.
 </aside>
 
 <!--
-### Challenges
+--- Challenges
 -->
 ### 挑战
 
@@ -526,7 +524,7 @@ code. The later chapters assume your interpreter is in a pristine
 </aside>
 
 <!--
-### Design notes
+--- Design notes
 -->
 ### 设计笔记
 
@@ -557,7 +555,7 @@ of the equation becomes paramount. Things like which features are easy to learn,
 how to balance innovation and familiarity, what syntax is more readable and to
 whom.
 -->
-就我个人而言，我觉得这个世界只需要实现<span name="fortran"> FORTRAN 77 </span>这一门语言就足够了。如果有一天，你自己开始着手设计一门*全新的*程序语言，这时候，一些考虑“人”的因素就会显示出来，比如：哪些语言特性简单易学，如何平衡语言的创新性与相似性，语法上是否更应该注重可读性，这门语言的目标人群是哪些等等等等。
+就我个人而言，我觉得这个世界只需要实现<span name="fortran"> FORTRAN 77 </span>这一门语言就足够了。如果有一天，你自己开始着手设计一门*全新*的程序语言，这时候，一些考虑“人”的因素就会显示出来，比如：哪些语言特性简单易学，如何平衡语言的创新性与相似性，语法上是否更应该注重可读性，这门语言的目标人群是哪些等等等等。
 
 <aside name="fortran">
 
@@ -577,9 +575,12 @@ expert on this -- I don't know if anyone really is -- so take these with a large
 pinch of salt. That should make them tastier food for thought, which is my main
 aim.
 -->
-上述的这些都是你的新语言能否成功的重要因素。我也希望你的语言能大获成功，所以在部分章节的结尾，我会留下"“设计笔记”，一篇从程序语言使用者视角出发探讨程序语言设计的小短文。当然，我个人并不是这方面的专家，写得不好也请别见怪，糊上一把盐吞下去吧，味道能好不少。如果我写的这些内容能够发人深思，那我的目的也就达到了。
+上述的这些都是你的新语言能否成功的重要因素。我也希望你的语言能大获成功，所以在部分章节的结尾，我会留下“设计笔记”，一篇从程序语言使用者视角出发，探讨程序语言设计的小短文。当然，我个人并不是这方面的专家，写得不好也请别见怪，糊上一把盐吞下去吧，味道能好不少。如果我写的这些内容能够发人深思，那我的目的也就达到了。
 
-## The First Interpreter
+<!--
+-- The First Interpreter
+-->
+## 第一支解释器
 
 We'll write our first interpreter, jlox, in <span name="lang">Java</span>. The
 focus is on *concepts*. We'll write the simplest, cleanest code we can to
