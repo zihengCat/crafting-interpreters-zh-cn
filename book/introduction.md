@@ -535,7 +535,7 @@ language being implemented. Implementation is fun because it is so <span
 name="benchmark">precisely defined</span>. We programmers seem to have an
 affinity for things that are black and white, ones and zeroes.
 -->
-大多数描述开发"程序设计语言"的书都将视线聚焦于如何按照定义*严格实现*一门语言，而很少谈及一个语言特性背后的设计思路，为什么这门语言要如此*设计*。实现程序语言的过程非常有趣，因为一门程序设计语言的语法规范是经过<span name="benchmark">严格定义</span>的。做我们程序员们的似乎总是喜欢被严格定义清楚的事物，非黑即白，非零即一，泾渭分明，毫无歧义。
+大多数描述开发"程序设计语言"的书都将视线聚焦于如何按照定义*严格实现*一门语言，却很少谈及一个语言特性背后的设计思路，为什么这门语言要如此*设计*。实现程序语言的过程非常有趣，因为一门程序语言的语法规范是经过<span name="benchmark">严格定义</span>的。做我们程序员们的似乎总是很喜欢被严格定义清楚的东西，非黑即白，非零即一，泾渭分明，毫无歧义。
 
 <aside name="benchmark">
 <!--
@@ -547,26 +547,35 @@ results come out.
 
 </aside>
 
+<!--
 Personally, I think the world needs only so many implementations of <span
 name="fortran">FORTRAN 77</span>. At some point, you find yourself designing a
 *new* language. Once you start playing *that* game, then the softer, human side
 of the equation becomes paramount. Things like which features are easy to learn,
 how to balance innovation and familiarity, what syntax is more readable and to
 whom.
+-->
+就我个人而言，我觉得这个世界只需要实现<span name="fortran">FORTRAN 77</span>这一门语言就足够了。如果有一天，你自己开始着手设计一门*全新的*程序语言，这时候，一些考虑"人"的因素就会显示出来，比如：哪些语言特性简单易学，如何平衡语言的创新性与相似性，语法上是否更应该注重可读性，这门语言的目标人群是哪些等等等等。
 
 <aside name="fortran">
 
+<!--
 Hopefully your new language doesn't hardcode assumptions about the width of a
 punched card into its grammar.
+-->
+哦，希望你设计的新语言不要把打孔纸带的宽度也编入到语言规范里头去。
 
 </aside>
 
+<!--
 All of that stuff profoundly affects the success of your new language. I want
 your language to succeed, so in some chapters I end with a "design note", a
 little essay on some corner of the human aspect of programming languages. I'm no
 expert on this -- I don't know if anyone really is -- so take these with a large
 pinch of salt. That should make them tastier food for thought, which is my main
 aim.
+-->
+上述的这些都是你的新语言能否成功的重要因素。我也希望你的语言能大获成功，所以在部分章节的结尾，我会留下"设计笔记"，一篇从程序语言使用者视角出发讨论程序语言设计的小短文。当然，我个人并不是这方面的专家啦，写得不好也别太见怪，糊上一把盐吞下去吧，味道能好不少。如果我写的这些内容能够发人深思，那我的目的也就达到了。
 
 ## The First Interpreter
 
