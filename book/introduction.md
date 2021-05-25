@@ -756,12 +756,14 @@ few thousand lines of code.
     I cobbled together][repo] to write and publish this book. What are they?
 -->
 1.  在本书的[源代码构建仓库][repo]中，至少用到了六种领域特定语言，你能找出它们吗？
+
 <!--
 1.  Get a "Hello, world!" program written and running in Java. Set up whatever
     makefiles or IDE projects you need to get it working. If you have a
     debugger, get comfortable with it and step through your program as it runs.
 -->
 1.  编写一支 Java 语言的“Hello, world!”程序，通过 Makefiles 或 IDE 让程序运行起来，如果你还有 Java 调试器，试着跟踪调试一下程序。
+
 <!--
 1.  Do the same thing for C. To get some practice with pointers, define a
     [doubly linked list][] of heap-allocated strings. Write functions to insert,
@@ -788,17 +790,22 @@ one that worked. As you'll discover on the first day you start building your own
 language, naming is deviously hard. A good name satisfies a few criteria:
 -->
 写这本书时我遇到的最大的挑战之一便是：该为这门将被实现的程序设计语言起个什么名字呢？我写了好几页纸的候选名，最终找到了一个合适的名字。从你开始构思你自己的程序设计语言的第一天起，你就会发现，起名字真是一件非常困难的事情。所以，我总结了一个好名字应该满足的几点原则：
+
 <!--
-1.  **It isn't in use.** You can run into all sorts of trouble, legal and
-    social, if you inadvertently step on someone else's name.
+1.  **It isn’t in use.** You can run into all sorts of trouble, 
+    legal and social, if you inadvertently step on someone else’s name.
 -->
-1.  **名字之前从未被使用过。** 如果你不小心用了人家的名字，毫无疑问你会面临不少麻烦事，不管是法律上的还是交际上的。
+1.  **之前从未被使用。**
+    如果你不小心用了人家的名字，毫无疑问你会面临不少麻烦事，不管是法律上的还是交流上的。
+
 <!--
 2.  **It's easy to pronounce.** If things go well, hordes of people will be
     saying and writing your language's name. Anything longer than a couple of
     syllables or a handful of letters will annoy them to no end.
 -->
-2.  **名字朗朗上口。** 如果事情顺利，会有很多的人一起交流书写学习你的程序设计语言。如果名字音节太长或者字符太多，那对学习者来说就不太友好了。
+2.  **朗朗上口。**
+    如果事情顺利，会有很多的人一起交流编写学习你的程序设计语言。如果名字音节太长或者字符太多，那对学习者来说就不太友好了。
+
 <!--
 3.  **It's distinct enough to search for.** People will Google your language's
     name to learn about it, so you want a word that's rare enough that most
@@ -806,15 +813,18 @@ language, naming is deviously hard. A good name satisfies a few criteria:
     packing today, that's less of an issue. Still, you won't be doing your users
     any favors if you name your language "for".
 -->
-3.  **名字鲜明独立易检索。** 人们可能会使用搜索引擎搜索你发明的程序设计语言来了解它，你希望搜索结果能精准地指向这门语言的网页和文档。所以你得取个鲜明独立，搜索引擎友好的名字。虽说如今的搜索引擎越来越强大，越来越智能，很少会犯失误，但是，如果你把你的程序设计语言命名为“for“（for 语言），啊，真不敢想象，这会是一幅什么样的景象啊。
-<!-->
+3.  **鲜明独立易检索。**
+    人们可能会使用搜索引擎搜索你发明的程序设计语言来了解它，你希望搜索结果能精准地指向这门语言的网页和文档。所以你得取个鲜明独立，搜索引擎友好的名字。虽说如今的搜索引擎越来越强大，越来越智能，很少会犯失误，但是，想象一下如果你把你的程序设计语言命名为“for“（for 语言），啊，这会是一幅什么样的景象啊...
+
+<!--
 4.  **It doesn't have negative connotations across a number of cultures.** This
     is hard to be on guard for, but it's worth considering. The designer of
     Nimrod ended up renaming his language to "Nim" because too many people
     remember that Bugs Bunny used "Nimrod" as an insult. (Bugs was using it
     ironically.)
 -->
-4.  **名字不应带有负面含义和文化冲突。** 说实话这一点有点难保证，这个世界上文化太多了，但这一点也值得思考。“Nimrod“语言的设计者最终把这门语言改名为了“Nim”，因为太多人都记得，兔巴哥时常用这个词嘲讽他的死对头小猎人艾默。
+4.  **不应带有负面含义和文化冲突。** 
+    说实话这一点其实有些难以保证，这个世界上文化太多了，但这一点毫无疑问值得认真思考。“Nimrod“语言的设计者最终还是将他发明的这门语言改名为“Nim”，因为太多人都记得，兔巴哥时常用这个词嘲讽他的死对头小猎人艾默。
 
 <!--
 If your potential name makes it through that gauntlet, keep it. Don't get hung
@@ -823,6 +833,6 @@ language. If the names of the world's other successful languages teach us
 anything, it's that the name doesn't matter much. All you need is a reasonably
 unique token.
 -->
-如果你的名字满足了上述要求，那就没问题可以放心使用了。没必要费尽心力去寻找一个完全契合你所设计的程序语言的名字。这个世界上最成功的程序设计语言（C语言）教会了我们，名字是最无关紧要的东西，只是个代号罢了。
+如果你的名字满足了上述几点要求，那就没问题可以放心使用了。没必要费尽心力去寻找一个完全契合你所设计的程序语言的名字。这个世界上最成功的程序设计语言（C语言）教会了我们，名字是最无关紧要的东西，只是个代号罢了。
 
 </div>
