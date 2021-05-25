@@ -370,7 +370,7 @@ Yacc wasn't the first of its ilk, which is why it's named "Yacc" -- *Yet
 Another* Compiler-Compiler. A later similar tool is [Bison][], named as a pun on
 the pronunciation of Yacc like "yak".
 -->
-Yacc 不是其同类产品中的第一个，这也是为什么它被命名为 Yacc 的原因："*Yet Another* Compiler-Compiler"，在它之后还有[Bison][]这样的工具诞生。Yacc 的发音类似于："yak"。
+Yacc 不是其同类产品中的第一个，这也是为什么它被命名为 Yacc 的原因："*Yet Another* Compiler-Compiler"，在它之后还有[Bison][]这样的工具诞生。Yacc 的发音类似于："yak（牦牛）"。
 
 <img src="image/introduction/yak.png" alt="A yak.">
 
@@ -392,7 +392,7 @@ where magic and confusion can hide, so we'll write everything by hand. As you'll
 see, it's not as bad as it sounds, and it means you really will understand each
 line of code and how both interpreters work.
 -->
-在这本书中，我们不会使用这些辅助工具。我想确保在实现程序设计语言的道路上不会有任何黑暗的角落和神奇的魔法，我们将完完整整地写下全部代码，你也将充分理解写下的每一行代码如何在解释器里工作。
+在这本书中，我们不会使用这些辅助工具。我想确保在实现程序设计语言的道路上不会有任何黑暗的角落和神奇的魔法，我们将完完整整地写下全部代码，你也将充分理解写下的每一行代码是如何在解释器里工作的。
 
 [lex]: https://en.wikipedia.org/wiki/Lex_(software)
 [yacc]: https://en.wikipedia.org/wiki/Yacc
@@ -469,7 +469,7 @@ lines that you need to remove and replace with the new snippet.
 <!--
 ### Asides
 -->
-### 旁白
+### 旁注
 
 <!--
 <span name="joke">Asides</span> contain biographical sketches, historical
@@ -478,7 +478,7 @@ explore. There's nothing that you *need* to know in them to understand later
 parts of the book, so you can skip them if you want. I won't judge you, but I
 might be a little sad.
 -->
-<span name="joke">旁白</span>通常包含一些简单草图、章节历史背景、相关主题的参考内容以及对其他领域的建议，忽略这部分内容*完全不影响*你阅读接下来的章节内容。所以，你可以放心地忽略它们。忽略这部分的内容我也不会怪你，只是，我可能有点难过啦。
+<span name="joke">旁注</span>通常包含一些简单草图、章节历史背景、相关主题的参考内容以及对其他领域的建议，忽略这部分内容*完全不影响*你阅读接下来的章节内容。所以，你可以放心地忽略它们。忽略这部分的内容我也不会怪你，只是，我可能有点难过啦。
 
 <aside name="joke">
 
@@ -486,7 +486,7 @@ might be a little sad.
 Well, some asides do, at least. Most of them are just dumb jokes and amateurish
 drawings.
 -->
-好吧，有些旁白确实如我所言那般，但更多的都是一些小笑话和随手涂鸦罢了。
+好吧，有些旁注确实如我所言那般，但更多的都是一些小笑话和随手涂鸦罢了。
 
 </aside>
 
@@ -519,7 +519,7 @@ interpreter you're building. You'll want to implement those in a copy of your
 code. The later chapters assume your interpreter is in a pristine
 ("unchallenged"?) state.
 -->
-注意：这些习题挑战时常会需要你修改已经实现的语言解释器代码，你最好是拷贝一份代码来做题，后续章节会以未经修改的原始代码状态（没做挑战习题）为起点继续前进。
+给你一点提示：这些习题挑战时常会需要你修改已经实现的语言解释器代码，你最好是拷贝一份代码来做题，后续章节会以未经修改的原始代码状态（没做挑战习题）为起点继续前进。
 
 </aside>
 
@@ -529,28 +529,21 @@ code. The later chapters assume your interpreter is in a pristine
 ### 设计笔记
 
 <!--
-大多数“编程语言”书籍都是严格的编程语言
-*实施*书籍。他们很少讨论如何*设计*
-正在实施的语言。实现很有趣，因为它是如此
-name =“ benchmark”>精确定义的</ span>。我们程序员似乎有一个
-对黑白事物（一和零）的亲和力。
-
-大多数描写"程序设计语言"的书都会描述
-
-实现程序设计语言之所以有趣，是因为
-我们程序员似乎都对精确的事物十分着迷，
--->
 Most "programming language" books are strictly programming language
 *implementation* books. They rarely discuss how one might happen to *design* the
 language being implemented. Implementation is fun because it is so <span
 name="benchmark">precisely defined</span>. We programmers seem to have an
 affinity for things that are black and white, ones and zeroes.
+-->
+大多数描述开发"程序设计语言"的书都将视线聚焦于如何按照定义*严格实现*一门语言，而很少谈及一个语言特性背后的设计思路，为什么这门语言要如此*设计*。实现程序语言的过程非常有趣，因为一门程序设计语言的语法规范是经过<span name="benchmark">严格定义</span>的。做我们程序员们的似乎总是喜欢被严格定义清楚的事物，非黑即白，非零即一，泾渭分明，毫无歧义。
 
 <aside name="benchmark">
-
+<!--
 I know a lot of language hackers whose careers are based on this. You slide a
 language spec under their door, wait a few months, and code and benchmark
 results come out.
+-->
+据我了解，有一大批程序语言开发者们将他们的毕生精力倾注于此。你随手把一个语言规范贴到他们门框上，几个月后，他们就带着实现代码与测试报告出来了。
 
 </aside>
 
