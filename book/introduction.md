@@ -689,14 +689,15 @@ good at, but that *does* mean you'll need to be pretty comfortable with it. You
 don't have to be the reincarnation of Dennis Ritchie, but you shouldn't be
 spooked by pointers either.
 -->
-使用 C 语言的一个重要原因是：我会向你展示 C 语言真正擅长做的事，操作底层。这意味着你必须熟练掌握 C 语言与计算机底层知识。你不需要是丹尼斯·里奇（C语言之父）转世，但你也不能看到指针（Pointer）就犯怵。
+使用 C 语言的一个重要原因是：我会向你展示 C 语言真正擅长做的事，操作底层。这意味着你必须熟练掌握 C 语言与计算机底层知识。你不需要是丹尼斯·里奇（C语言之父）转世，但你也不能一看到指针（Pointer）就发怵。
+
 <!--
 If you aren't there yet, pick up an introductory book on C and chew through it,
 then come back here when you're done. In return, you'll come away from this book
 an even stronger C programmer. That's useful given how many language
 implementations are written in C: Lua, CPython, and Ruby's MRI, to name a few.
 -->
-当然，如果你还没有熟练掌握 C 语言，你可以先找本书学习学习 C 语言，再回过头来阅读这部分内容。当你完成这部分的内容之后，你一定会成为一名更强大的 C 程序员。值得一提的是，许多知名程序设计语言都是用 C 实现的：Lua、CPython、Ruby MRI ...
+当然，如果你还没有熟练掌握 C 语言，你可以先找本书学习学习 C 语言，再回过头来阅读这部分内容。当你最终完成这部分的内容之后，你一定会成为一名更加强大的 C 程序员。值得一提的是，许多知名程序设计语言都是用 C 实现的：Lua、CPython、Ruby MRI ...
 
 <!--
 In our C interpreter, <span name="clox">clox</span>, we are forced to implement
@@ -704,7 +705,7 @@ for ourselves all the things Java gave us for free. We'll write our own dynamic
 array and hash table. We'll decide how objects are represented in memory, and
 build a garbage collector to reclaim them.
 -->
-在实现我们的 C 版本解释器<span name="clox">`clox`</span>的过程中，将着重关注那些 Java 虚拟机为我们完成的事。我们将写下动态数组与哈希表数据结构，决定对象在内存中的表示形式，还会构建一个垃圾收集器，在合适的时候回收内存。
+在实现我们的 C 版本解释器<span name="clox">`clox`</span>的过程中，将着重关注那些 Java 虚拟机为我们完成的事。我们将写下动态数组与哈希表数据结构，决定对象在内存中的表示形式，还会构建一个垃圾收集器，在合适的时机回收内存。
 
 <aside name="clox">
 
@@ -724,7 +725,7 @@ representation (don't worry, I'll get into what that means soon), which it then
 executes. This is the same technique used by implementations of Lua, Python,
 Ruby, PHP, and many other successful languages.
 -->
-我们使用 Java 实现的解释器重点关注实现的正确性，现在我们开始关注起解释器的性能表现。我们的 C 解释器会包含一个<span name="compiler">编译器（Compiler）</span>，将 Lox 编译到运行高效的字节码（Bytecode）表示形式（如果你不知道字节码是什么，不要担心，我们马上就会讲解到）再执行。字节码翻译技术同样被诸多知名程序设计语言所采用：Lua、Python、Ruby、PHP ...
+我们使用 Java 实现的解释器重点关注实现的正确性，现在我们开始关注起解释器的性能表现。我们的 C 解释器会包含一个<span name="compiler">编译器（Compiler）</span>，将 Lox 编译到运行高效的字节码（Bytecode）表示形式（如果你不知道字节码是什么，不要担心，我们马上就会讲到）再执行。字节码翻译技术同样被诸多知名程序设计语言所采用：Lua、Python、Ruby、PHP ...
 
 <aside name="compiler">
 
