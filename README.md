@@ -10,6 +10,16 @@ final site.
 If you find an error or have a suggestion, please do file an issue here. Thank
 you!
 
+# 翻译进度表
+
+| 章节 | 进度 |
+| :--- | :--- |
+| Part I. Welcome | ✔️ |
+| 1. Introduction | In progress |
+| ... | ... |
+
+> 表：翻译进度表
+
 # 翻译术语表
 
 | 英   | 中    |
