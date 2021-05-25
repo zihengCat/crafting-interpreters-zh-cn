@@ -777,7 +777,7 @@ language, naming is deviously hard. A good name satisfies a few criteria:
     any favors if you name your language "for".
 -->
 3.  **鲜明独立易检索。**
-    人们可能会使用搜索引擎搜索你发明的程序设计语言来了解它，你希望搜索结果能精准地指向这门语言的网页和文档。所以你得取个鲜明独立，搜索引擎友好的名字。虽说如今的搜索引擎越来越强大，越来越智能，很少会犯失误，但是，想象一下如果你把你的程序设计语言命名为“for“（for 语言），啊，这会是一幅什么样的景象啊...
+    人们可能会使用搜索引擎搜索你发明的程序设计语言来了解它，你希望搜索结果能精准地指向这门语言的网页和文档。所以你得取个鲜明独立，搜索引擎友好的名字。虽说如今的搜索引擎越来越强大，越来越智能，很少会犯失误，但是，想象一下如果你把你的程序设计语言命名为“for”（for 语言），啊，这会是一幅什么样的景象啊...
 
 <!--
 4.  **It doesn't have negative connotations across a number of cultures.** This
@@ -787,7 +787,7 @@ language, naming is deviously hard. A good name satisfies a few criteria:
     ironically.)
 -->
 4.  **不应带有负面含义和文化冲突。** 
-    说实话这一点其实有些难保证，这个世界上文化太多了，但这一点毫无疑问值得认真思考。“Nimrod“语言的设计者最终还是将他发明的程序语言改名为“Nim”，因为太多人都记得，兔巴哥时常用这个词嘲讽他的死对头小猎人艾默。
+    说实话这一点其实有些难保证，这个世界上文化太多了，但这一点毫无疑问值得认真思考。“Nimrod”语言的设计者最终还是将他发明的程序语言改名为“Nim”，因为太多人都记得，兔巴哥时常用这个词嘲讽他的死对头小猎人艾默。
 
 <!--
 If your potential name makes it through that gauntlet, keep it. Don't get hung
