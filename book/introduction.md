@@ -669,69 +669,105 @@ very fast, but it's correct. However, we are only able to accomplish that by
 building on the Java virtual machine's own runtime facilities. We want to learn
 how Java *itself* implements those things.
 -->
-当你读完第二部分的全部内容，我们就实现了一枚代码简单，可读性较高的 Lox 语言解释器了。虽然这枚小解释器运行速度不快，但其对 Lox 各项语言功能的实现都是准确无误的。我们的解释器实现依赖了许多 Java 虚拟机（JVM）自身的运行时特性，那么自然我们也想对*虚拟机的工作原理*一探究竟，由此就有了第二枚我们要实现的语言解释器。
+当你读完第二部分的全部内容，我们就实现了一枚代码简单，可读性较高的 Lox 语言解释器了。虽然这枚小解释器运行速度不快，但其对 Lox 各项语言功能的实现都是准确无误的。我们的解释器实现依赖了许多 Java 虚拟机（JVM）自身的运行时特性，那么自然我们也想对*虚拟机的工作原理*一探究竟，由此就有了第二支我们要实现的解释器。
 
-## The Second Interpreter
+<!--
+-- The Second Interpreter
+-->
+## 第二支解释器
 
+<!--
 So in the next part, we start all over again, but this time in C. C is the
 perfect language for understanding how an implementation *really* works, all the
 way down to the bytes in memory and the code flowing through the CPU.
+-->
+在下一部分，我们将从头开始重新实现 Lox 解释器，这一次我们使用 C 语言编写。C 真是一门非常棒的语言，对我们认识底层大有帮助。我们将深入对象在内存中的字节表示，语句在 CPU 中的执行序列等部分，充分理解程序语言解释器底层实现的具体细节。
 
+<!--
 A big reason that we're using C is so I can show you things C is particularly
 good at, but that *does* mean you'll need to be pretty comfortable with it. You
 don't have to be the reincarnation of Dennis Ritchie, but you shouldn't be
 spooked by pointers either.
-
+-->
+使用 C 语言的一个重要原因是：我会向你展示 C 语言真正擅长做的事，操作底层。这意味着你必须熟练掌握 C 语言与计算机底层知识。你不需要是丹尼斯·里奇（C语言之父）转世，但你也不能看到指针（Pointer）就犯怵。
+<!--
 If you aren't there yet, pick up an introductory book on C and chew through it,
 then come back here when you're done. In return, you'll come away from this book
 an even stronger C programmer. That's useful given how many language
 implementations are written in C: Lua, CPython, and Ruby's MRI, to name a few.
+-->
+当然，如果你还没有熟练掌握 C 语言，你可以先找本书学习学习 C 语言，再回过头来阅读这部分内容。当你完成这部分的内容之后，你一定会成为一名更强大的 C 程序员。值得一提的是，许多知名程序设计语言都是用 C 实现的：Lua、CPython、Ruby MRI ...
 
+<!--
 In our C interpreter, <span name="clox">clox</span>, we are forced to implement
 for ourselves all the things Java gave us for free. We'll write our own dynamic
 array and hash table. We'll decide how objects are represented in memory, and
 build a garbage collector to reclaim them.
+-->
+在实现我们的 C 版本解释器<span name="clox">`clox`</span>的过程中，将着重关注那些 Java 虚拟机为我们完成的事。我们将写下动态数组与哈希表数据结构，决定对象在内存中的表示形式，还会构建一个垃圾收集器，在合适的时候回收内存。
 
 <aside name="clox">
 
+<!--
 I pronounce the name like "sea-locks", but you can say it "clocks" or even
 "clochs", where you pronounce the "x" like the Greeks do if it makes you happy.
+-->
+关于`clox`的读音，我习惯读成“sea-locks”，你也可以读成“clocks”或“clochs”，你还可以把“x”发音变成希腊语，这些都很随意，喜欢就好。
 
 </aside>
 
+<!--
 Our Java implementation was focused on being correct. Now that we have that
 down, we'll turn to also being *fast*. Our C interpreter will contain a <span
 name="compiler">compiler</span> that translates Lox to an efficient bytecode
 representation (don't worry, I'll get into what that means soon), which it then
 executes. This is the same technique used by implementations of Lua, Python,
 Ruby, PHP, and many other successful languages.
+-->
+我们使用 Java 实现的解释器重点关注实现的正确性，现在我们开始关注起解释器的性能表现。我们的 C 解释器会包含一个<span name="compiler">编译器（Compiler）</span>，将 Lox 编译到运行高效的字节码（Bytecode）表示形式（如果你不知道字节码是什么，不要担心，我们马上就会讲解到）再执行。字节码翻译技术同样被诸多知名程序设计语言所采用：Lua、Python、Ruby、PHP ...
 
 <aside name="compiler">
 
+<!--
 Did you think this was just an interpreter book? It's a compiler book as well.
 Two for the price of one!
+-->
+哈哈，你以为这只是一本讲授解释器技术的书？它还是一本讲授编译器技术的书！一分钱两分货！
 
 </aside>
 
+<!--
 We'll even try our hand at benchmarking and optimization. By the end, we'll have
 a robust, accurate, fast interpreter for our language, able to keep up with
 other professional caliber implementations out there. Not bad for one book and a
 few thousand lines of code.
+-->
+我们还将尝试解释器的基准测试与性能优化，最终，我们将得到一枚健壮、精确、高效的 Lox 语言解释器，完全不逊于其他专业级别的语言编译器实现。仅通过一本书的内容和数千行代码就能做到这个地步，真不错。
 
 <div class="challenges">
 
-## Challenges
+<!--
+-- Challenges
+-->
+## 挑战
 
+<!--
 1.  There are at least six domain-specific languages used in the [little system
     I cobbled together][repo] to write and publish this book. What are they?
-
+-->
+1.  在本书的[源代码构建仓库][repo]中，至少用到了六种领域特定语言，你能找出它们吗？
+<!--
 1.  Get a "Hello, world!" program written and running in Java. Set up whatever
     makefiles or IDE projects you need to get it working. If you have a
     debugger, get comfortable with it and step through your program as it runs.
-
+-->
+1.  编写一支 Java 语言的“Hello, world!”程序，通过 Makefiles 或 IDE 让程序运行起来，如果你还有 Java 调试器，试着跟踪调试一下程序。
+<!--
 1.  Do the same thing for C. To get some practice with pointers, define a
     [doubly linked list][] of heap-allocated strings. Write functions to insert,
     find, and delete items from it. Test them.
+-->
+1.  使用 C 语言完成上题。为了熟悉指针的运用，编写一支可以存储堆分配内存字符串的[双向链表][doubly linked list]程序，实现增删改查，并编写测试代码进行测试。
 
 [repo]: https://github.com/munificent/craftinginterpreters
 [doubly linked list]: https://en.wikipedia.org/wiki/Doubly_linked_list
@@ -740,36 +776,53 @@ few thousand lines of code.
 
 <div class="design-note">
 
-## Design Note: What's in a Name?
+<!--
+-- Design Note: What's in a Name?
+-->
+## 设计笔记：如何为一门新程序设计语言起名字？
 
+<!--
 One of the hardest challenges in writing this book was coming up with a name for
 the language it implements. I went through *pages* of candidates before I found
 one that worked. As you'll discover on the first day you start building your own
 language, naming is deviously hard. A good name satisfies a few criteria:
-
+-->
+写这本书时我遇到的最大的挑战之一便是：该为这门将被实现的程序设计语言起个什么名字呢？我写了好几页纸的候选名，最终找到了一个合适的名字。从你开始构思你自己的程序设计语言的第一天起，你就会发现，起名字真是一件非常困难的事情。所以，我总结了一个好名字应该满足的几点原则：
+<!--
 1.  **It isn't in use.** You can run into all sorts of trouble, legal and
     social, if you inadvertently step on someone else's name.
-
+-->
+1.  **名字之前从未被使用过。** 如果你不小心用了人家的名字，毫无疑问你会面临不少麻烦事，不管是法律上的还是交际上的。
+<!--
 2.  **It's easy to pronounce.** If things go well, hordes of people will be
     saying and writing your language's name. Anything longer than a couple of
     syllables or a handful of letters will annoy them to no end.
-
+-->
+2.  **名字朗朗上口。** 如果事情顺利，会有很多的人一起交流书写学习你的程序设计语言。如果名字音节太长或者字符太多，那对学习者来说就不太友好了。
+<!--
 3.  **It's distinct enough to search for.** People will Google your language's
     name to learn about it, so you want a word that's rare enough that most
     results point to your docs. Though, with the amount of AI search engines are
     packing today, that's less of an issue. Still, you won't be doing your users
     any favors if you name your language "for".
-
+-->
+3.  **名字鲜明独立易检索。** 人们可能会使用搜索引擎搜索你发明的程序设计语言来了解它，你希望搜索结果能精准地指向这门语言的网页和文档。所以你得取个鲜明独立，搜索引擎友好的名字。虽说如今的搜索引擎越来越强大，越来越智能，很少会犯失误，但是，如果你把你的程序设计语言命名为“for“（for 语言），啊，真不敢想象，这会是一幅什么样的景象啊。
+<!-->
 4.  **It doesn't have negative connotations across a number of cultures.** This
     is hard to be on guard for, but it's worth considering. The designer of
     Nimrod ended up renaming his language to "Nim" because too many people
     remember that Bugs Bunny used "Nimrod" as an insult. (Bugs was using it
     ironically.)
+-->
+4.  **名字不应带有负面含义和文化冲突。** 说实话这一点有点难保证，这个世界上文化太多了，但这一点也值得思考。“Nimrod“语言的设计者最终把这门语言改名为了“Nim”，因为太多人都记得，兔巴哥时常用这个词嘲讽他的死对头小猎人艾默。
 
+<!--
 If your potential name makes it through that gauntlet, keep it. Don't get hung
 up on trying to find an appellation that captures the quintessence of your
 language. If the names of the world's other successful languages teach us
 anything, it's that the name doesn't matter much. All you need is a reasonably
 unique token.
+-->
+如果你的名字满足了上述要求，那就没问题可以放心使用了。没必要费尽心力去寻找一个完全契合你所设计的程序语言的名字。这个世界上最成功的程序设计语言（C语言）教会了我们，名字是最无关紧要的东西，只是个代号罢了。
 
 </div>

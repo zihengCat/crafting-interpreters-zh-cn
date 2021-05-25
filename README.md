@@ -15,7 +15,7 @@ you!
 | 章节 | 进度 |
 | :--- | :--- |
 | Part I. Welcome | ✔️ |
-| 1. Introduction | In progress |
+| 1. Introduction | ✔️ |
 | ... | ... |
 
 > 表：翻译进度表
@@ -27,6 +27,8 @@ you!
 | Programming Language | 程序设计语言 |
 | Interpreter | 解释器 |
 | Compiler | 编译器 |
+| Domain-specific Languages、DSL | 领域特定语言 |
+| Bytecode | 字节码 |
 | ... | ... |
 
 > 表：翻译术语表
