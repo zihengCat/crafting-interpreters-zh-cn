@@ -1,33 +1,55 @@
+# 程序语言世界的地图
+<!--
 > You must have a map, no matter how rough. Otherwise you wander all over the
 > place. In *The Lord of the Rings* I never made anyone go farther than he could
 > on a given day.
 >
 > <cite>J. R. R. Tolkien</cite>
+-->
 
+> 你手中得握着一张地图，不管这张地图有多么简陋。要不然，你会在路途中迷失方向。在《魔戒》这部书里，我不会让任何人走超过他当天所能走过的最远的路。
+> <cite>约翰·罗纳德·瑞尔·托尔金</cite>
+
+<!--
 We don't want to wander all over the place, so before we set off, let's scan
 the territory charted by previous language implementers. It will help us
 understand where we are going and the alternate routes others have taken.
+-->
+我们可不想在旅途中迷失方向，所以在正式启程出发之前，让我们好好翻看前辈们为我们绘制的地图，认清我们此行应去往何处，以及前辈们已经开拓出的道路。
 
+<!--
 First, let me establish a shorthand. Much of this book is about a language's
 *implementation*, which is distinct from the *language itself* in some sort of
 Platonic ideal form. Things like "stack", "bytecode", and "recursive descent",
 are nuts and bolts one particular implementation might use. From the user's
 perspective, as long as the resulting contraption faithfully follows the
 language's specification, it's all implementation detail.
+-->
+首先，让我来简单明确几点。本书大部分内容都是关于一门程序设计语言的*具体实现*，这与*程序设计语言本身*是完全不同的。像“栈”、“字节码”、“递归下降”这些听起来唬人的词语，不过是实现某门程序语言可能会采用的的技术方法。从程序语言使用者的视角来看，只要他们手中的“奇妙装置”（编译器 / 解释器）产出的结果符合程序设计语言定义的规范即可，并不太关心语言实现的具体细节。
 
+<!--
 We're going to spend a lot of time on those details, so if I have to write
 "language *implementation*" every single time I mention them, I'll wear my
 fingers off. Instead, I'll use "language" to refer to either a language or an
 implementation of it, or both, unless the distinction matters.
+-->
+我们将在程序语言实现的具体细节上花上很多时间，如果我每次在提及到它的时候都严格写下“程序设计语言的实现”一词，那我的手指可真受不了（字符实在是太长啦）。所以，除非有严格区分的必要，我会直接使用“语言”一词指代程序语言或是程序语言的实现。
 
-## The Parts of a Language
+<!--
+-- The Parts of a Language
+-->
+## 程序语言面面观
 
+<!--
 Engineers have been building programming languages since the Dark Ages of
 computing. As soon as we could talk to computers, we discovered doing so was too
 hard, and we enlisted their help. I find it fascinating that even though today's
 machines are literally a million times faster and have orders of magnitude more
 storage, the way we build programming languages is virtually unchanged.
+-->
+早在计算机历史的洪荒时代，勤劳聪慧的计算机工程师们就开始着手构建计算机程序设计语言了。这是因为我们发现，直接与计算机沟通太过困难，计算机只认识二进制机器码，所以得寻求“程序语言”的帮助。现如今的计算机比起洪荒时代，运算速度快了百万倍千万倍，存储空间也有了几个数量级的提升，但构建计算机程序设计语言的方式却几乎没有太大变化，这真是很有趣。
 
+<!--
 Though the area explored by language designers is vast, the trails they've
 carved through it are <span name="dead">few</span>. Not every language takes the
 exact same path -- some take a shortcut or two -- but otherwise they are
@@ -35,31 +57,45 @@ reassuringly similar, from Rear Admiral Grace Hopper's first COBOL compiler all
 the way to some hot, new, transpile-to-JavaScript language whose "documentation"
 consists entirely of a single, poorly edited README in a Git repository
 somewhere.
+-->
+尽管程序语言设计师们探索过的领域如此广阔，但被他们留下足迹证明此路可通的道路却<span name="dead">少之又少</span>。虽然不是每一门程序语言都会走完全相同的实现道路（有的语言会省略其中几步，有的还会抄近路）。但令人欣慰的是，从海军准将葛丽丝·霍普女士的第一支 COBOL 编译器到时下大热的编译到 JavaScript 程序语言（它们中某些仅有一份躺在 Git 仓库中的简陋 README 自述文档），都遵循着一脉相承的道路。
 
 <aside name="dead">
 
+<!--
 There are certainly dead ends, sad little cul-de-sacs of CS papers with zero
 citations and now-forgotten optimizations that only made sense when memory was
 measured in individual bytes.
+-->
+其中很多都可惜地拐入了死胡同，比如说那些无人问津，论述极端内存情况下才可见效的程序语言优化方法的计算机论文。
 
 </aside>
 
+<!--
 I visualize the network of paths an implementation may choose as climbing a
 mountain. You start off at the bottom with the program as raw source text,
 literally just a string of characters. Each phase analyzes the program and
 transforms it to some higher-level representation where the semantics -- what
 the author wants the computer to do -- become more apparent.
+-->
+我把程序语言的编译过程画成了一副路径图，看着就像登山一样。从左下山脚开始，开发者所写的程序只是一串字符序列构成的纯文本。之后的每一阶段，程序都会被分析、转化为某种更为高阶的表示形式，程序语义（即：程序员想让计算机做的事）也变得越来越明晰。
 
+<!--
 Eventually we reach the peak. We have a bird's-eye view of the user's program
 and can see what their code *means*. We begin our descent down the other side of
 the mountain. We transform this highest-level representation down to
 successively lower-level forms to get closer and closer to something we know how
 to make the CPU actually execute.
+-->
+当我们终于到达到山顶的时候，我们就可以鸟瞰全局，完全理解程序代码想要表达的真正含义。随后，我们从另一侧下山。下山的过程即是把程序的高阶表示形式一步步转化为越来越靠近 CPU 的低阶表示形式，最终到达 CPU 可以执行的机器码。
 
 <img src="image/a-map-of-the-territory/mountain.png" alt="The branching paths a language may take over the mountain." class="wide" />
 
+<!--
 Let's trace through each of those trails and points of interest. Our journey
 begins on the left with the bare text of the user's source code:
+-->
+让我们通过一个实例来追踪程序编译的整个过程，看一看在每个编译阶段都会发生哪些有趣的事情。我们从下面这行用户程序源代码开始：
 
 <img src="image/a-map-of-the-territory/string.png" alt="var average = (min + max) / 2;" />
 
