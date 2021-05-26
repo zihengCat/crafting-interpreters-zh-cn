@@ -199,9 +199,9 @@ called a **token**. Some tokens are single characters, like `(` and `,`. Others
 may be several characters long, like numbers (`123`), string literals (`"hi!"`),
 and identifiers (`min`).
 -->
-<p><strong>词法扫描器（Scanner）</strong>，或者说<strong>分词器（Lexer）</strong>，读取一连串程序源代码字符流，按照一定的规则将代码字符分割为一系列<span name="words">“词”</span>。在程序设计语言领域，我们把这些“词”称之为<span name="token"><strong>词法单元（Token）</strong></span>。有些词法单元仅有单个字符，如左小括号<code>(</code>、逗号<code>,</code>。有些词法单元则由多个字符组成，如数字<code>123</code>、字符串字面量<code>"hi!"</code>、标识符<code>min</code>。</p>
+<p><strong>词法扫描器（Scanner）</strong>，或者说<strong>分词器（Lexer）</strong>，读取一连串程序源代码字符流，按照一定的规则将代码字符分割为一系列的<span name="words">“词”</span>。在程序设计语言领域，我们把这些“词”称之为<span name="token"><strong>词法单元（Token）</strong></span>。有些词法单元仅有单个字符，如：左小括号<code>(</code>、逗号<code>,</code>。有些词法单元则由多个字符组成，如：数字<code>123</code>、字符串字面量<code>"hi!"</code>、标识符<code>min</code>。</p>
 <aside name="word">
-<p>“Lexical”一词的希腊语词根是“lex”，意为“单词”。</p>
+<p>“Lexical”一词来源于希腊语“lex”，意为“单词”。</p>
 </aside>
 <aside name="token">
 <blockquote>
@@ -213,7 +213,7 @@ often insignificant, and comments, by definition, are ignored by the language.
 The scanner usually discards these, leaving a clean sequence of meaningful
 tokens.
 -->
-<p>程序源代码中的某些字符并不表达任何含义，比如，空白字符一般不表达任何含义，同样的还有注释内容。词法扫描器通常简单的忽略掉它们，仅保留那些有意义的词法单元。</p><img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
+<p>程序源代码中的某些字符一般不表达任何含义，比如：空白字符、注释。词法扫描器通常简单的忽略它们，仅保留那些有意义的词法单元。</p><img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
 <h3><a href="#parsing" name="parsing"><small>2&#8202;.&#8202;1&#8202;.&#8202;2</small>Parsing</a></h3>
 <p>The next step is <strong>parsing</strong>. This is where our syntax gets a <strong>grammar</strong><span class="em">&mdash;</span>the
 ability to compose larger expressions and statements out of smaller parts. Did
