@@ -184,12 +184,14 @@ Let's trace through each of those trails and points of interest. Our journey
 begins on the left with the bare text of the user's source code:
 -->
 <p>让我们通过一个实例来追踪程序编译的整个过程，看一看在每个编译阶段都会发生哪些有趣的事情。我们从下面这行用户程序源代码开始：</p><img src="image/a-map-of-the-territory/string.png" alt="var average = (min + max) / 2;" />
-<h3><a href="#scanning" name="scanning"><small>2&#8202;.&#8202;1&#8202;.&#8202;1</small>Scanning</a></h3>
-<p>The first step is <strong>scanning</strong>, also known as <strong>lexing</strong>, or (if you&rsquo;re trying
-to impress someone) <strong>lexical analysis</strong>. They all mean pretty much the same
-thing. I like &ldquo;lexing&rdquo; because it sounds like something an evil supervillain
-would do, but I&rsquo;ll use &ldquo;scanning&rdquo; because it seems to be marginally more
-commonplace.</p>
+<h3><a href="#词法扫描（scanning）" name="词法扫描（scanning）"><small>2&#8202;.&#8202;1&#8202;.&#8202;1</small>词法扫描（Scanning）</a></h3><!--
+The first step is **scanning**, also known as **lexing**, or (if you're trying
+to impress someone) **lexical analysis**. They all mean pretty much the same
+thing. I like "lexing" because it sounds like something an evil supervillain
+would do, but I'll use "scanning" because it seems to be marginally more
+commonplace.
+-->
+<p>万里长征的第一步是<strong>词法扫描（Scanning）</strong>，也叫做<strong>词法化（Lexing）</strong>，或<strong>词法分析（Lexical Analysis）</strong>。它们都表示同一个意思，如果你想让旁人印象深刻，可以用听上去最惊艳的“词法分析”。我个人喜欢“词法化”，这听上去就像是某个超级大恶魔会才会做的事情。但在这里，我还是使用“词法扫描”，因为“扫描（Scanning）”一词看上去最为平易近人。</p>
 <p>A <strong>scanner</strong> (or <strong>lexer</strong>) takes in the linear stream of characters and chunks
 them together into a series of something more akin to <span
 name="word">&ldquo;words&rdquo;</span>. In programming languages, each of these words is
