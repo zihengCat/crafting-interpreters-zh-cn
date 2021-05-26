@@ -118,11 +118,11 @@ called a **token**. Some tokens are single characters, like `(` and `,`. Others
 may be several characters long, like numbers (`123`), string literals (`"hi!"`),
 and identifiers (`min`).
 -->
-**词法扫描器（Scanner）**，或者说**分词器（Lexer）**，读取一连串程序源代码字符流，按照一定的规则将代码字符分割为一系列<span name="words">“词”</span>。在程序设计语言领域，我们把这些“词”称之为<span name="token">**词法单元（Token）**</span>。有些词法单元仅有单个字符，如左小括号`(`、逗号`,`。有些词法单元则由多个字符组成，如数字`123`、字符串字面量`"hi!"`、标识符`min`。
+**词法扫描器（Scanner）**，或者说**分词器（Lexer）**，读取一连串程序源代码字符流，按照一定的规则将代码字符分割为一系列的<span name="words">“词”</span>。在程序设计语言领域，我们把这些“词”称之为<span name="token">**词法单元（Token）**</span>。有些词法单元仅有单个字符，如：左小括号`(`、逗号`,`。有些词法单元则由多个字符组成，如：数字`123`、字符串字面量`"hi!"`、标识符`min`。
 
 <aside name="word">
 
-“Lexical”一词的希腊语词根是“lex”，意为“单词”。
+“Lexical”一词来源于希腊语“lex”，意为“单词”。
 
 </aside>
 
@@ -138,7 +138,7 @@ often insignificant, and comments, by definition, are ignored by the language.
 The scanner usually discards these, leaving a clean sequence of meaningful
 tokens.
 -->
-程序源代码中的某些字符并不表达任何含义，比如，空白字符一般不表达任何含义，同样的还有注释内容。词法扫描器通常简单的忽略掉它们，仅保留那些有意义的词法单元。
+程序源代码中的某些字符一般不表达任何含义，比如：空白字符、注释。词法扫描器通常简单的忽略它们，仅保留那些有意义的词法单元。
 
 <img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
 
