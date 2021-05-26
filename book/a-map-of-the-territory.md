@@ -122,6 +122,9 @@ and identifiers (`min`).
 
 <aside name="word">
 
+<!--
+"Lexical" comes from the Greek root "lex", meaning "word".
+-->
 “Lexical”一词来源于希腊语“lex”，意为“单词”。
 
 </aside>
