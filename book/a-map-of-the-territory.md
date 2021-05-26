@@ -67,7 +67,7 @@ There are certainly dead ends, sad little cul-de-sacs of CS papers with zero
 citations and now-forgotten optimizations that only made sense when memory was
 measured in individual bytes.
 -->
-其中很多都可惜地拐入了死胡同，比如说那些无人问津，论述极端内存情况下才可见效的程序语言优化方法的计算机论文。
+其中很多都非常可惜地拐入了死胡同，比如说那些无人问津，论述极端内存情况下才可见效的程序语言优化方法的计算机论文。
 
 </aside>
 
@@ -78,7 +78,7 @@ literally just a string of characters. Each phase analyzes the program and
 transforms it to some higher-level representation where the semantics -- what
 the author wants the computer to do -- become more apparent.
 -->
-我把程序语言的编译过程画成了一副路径图，看着就像登山一样。从左下山脚开始，开发者所写的程序只是一串字符序列构成的纯文本。之后的每一阶段，程序都会被分析、转化为某种更为高阶的表示形式，程序语义（即：程序员想让计算机做的事）也变得越来越明晰。
+我把程序语言的编译过程绘制成了一副路径图，看着就像登山一样。从山脚开始，开发者所写的程序只是一串字符序列构成的纯文本。之后的每一阶段，程序都会被分析、转化为某种更为高阶的表示形式，程序语义（即：程序员想让计算机做的事）也变得越来越明晰。
 
 <!--
 Eventually we reach the peak. We have a bird's-eye view of the user's program
@@ -157,7 +157,7 @@ you ever diagram sentences in English class? If so, you've done what a parser
 does, except that English has thousands and thousands of "keywords" and an
 overflowing cornucopia of ambiguity. Programming languages are much simpler.
 -->
-接下来的一步叫做**语法分析（Parsing）**。通过分析程序的词法从而得到**语法（Grammar）**，将相互关联的几个词法单元拼装组合变成更加复杂的表达式和语句的能力。还记得小时候上语法课时的情景吗，标注一句话的语法成分（主、谓、宾、定、状、补），你那时做的事便是“语法分析”。只是，英语这门语言有着成千上万的“关键字（Keywords）”，以及大量意思相近的歧义词。程序语言则简单很多。
+接下来的一步叫做**语法分析（Parsing）**。通过分析程序的词法从而得到**语法（Grammar）**，将相互关联的几个词法单元拼装组合变成更加复杂的表达式和语句的能力。还记得小时候上语法课时的情景吗，标注一句话的语法成分（主、谓、宾、定、状、补），你那时做的事便是“语法分析”。只是，英语这门语言包含着成千上万的“关键字（Keywords）”，以及大量意思相近的歧义词。程序语言则简单很多。
 
 <!--
 A **parser** takes the flat sequence of tokens and builds a tree structure that
@@ -167,7 +167,7 @@ close to the bare syntactic structure of the source language they are. In
 practice, language hackers usually call them **syntax trees**, **ASTs**, or
 often just **trees**.
 -->
-**语法解析器（Parser）**读入 token 词法单元序列，构建出符合当前代码语义的树型结构，因为语法是嵌套的，所以要用树来表示。这些树型结构有着很多不同的名字：**解析树（Parse Tree）**、**抽象语法树（Abstract Syntax Tree）**，具体叫什么取决于这棵树与程序语言语法结构之间的对应程度。在实践中，程序语言开发者们习惯称呼它们为**语法树（Syntax Tree）**或**抽象语法树（AST）**，还有人为了简单起见直接叫**树（Tree）**。
+**语法解析器（Parser）** 读入 token 词法单元序列，构建出符合当前代码语义的树型结构，因为语法是嵌套的，所以要用树来表示。这些树型结构有着很多不同的名字：**解析树（Parse Tree）**、**抽象语法树（Abstract Syntax Tree）**，具体叫什么取决于这棵树与程序语言语法结构之间的对应程度。在实践中，程序语言开发者们习惯称呼它们为**语法树（Syntax Tree）** 或 **抽象语法树（AST）**，也有人为了简单起见直接叫**树（Tree）**。
 
 <img src="image/a-map-of-the-territory/ast.png" alt="An abstract syntax tree." />
 
@@ -186,55 +186,86 @@ programming languages. Alas, we flawed humans still manage to use those simple
 grammars incorrectly, so the parser's job also includes letting us know when we
 do by reporting **syntax errors**.
 -->
-后来，研究者们发现，人类所使用的语言实在太过复杂，仅能处理严谨语法的语法解析器处理不了如此复杂的人类语言。但是语法解析器非常适合用来处理语法严谨、毫无歧义的程序语言，毕竟，程序语言可比人类语言简单多了。但即使是使用语法如此简单的程序语言，我们程序员还是会在写代码时犯各式各样的语法错误。所以语法解析器的任务又多了一条：报告程序员们所犯的**语法错误**，让他们改正。
+后来，研究者们发现，人类所使用的语言实在太过复杂，仅能处理严谨语法的语法解析器处理不了如此复杂的人类语言。但是语法解析器非常适合用来处理语法严谨、毫无歧义的程序语言，毕竟，程序语言可比人类语言简单多了。但即使是使用语法如此简单的程序语言，我们程序员还是会在写代码时犯各式各样的语法错误。所以语法解析器的职责又多了一条：报告程序员们所犯的**语法错误**，让他们改正。
 
-### Static analysis
+<!--
+--- Static analysis
+-->
+### 静态分析（Static analysis）
 
+<!--
 The first two stages are pretty similar across all implementations. Now, the
 individual characteristics of each language start coming into play. At this
 point, we know the syntactic structure of the code -- things like which
 expressions are nested in which -- but we don't know much more than that.
+-->
+几乎所有的程序设计语言实现都会经历词法分析、语法分析这两个阶段。那么在此之后，不同的程序语言就要开始展现其各自实现特点了。在当下这个节点，我们仅知道程序代码的语法结构，如：表达式之间的嵌套关系等。除此之外就没有更多的信息了。
 
+<!--
 In an expression like `a + b`, we know we are adding `a` and `b`, but we don't
 know what those names refer to. Are they local variables? Global? Where are they
 defined?
+-->
+如有表达式`a + b`，我们知道需要对`a`和`b`执行加法运算，但是我们不知道`a`和`b`这两个名字到底指向哪里，指向本地变量还是全局变量？变量定义在何处？
 
+<!--
 The first bit of analysis that most languages do is called **binding** or
 **resolution**. For each **identifier**, we find out where that name is defined
 and wire the two together. This is where **scope** comes into play -- the region
 of source code where a certain name can be used to refer to a certain
 declaration.
+-->
+对于大多数程序语言而言，分析语法树的第一步叫做 **标识符绑定（Binding）** 或 **标识符解析（Resolution）** ：对于语法树中的每个标识符，找到这枚标识符被定义的地方，把它和语法树中标识符所在的位置串连起来。这个时候 **作用域（Scope）** 就开始发挥作用了，作用域规定了一枚既定标识符在源代码中所能被正确解析的区域。
 
+<!--
 If the language is <span name="type">statically typed</span>, this is when we
 type check. Once we know where `a` and `b` are declared, we can also figure out
 their types. Then if those types don't support being added to each other, we
 report a **type error**.
+-->
+如果这是一门<span name="type">静态类型</span>的程序语言，此时也是我们做类型检查的时候。一旦我们找到了`a`和`b`在何处声明，我们就可以很容易地确定它们的类型。如果`a`、`b`类型之间无法相加，那么我们就可以抛出一个**类型错误**。
 
 <aside name="type">
 
+<!--
 The language we'll build in this book is dynamically typed, so it will do its
 type checking later, at runtime.
+-->
+在本书中我们要实现的程序语言是动态类型的，类型检查这步将被推后到运行时。
 
 </aside>
 
+<!--
 Take a deep breath. We have attained the summit of the mountain and a sweeping
 view of the user's program. All this semantic insight that is visible to us from
 analysis needs to be stored somewhere. There are a few places we can squirrel it
 away:
+-->
+做个深呼吸，我们已经抵达了山顶，对用户程序也有了一个全面的认知。从静态语义分析中得到的讯息都需要被妥善存储起来。有一些地方可供我们存放这些讯息：
 
+<!--
 * Often, it gets stored right back as **attributes** on the syntax tree
   itself -- extra fields in the nodes that aren't initialized during parsing
   but get filled in later.
+-->
+* 通常，我们可以把这些讯息作为语法树节点的 **属性（Attributes）** 存储起来。为树节点添加一些额外属性字段，在构建语法树时将字段留空，后续再将静态语义分析得到的信息填充进去。
 
+<!--
 * Other times, we may store data in a lookup table off to the side. Typically,
   the keys to this table are identifiers -- names of variables and declarations.
   In that case, we call it a **symbol table** and the values it associates with
   each key tell us what that identifier refers to.
+-->
+* 另外，我们还可以将这些数据存储到一张查找表里，以标识符（变量名、函数名、变量声明、函数声明等等）作键，标识符语义信息为值。如此一来，我们就可以轻松找到某个标识符的引用信息了。我们把这张表称为：**符号表（Symbol table）**。
 
+<!--
 * The most powerful bookkeeping tool is to transform the tree into an entirely
   new data structure that more directly expresses the semantics of the code.
   That's the next section.
+-->
+* 最为强大的信息记录工具就是将语法树转化为一种全新的数据结构，这种数据结构可以更为直接地表达代码的语义信息。下一节就将介绍这部分的内容。
 
+<!--
 Everything up to this point is considered the **front end** of the
 implementation. You might guess everything after this is the **back end**, but
 no. Back in the days of yore when "front end" and "back end" were coined,
@@ -242,8 +273,13 @@ compilers were much simpler. Later researchers invented new phases to stuff
 between the two halves. Rather than discard the old terms, William Wulf and
 company lumped those new phases into the charming but spatially paradoxical name
 **middle end**.
+-->
+到目前为止，我们所讲的词法分析、语法分析、语义分析三阶段，通常被归类为编译 **“前端（Front end）”** 。你也许会想，那之后的流程都是编译 **“后端（Back end）”** 了，可惜不是。在过去那个只有“前端”和“后端”的年代，编译器比现在简单许多。后来，程序语言研究者们在“前端”和“后端”之间插入了几个新阶段。威廉·伍尔夫教授和一众大企业将这些新阶段汇总打包，遵照古老的命名习惯，起了个魅力十足但又稍显矛盾的名字：**“中端（Middle end）”** 。
 
-### Intermediate representations
+<!--
+--- Intermediate representations
+-->
+### 中间表示（Intermediate representations）
 
 You can think of the compiler as a pipeline where each stage's job is to
 organize the data representing the user's code in a way that makes the next

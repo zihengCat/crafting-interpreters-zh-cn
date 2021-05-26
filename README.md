@@ -34,6 +34,9 @@ you!
 | Lexical Analysis | 词法分析 |
 | Lexer | 分词器 |
 | Token | 词法单元 |
+| Scope | 作用域 |
+| Lookup table | 查找表 |
+| Symbol table | 符号表 |
 | ... | ... |
 
 > 表：翻译术语表
