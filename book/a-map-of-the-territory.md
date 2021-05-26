@@ -110,23 +110,35 @@ commonplace.
 -->
 万里长征的第一步是**词法扫描（Scanning）**，也叫做**词法化（Lexing）**，或**词法分析（Lexical Analysis）**。它们都表示同一个意思，如果你想让旁人印象深刻，可以用听上去最惊艳的“词法分析”。我个人喜欢“词法化”，这听上去就像是某个超级大恶魔会才会做的事情。但在这里，我还是使用“词法扫描”，因为“扫描（Scanning）”一词看上去更加平易近人。
 
+<!--
 A **scanner** (or **lexer**) takes in the linear stream of characters and chunks
 them together into a series of something more akin to <span
 name="word">"words"</span>. In programming languages, each of these words is
 called a **token**. Some tokens are single characters, like `(` and `,`. Others
 may be several characters long, like numbers (`123`), string literals (`"hi!"`),
 and identifiers (`min`).
+-->
+**词法扫描器（Scanner）**，或者说**分词器（Lexer）**，读取一连串程序源代码字符流，按照一定的规则将代码字符分割为一系列<span name="words">“词”</span>。在程序设计语言领域，我们把这些“词”称之为<span name="token">**词法单元（Token）**</span>。有些词法单元仅有单个字符，如左小括号`(`、逗号`,`。有些词法单元则由多个字符组成，如数字`123`、字符串字面量`"hi!"`、标识符`min`。
 
 <aside name="word">
 
-"Lexical" comes from the Greek root "lex", meaning "word".
+“Lexical”一词的希腊语词根是“lex”，意为“单词”。
 
 </aside>
 
+<aside name="token">
+
+> 译者注：本书接下来的篇章都将直接使用 token 一词而非其译文”词法单元“。
+
+</aside>
+
+<!--
 Some characters in a source file don't actually mean anything. Whitespace is
 often insignificant, and comments, by definition, are ignored by the language.
 The scanner usually discards these, leaving a clean sequence of meaningful
 tokens.
+-->
+程序源代码中的某些字符并不表达任何含义，比如，空白字符一般不表达任何含义，同样的还有注释内容。词法扫描器通常简单的忽略掉它们，仅保留那些有意义的词法单元。
 
 <img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
 

@@ -32,6 +32,7 @@ you!
 | Bytecode | 字节码 |
 | Lexing | 词法化 |
 | Lexical Analysis | 词法分析 |
+| Token | 词法单元 |
 | ... | ... |
 
 > 表：翻译术语表
