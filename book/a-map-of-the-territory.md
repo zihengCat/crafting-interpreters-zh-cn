@@ -99,13 +99,16 @@ begins on the left with the bare text of the user's source code:
 
 <img src="image/a-map-of-the-territory/string.png" alt="var average = (min + max) / 2;" />
 
-### Scanning
+### 词法扫描（Scanning）
 
+<!--
 The first step is **scanning**, also known as **lexing**, or (if you're trying
 to impress someone) **lexical analysis**. They all mean pretty much the same
 thing. I like "lexing" because it sounds like something an evil supervillain
 would do, but I'll use "scanning" because it seems to be marginally more
 commonplace.
+-->
+万里长征的第一步是**词法扫描（Scanning）**，也叫做**词法化（Lexing）**，或**词法分析（Lexical Analysis）**。它们都表示同一个意思，如果你想让旁人印象深刻，可以用听上去最惊艳的“词法分析”。我个人喜欢“词法化”，这听上去就像是某个超级大恶魔会才会做的事情。但在这里，我还是使用“词法扫描”，因为“扫描（Scanning）”一词看上去最为平易近人。
 
 A **scanner** (or **lexer**) takes in the linear stream of characters and chunks
 them together into a series of something more akin to <span

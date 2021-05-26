@@ -30,6 +30,8 @@ you!
 | Compiler | 编译器 |
 | Domain-specific Languages、DSL | 领域特定语言 |
 | Bytecode | 字节码 |
+| Lexing | 词法化 |
+| Lexical Analysis | 词法分析 |
 | ... | ... |
 
 > 表：翻译术语表
