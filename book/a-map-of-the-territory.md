@@ -145,33 +145,48 @@ tokens.
 
 <img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
 
-### Parsing
+<!--
+--- Parsing
+-->
+### 语法分析（Parsing）
 
+<!--
 The next step is **parsing**. This is where our syntax gets a **grammar** -- the
 ability to compose larger expressions and statements out of smaller parts. Did
 you ever diagram sentences in English class? If so, you've done what a parser
 does, except that English has thousands and thousands of "keywords" and an
 overflowing cornucopia of ambiguity. Programming languages are much simpler.
+-->
+接下来的一步叫做**语法分析（Parsing）**。通过分析程序的词法从而得到**语法（Grammar）**，将相互关联的几个词法单元拼装组合变成更加复杂的表达式和语句的能力。还记得小时候上语法课时的情景吗，标注一句话的语法成分（主、谓、宾、定、状、补），你那时做的事便是“语法分析”。只是，英语这门语言有着成千上万的“关键字（Keywords）”，以及大量意思相近的歧义词。程序语言则简单很多。
 
+<!--
 A **parser** takes the flat sequence of tokens and builds a tree structure that
 mirrors the nested nature of the grammar. These trees have a couple of different
 names -- **parse tree** or **abstract syntax tree** -- depending on how
 close to the bare syntactic structure of the source language they are. In
 practice, language hackers usually call them **syntax trees**, **ASTs**, or
 often just **trees**.
+-->
+**语法解析器（Parser）**读入 token 词法单元序列，构建出符合当前代码语义的树型结构，因为语法是嵌套的，所以要用树来表示。这些树型结构有着很多不同的名字：**解析树（Parse Tree）**、**抽象语法树（Abstract Syntax Tree）**，具体叫什么取决于这棵树与程序语言语法结构之间的对应程度。在实践中，程序语言开发者们习惯称呼它们为**语法树（Syntax Tree）**或**抽象语法树（AST）**，还有人为了简单起见直接叫**树（Tree）**。
 
 <img src="image/a-map-of-the-territory/ast.png" alt="An abstract syntax tree." />
 
+<!--
 Parsing has a long, rich history in computer science that is closely tied to the
 artificial intelligence community. Many of the techniques used today to parse
 programming languages were originally conceived to parse *human* languages by AI
 researchers who were trying to get computers to talk to us.
+-->
+在计算机科学领域，语法解析技术有着漫长且丰富的历史。语法解析还与人工智能有着千丝万缕的联系。现如今程序语言所用的很多语法解析技术，最初都是 AI 研究者们为解析*人类语言*而发明的。他们想让计算机能够与我们交流对话。
 
+<!--
 It turns out human languages were too messy for the rigid grammars those parsers
 could handle, but they were a perfect fit for the simpler artificial grammars of
 programming languages. Alas, we flawed humans still manage to use those simple
 grammars incorrectly, so the parser's job also includes letting us know when we
 do by reporting **syntax errors**.
+-->
+后来，研究者们发现，人类所使用的语言实在太过复杂，仅能处理严谨语法的语法解析器处理不了如此复杂的人类语言。但是语法解析器非常适合用来处理语法严谨、毫无歧义的程序语言，毕竟，程序语言可比人类语言简单多了。但即使是使用语法如此简单的程序语言，我们程序员还是会在写代码时犯各式各样的语法错误。所以语法解析器的任务又多了一条：报告程序员们所犯的**语法错误**，让他们改正。
 
 ### Static analysis
 
