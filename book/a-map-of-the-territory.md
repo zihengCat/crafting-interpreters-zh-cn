@@ -279,44 +279,62 @@ company lumped those new phases into the charming but spatially paradoxical name
 <!--
 --- Intermediate representations
 -->
-### 中间表示（Intermediate representations）
+### 中间代码表示（Intermediate representations）
 
+<!--
 You can think of the compiler as a pipeline where each stage's job is to
 organize the data representing the user's code in a way that makes the next
 stage simpler to implement. The front end of the pipeline is specific to the
 source language the program is written in. The back end is concerned with the
 final architecture where the program will run.
+-->
+你可以把编译器想象为一条流水线，流水线的每一道工序都将用户代码加工成某种特殊的数据表示形式，方便下一道工序使用。编译流水线“前端”主要关注程序的源代码结构（词法、语法、语义），“后端”则主要关注程序最终执行平台的体系架构。
 
+<!--
 In the middle, the code may be stored in some <span name="ir">**intermediate
 representation**</span> (**IR**) that isn't tightly tied to either the source or
 destination forms (hence "intermediate"). Instead, the IR acts as an interface
 between these two languages.
+-->
+在编译“中端”，程序代码可能会被存储为某种<span name="ir">**中间代码（Intermediate representations、IR）**</span>形式，既不贴近源代码也不贴近机器码，处于两者之间（所以称为“中间代码表示”）。IR 中间代码更像是介于源代码与二进制机器码之间的接口。
 
 <aside name="ir">
 
+<!--
 There are a few well-established styles of IRs out there. Hit your search engine
 of choice and look for "control flow graph", "static single-assignment",
 "continuation-passing style", and "three-address code".
+-->
+目前，已经有许多精巧的 IR 中间代码设计方法论存在了。你可以打开浏览器搜索：“控制流图（Control-flow Graph、CFG）”，“静态单赋值形式（Static single-assignment、SSA）”，“续体传递风格（Continuation-passing style、CPS）”，“三位址码（Three-address code、TAC、3AC）”。
 
 </aside>
 
+有了 IR 中间代码的帮助，在支持多程序源码解析与多目标平台编译方面，就可以省下很多力气。比如说，你想要实现 Pascal，C，Fortran 这三门程序语言的编译器，期望程序编译到的目标平台为 x86，ARM，SPARC。通常情况下，这意味着你得编写*9支*完整的编译器：Pascal&rarr;x86，C&rarr;ARM，以及其他排列组合。
+<!--
 This lets you support multiple source languages and target platforms with less
 effort. Say you want to implement Pascal, C, and Fortran compilers, and you want
 to target x86, ARM, and, I dunno, SPARC. Normally, that means you're signing up
 to write *nine* full compilers: Pascal&rarr;x86, C&rarr;ARM, and every other
 combination.
+-->
 
+<!--
 A <span name="gcc">shared</span> intermediate representation reduces that
 dramatically. You write *one* front end for each source language that produces
 the IR. Then *one* back end for each target architecture. Now you can mix and
 match those to get every combination.
+-->
+通过借助一个共享的 IR 中间代码表示，我们的工作量将大大减少。只需要为每一门程序语言编写一个“前端”，将程序源代码编译为中间代码表示，再为每一个目标平台编写一个“后端”，将中间代码编译到目标平台的二进制机器码。之后，我们的任务就完成了，所有排列组合都覆盖得到。
 
 <aside name="gcc">
 
+现在你知道为什么 [GCC][] 可以支持那么多奇奇怪怪的程序语言和目标平台了吧（像是偏门的 Modula-3 程序语言和摩托罗拉 68k 目标平台）。语言“前端”先将程序源代码编译成各式各样的 IR 中间代码，比较常见的有[GIMPLE][] 和 [RTL][]，编译”后端”再将这些 IR 中间代码编译到目标平台的二进制机器码。
+<!--
 If you've ever wondered how [GCC][] supports so many crazy languages and
 architectures, like Modula-3 on Motorola 68k, now you know. Language front ends
 target one of a handful of IRs, mainly [GIMPLE][] and [RTL][]. Target back ends
 like the one for 68k then take those IRs and produce native code.
+-->
 
 [gcc]: https://en.wikipedia.org/wiki/GNU_Compiler_Collection
 [gimple]: https://gcc.gnu.org/onlinedocs/gccint/GIMPLE.html
@@ -324,14 +342,23 @@ like the one for 68k then take those IRs and produce native code.
 
 </aside>
 
+<!--
 There's another big reason we might want to transform the code into a form that
 makes the semantics more apparent...
+-->
+另一个促使我们将代码转化为 IR 中间代码表示的重要原因是：使用 IR 中间代码可以使程序语义变得更加清晰...
 
-### Optimization
+<!--
+--- Optimization
+-->
+### 代码优化（Optimization）
 
+<!--
 Once we understand what the user's program means, we are free to swap it out
 with a different program that has the *same semantics* but implements them more
 efficiently -- we can **optimize** it.
+-->
+当我们完全理解用户程序想要表达的含义之后，我们就可以放心地将用户源程序替换为一支*语义完全相同*、*运行效率更高*的新程序。也就是说，我们可以**优化**程序代码。
 
 A simple example is **constant folding**: if some expression always evaluates to
 the exact same value, we can do the evaluation at compile time and replace the
