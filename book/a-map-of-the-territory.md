@@ -309,7 +309,6 @@ of choice and look for "control flow graph", "static single-assignment",
 
 </aside>
 
-有了 IR 中间代码的帮助，在支持多程序源码解析与多目标平台编译方面，就可以省下很多力气。比如说，你想要实现 Pascal，C，Fortran 这三门程序语言的编译器，期望程序编译到的目标平台为 x86，ARM，SPARC。通常情况下，这意味着你得编写*9支*完整的编译器：Pascal&rarr;x86，C&rarr;ARM，以及其他排列组合。
 <!--
 This lets you support multiple source languages and target platforms with less
 effort. Say you want to implement Pascal, C, and Fortran compilers, and you want
@@ -317,6 +316,7 @@ to target x86, ARM, and, I dunno, SPARC. Normally, that means you're signing up
 to write *nine* full compilers: Pascal&rarr;x86, C&rarr;ARM, and every other
 combination.
 -->
+有了 IR 中间代码的帮助，在支持多程序源码解析与多目标平台编译方面，就可以省下很多力气。比如说，你想要实现 Pascal，C，Fortran 这三门程序语言的编译器，期望程序编译到的目标平台为 x86，ARM，SPARC。通常情况下，这意味着你得编写*9支*完整的编译器：Pascal&rarr;x86，C&rarr;ARM，以及其他排列组合。
 
 <!--
 A <span name="gcc">shared</span> intermediate representation reduces that
@@ -379,15 +379,15 @@ we could do all of that arithmetic in the compiler and change the code to:
 ```java
 pennyArea = 0.4417860938;
 ```
-在编程语言这一摊子事情里面，优化占据了非常大的一块领地。很多编程语言黑客将他们的整个职业生涯都花在了优化这个方向，他们想要榨出编译器的每一滴性能，来使得编译器的性能基准测试能提高1个百分点。有点像强迫症一样。
 
-在程序设计语言领域，代码优化占据着重要的地位。许多程序语言开发者将他们的毕生精力倾注于此，希望将代码优化发挥到极致，使编译器在性能测试中提高哪怕一个百分点，都有点成强迫症了。
 <!--
 Optimization is a huge part of the programming language business. Many language
 hackers spend their entire careers here, squeezing every drop of performance
 they can out of their compilers to get their benchmarks a fraction of a percent
 faster. It can become a sort of obsession.
 -->
+在程序设计语言领域，代码优化占据着重要的地位。许多程序语言极客们将毕生精力倾注于此，他们希望榨干编译器的每一滴性能，将代码优化发挥到极致，使编译器在性能测试中提高哪怕一个百分点，都快成强迫症了。
+
 <!--
 We're mostly going to <span name="rathole">hop over that rathole</span> in this
 book. Many successful languages have surprisingly few compile-time
@@ -404,7 +404,6 @@ started are "constant propagation", "common subexpression elimination", "loop
 invariant code motion", "global value numbering", "strength reduction", "scalar
 replacement of aggregates", "dead code elimination", and "loop unrolling".
 -->
-
 如果你对代码优化的“无底深坑”很感兴趣，可以搜索一些关键词：“常量传播（Constant Propagation）“，“公共子式消除（Common Subexpression Elimination、CSE）”，“循环不变代码外提（Loop-invariant Code Motion、LICM）”，“全局值编号（Global Value Numbering、GVN）”，“强度折减（Strength Reduction）”，“聚合标量替换（Scalar Replacement of Aggregates、SRA）”，“死码消除（Dead Code Elimination）”，“循环展开（Loop Unrolling）”。
 
 </aside>
