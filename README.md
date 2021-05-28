@@ -38,6 +38,7 @@ you!
 | Lookup table | 查找表 |
 | Symbol table | 符号表 |
 | Virtual machine | 虚拟机 |
+| Runtime | 运行时 |
 | ... | ... |
 
 > 表：翻译术语表

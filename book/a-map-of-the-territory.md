@@ -420,7 +420,7 @@ words, **generating code** (or **code gen**), where "code" here usually refers t
 the kind of primitive assembly-like instructions a CPU runs and not the kind of
 "source code" a human might want to read.
 -->
-当我们对用户程序做完所有能做的代码优化之后，最后一步便是将程序转化为在目标平台可以执行的二进制机器码，这一步叫做：**代码生成（Generating Code、Code Generation、Code Gen）**。此处的“代码“指的是可被 CPU 执行的原始汇编机器指令，而不是人类可读的程序“源代码“。
+当我们对用户程序做完所有能做的代码优化之后，最后一步便是将程序转化为目标平台可执行的二进制机器码，这一步叫做：**代码生成（Generating Code、Code Generation、Code Gen）**。此处的“代码“指的是可被 CPU 执行的原始汇编机器指令，而不是人类可读的程序“源代码“。
 
 <!--
 Finally, we are in the **back end**, descending the other side of the mountain.
@@ -489,6 +489,7 @@ like a dense, binary encoding of the language's low-level operations.
 -->
 ### 虚拟机（Virtual machine）
 
+<!--
 If your compiler produces bytecode, your work isn't over once that's done. Since
 there is no chip that speaks that bytecode, it's your job to translate. Again,
 you have two options. You can write a little mini-compiler for each target
@@ -497,20 +498,29 @@ still have to do work for <span name="shared">each</span> chip you support, but
 this last stage is pretty simple and you get to reuse the rest of the compiler
 pipeline across all of the machines you support. You're basically using your
 bytecode as an intermediate representation.
+-->
+如果你选择让你的编译器生成字节码，那么你的工作还没有结束。因为目前市面上并没有一款计算机芯片可以执行你的字节码，所以你还需要转译。到了这里，你同样有两种选择，一种选择是，你可以为每一个目标平台分别编写一支迷你编译器，将你的字节码编译到目标平台的机器码。虽说这样一来你仍需要为<span name="shared">每一款</span>需要支持的计算机芯片编写编译器，但字节码编译器的编写工作非常简单，而先前已经实现了的编译流水线则可以在所有被支持的机器上复用。相当于，你使用字节码充当了 IR 中间代码。 
 
 <aside name="shared" class="bottom">
 
+<!--
 The basic principle here is that the farther down the pipeline you push the
 architecture-specific work, the more of the earlier phases you can share across
 architectures.
+-->
+编译领域的一个基本原则是：越把与体系结构相关的编译工作推后，就有越多先前的编译阶段可以跨平台共享。
 
+<!--
 There is a tension, though. Many optimizations, like register allocation and
 instruction selection, work best when they know the strengths and capabilities
 of a specific chip. Figuring out which parts of your compiler can be shared and
 which should be target-specific is an art.
+-->
+这里有一点值得说明。许多与目标平台相关的程序优化项，如：寄存器分配、指令选择，只有在充分了解目标机器的硬件特点与芯片指令集后，才能发挥出最大的效力。而区分编译器的哪些部分可被共享重用，哪些部分与目标平台相关，是门关于权衡与取舍的艺术。
 
 </aside>
 
+<!--
 Or you can write a <span name="vm">**virtual machine**</span> (**VM**), a
 program that emulates a hypothetical chip supporting your virtual architecture
 at runtime. Running bytecode in a VM is slower than translating it to native
@@ -518,35 +528,57 @@ code ahead of time because every instruction must be simulated at runtime each
 time it executes. In return, you get simplicity and portability. Implement your
 VM in, say, C, and you can run your language on any platform that has a C
 compiler. This is how the second interpreter we build in this book works.
+-->
+另一种选择是，你可以编写一枚<span name="vm">**虚拟机（Virtual Machine、VM）**</span>，一支在运行时模拟假想计算机芯片，支持字节码指令集的程序。通过虚拟机执行字节码，相比起将字节码编译到目标平台机器码再执行，程序运行效率要慢上很多。这是因为虚拟机要在运行时逐条翻译字节码指令解释执行。作为回报，你收获了编译器实现的简单性与可移植性。你可以使用 C 语言编写一个虚拟机程序，这样一来，你设计的程序语言就可以在所有拥有 C 语言编译器的平台上运行。本书中我们构建的第二枚解释器就是虚拟机工作方式。
 
 <aside name="vm">
 
+“虚拟机”这个术语其实指的是一种不一样的抽象。系统虚拟机会在软件中模拟执行整个硬件平台的指令集，自然也就能模拟执行这个硬件平台上的操作系统了（例如qemu，vmware这样的虚拟机）。这就是为什么你能在Linux上面运行Windows系统。也是云服务商可以为你提供属于你自己的服务器（无需提供给你真实的机器，也就是容器技术）的原因。
+
+
+<!--
 The term "virtual machine" also refers to a different kind of abstraction. A
 **system virtual machine** emulates an entire hardware platform and operating
 system in software. This is how you can play Windows games on your Linux
 machine, and how cloud providers give customers the user experience of
 controlling their own "server" without needing to physically allocate separate
 computers for each user.
+-->
 
+“虚拟机”一词在计算机领域还有另一个含义，同样代表了某种抽象。**系统虚拟机（虚拟化技术）**在软件层面模拟完整硬件平台以及运行在硬件平台之上的操作系统。这就是你为什么可以在 Linux 机器上玩到 Windows 游戏的原因。云服务商可以为每位客户提供完全由客户自主控制的服务器而无需为每位客户分配物理主机，这也是得益于虚拟化技术。
+
+<!--
 The kind of VMs we'll talk about in this book are **language virtual machines**
 or **process virtual machines** if you want to be unambiguous.
+-->
+本书所讨论的“虚拟机“指的是**程序语言虚拟机**，而非“虚拟化技术“，不要搞混了。
 
 </aside>
 
-### Runtime
+<!--
+--- Runtime
+-->
+### 运行时（Runtime）
 
+<!--
 We have finally hammered the user's program into a form that we can execute. The
 last step is running it. If we compiled it to machine code, we simply tell the
 operating system to load the executable and off it goes. If we compiled it to
 bytecode, we need to start up the VM and load the program into that.
+-->
+我们终于把用户程序转化为某种可执行形式了，可能是字节码 + 虚拟机，亦或是目标平台二进制机器码。最后一步便是运行程序。如果我们编译到目标平台机器码，我们可以简单地招呼操作系统装载可执行程序上 CPU 执行。如果我们编译到字节码，那么我们需要启动虚拟机，加载字节码程序并执行。
 
+<!--
 In both cases, for all but the basest of low-level languages, we usually need
 some services that our language provides while the program is running. For
 example, if the language automatically manages memory, we need a garbage
 collector going in order to reclaim unused bits. If our language supports
 "instance of" tests so you can see what kind of object you have, then we need
 some representation to keep track of the type of each object during execution.
+-->
+不管是哪种情况，对于所有低阶语言（如：汇编语言）以外的程序设计语言来说，通常都需要在程序运行的时候提供一些额外的服务，例如：如果该语言支持自动内存管理，那我们就需要实现一枚垃圾收集器回收不再使用的内存；如果该语言支持`instance of`这样的运算符查看对象类型（即：反射），我们就需要在程序运行过程中追踪每一个对象的类型。
 
+<!--
 All of this stuff is going at runtime, so it's called, appropriately, the
 **runtime**. In a fully compiled language, the code implementing the runtime
 gets inserted directly into the resulting executable. In, say, [Go][], each
@@ -554,10 +586,15 @@ compiled application has its own copy of Go's runtime directly embedded in it.
 If the language is run inside an interpreter or VM, then the runtime lives
 there. This is how most implementations of languages like Java, Python, and
 JavaScript work.
+-->
+所有这些事情都会发生在程序运行的时候，所以也被称为**运行时（Runtime）**。完全编译到二进制机器码的程序设计语言会将语言运行时代码实现直接插入到编译后的可执行程序之中。Go 语言便是如此，每一个编译后的 Go 程序都被嵌入了一份完整的 Go 运行时拷贝。如果程序在解释器或虚拟机中运行，那么语言运行时就存在于解释器或虚拟机中，大部分虚拟机语言在具体实现上都是如此：Java、Python、JavaScript。
 
 [go]: https://golang.org/
 
-## Shortcuts and Alternate Routes
+<!--
+-- Shortcuts and Alternate Routes
+-->
+## 捷径与可选道路
 
 That's the long path covering every possible phase you might implement. Many
 languages do walk the entire route, but there are a few shortcuts and alternate
