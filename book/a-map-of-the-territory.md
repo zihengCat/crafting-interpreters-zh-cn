@@ -360,71 +360,105 @@ efficiently -- we can **optimize** it.
 -->
 当我们完全理解用户程序想要表达的含义之后，我们就可以放心地将用户源程序替换为一支*语义完全相同*、*运行效率更高*的新程序。也就是说，我们可以**优化**程序代码。
 
+<!--
 A simple example is **constant folding**: if some expression always evaluates to
 the exact same value, we can do the evaluation at compile time and replace the
 code for the expression with its result. If the user typed in this:
+-->
+一个简单的例子就是**常量折叠（Constant Folding）**：如果某些表达式求值始终为常量，我们便可以在编译时用常数值替换整个表达式。如以下用户代码：
 
 ```java
 pennyArea = 3.14159 * (0.75 / 2) * (0.75 / 2);
 ```
 
+<!--
 we could do all of that arithmetic in the compiler and change the code to:
+-->
+我们可以在编译时完成整个表达式的算术运算，将代码替换为：
 
 ```java
 pennyArea = 0.4417860938;
 ```
+在编程语言这一摊子事情里面，优化占据了非常大的一块领地。很多编程语言黑客将他们的整个职业生涯都花在了优化这个方向，他们想要榨出编译器的每一滴性能，来使得编译器的性能基准测试能提高1个百分点。有点像强迫症一样。
 
+在程序设计语言领域，代码优化占据着重要的地位。许多程序语言开发者将他们的毕生精力倾注于此，希望将代码优化发挥到极致，使编译器在性能测试中提高哪怕一个百分点，都有点成强迫症了。
+<!--
 Optimization is a huge part of the programming language business. Many language
 hackers spend their entire careers here, squeezing every drop of performance
 they can out of their compilers to get their benchmarks a fraction of a percent
 faster. It can become a sort of obsession.
-
+-->
+<!--
 We're mostly going to <span name="rathole">hop over that rathole</span> in this
 book. Many successful languages have surprisingly few compile-time
 optimizations. For example, Lua and CPython generate relatively unoptimized
 code, and focus most of their performance effort on the runtime.
+-->
+在本书中，我们将跳过代码优化这一部分的<span name="rathole">“无底深坑”</span>。令人意外的是，许多成功的程序设计语言在编译时所做的代码优化都很少，它们仅在编译时生成未优化的代码，而将性能优化的重点放到了运行时，如：Lua 和 CPython。
 
 <aside name="rathole">
 
+<!--
 If you can't resist poking your foot into that hole, some keywords to get you
 started are "constant propagation", "common subexpression elimination", "loop
 invariant code motion", "global value numbering", "strength reduction", "scalar
 replacement of aggregates", "dead code elimination", and "loop unrolling".
+-->
+
+如果你对代码优化的“无底深坑”很感兴趣，可以搜索一些关键词：“常量传播（Constant Propagation）“，“公共子式消除（Common Subexpression Elimination、CSE）”，“循环不变代码外提（Loop-invariant Code Motion、LICM）”，“全局值编号（Global Value Numbering、GVN）”，“强度折减（Strength Reduction）”，“聚合标量替换（Scalar Replacement of Aggregates、SRA）”，“死码消除（Dead Code Elimination）”，“循环展开（Loop Unrolling）”。
 
 </aside>
 
-### Code generation
+<!--
+--- Code generation
+-->
+### 代码生成（Code generation）
 
+<!--
 We have applied all of the optimizations we can think of to the user's program.
 The last step is converting it to a form the machine can actually run. In other
 words, **generating code** (or **code gen**), where "code" here usually refers to
 the kind of primitive assembly-like instructions a CPU runs and not the kind of
 "source code" a human might want to read.
+-->
+当我们对用户程序做完所有能做的代码优化之后，最后一步便是将程序转化为在目标平台可以执行的二进制机器码，这一步叫做：**代码生成（Generating Code、Code Generation、Code Gen）**。此处的“代码“指的是可被 CPU 执行的原始汇编机器指令，而不是人类可读的程序“源代码“。
 
+<!--
 Finally, we are in the **back end**, descending the other side of the mountain.
 From here on out, our representation of the code becomes more and more
 primitive, like evolution run in reverse, as we get closer to something our
 simple-minded machine can understand.
+-->
+我们终于来到了“后端”，山的右侧部分。从这里开始，程序代码将变得越来越原始，越来越贴近机器所能理解的形式，就像往反方向进化那样。
 
+<!--
 We have a decision to make. Do we generate instructions for a real CPU or a
 virtual one? If we generate real machine code, we get an executable that the OS
 can load directly onto the chip. Native code is lightning fast, but generating
 it is a lot of work. Today's architectures have piles of instructions, complex
 pipelines, and enough <span name="aad">historical baggage</span> to fill a 747's
 luggage bay.
+-->
+这时候，我们就需要做个决定了。我们是要生成一枚真正 CPU 的机器指令，还是生成“虚拟” CPU 指令。如果我们选择生成真正 CPU 机器指令，我们将得到一份可执行程序，操作系统可以将这支程序装载到 CPU 芯片上执行。原始机器指令执行起来速度飞快，但是生成目标平台对应的机器指令要费上很大一番功夫。这是因为计算机体系结构发展到现如今，已经变得复杂异常：各式各样的机器指令，复杂的指令流水线，还有一大堆足以塞满波音 747 飞机行李箱的<span name="aad">历史遗留<span>问题。
 
+<!--
 Speaking the chip's language also means your compiler is tied to a specific
 architecture. If your compiler targets [x86][] machine code, it's not going to
 run on an [ARM][] device. All the way back in the '60s, during the
 Cambrian explosion of computer architectures, that lack of portability was a
 real obstacle.
+-->
+如果生成目标芯片的机器码，那意味着编译器会与某个特定体系结构绑定起来。如果编译器生成的是[x86][]机器码，那么编译出来的程序无法在 ARM 设备上运行。回到上世纪 60 年代，在那个计算机体系结构、芯片指令集层出不穷的年代，程序缺乏可移植性成了巨大的障碍。
 
 <aside name="aad">
 
+<!--
 For example, the [AAD][] ("ASCII Adjust AX Before Division") instruction lets
 you perform division, which sounds useful. Except that instruction takes, as
 operands, two binary-coded decimal digits packed into a single 16-bit register.
 When was the last time *you* needed BCD on a 16-bit machine?
+-->
+举个例子，“[AAD][]（ASCII Adjust AX Before Division)”指令允许你做除法运算，这听起来还不错。但让人无语的是，这条指令要求你将两个数以 BCD 编码后打包塞进一枚 16 位寄存器中，你上次在 16 位机器上使用 BCD 编码是什么时候？
 
 [aad]: http://www.felixcloutier.com/x86/AAD.html
 
@@ -433,19 +467,28 @@ When was the last time *you* needed BCD on a 16-bit machine?
 [x86]: https://en.wikipedia.org/wiki/X86
 [arm]: https://en.wikipedia.org/wiki/ARM_architecture
 
+<!--
 To get around that, hackers like Martin Richards and Niklaus Wirth, of BCPL and
 Pascal fame, respectively, made their compilers produce *virtual* machine code.
 Instead of instructions for some real chip, they produced code for a
 hypothetical, idealized machine. Wirth called this **p-code** for *portable*,
 but today, we generally call it **bytecode** because each instruction is often a
 single byte long.
+-->
+为了规避由计算机体系结构与芯片指令集差异带来的复杂性，马丁·理查德（BCPL 语言设计者），尼克劳斯·维尔特（Pascal 语言设计者）这样的程序语言设计者们都不约而同地选择将程序代码编译到*虚拟*机器码。他们并没有选择将程序代码编译为某款真实芯片的指令集，取而代之的，将程序编译为某种假想的、理想化的机器码。维尔特将他设计的虚拟机器码称为：**p-code**，p 表示可移植的（portable）。如今，我们通常称之为**字节码（Bytecode）**，因为每条指令通常占用一个字节的长度。
 
+<!--
 These synthetic instructions are designed to map a little more closely to the
 language's semantics, and not be so tied to the peculiarities of any one
 computer architecture and its accumulated historical cruft. You can think of it
 like a dense, binary encoding of the language's low-level operations.
+-->
+虚拟字节码指令通常被设计为更加贴近程序语言语义，而不与任何一种计算机体系结构强绑定，这样一来就可以避开体系结构的历史遗留问题了。你可以将字节码想象成是程序语言基本操作的一种紧凑二进制编码形式。
 
-### Virtual machine
+<!--
+--- Virtual machine
+-->
+### 虚拟机（Virtual machine）
 
 If your compiler produces bytecode, your work isn't over once that's done. Since
 there is no chip that speaks that bytecode, it's your job to translate. Again,

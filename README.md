@@ -37,6 +37,7 @@ you!
 | Scope | 作用域 |
 | Lookup table | 查找表 |
 | Symbol table | 符号表 |
+| Virtual machine | 虚拟机 |
 | ... | ... |
 
 > 表：翻译术语表
