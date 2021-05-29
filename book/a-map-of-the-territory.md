@@ -624,7 +624,7 @@ grammar, usually one that generates output code. Then, whenever the parser
 matches that chunk of syntax, it executes the action, building up the target
 code one rule at a time.
 -->
-[**语法制导翻译（Syntax-directed translation）**][pass] 是构建单遍扫描编译器一种结构化技术。将一个*动作（Action）*与一个语法片段关联起来，动作可以直接生成相应的目标代码。每当编译器遇到一个匹配的语法片段时，便执行该语法片段所绑定的动作，直接生成该语法片段的目标代码。
+[**语法制导翻译（Syntax-directed translation）**][pass] 是构建单遍扫描编译器一种结构化技术。将一个 *动作（Action）* 与一个语法片段关联起来，动作可以直接生成相应的目标代码。每当编译器遇到一个匹配的语法片段时，便执行该语法片段所绑定的动作，直接生成该语法片段的目标代码。
 
 [pass]: https://en.wikipedia.org/wiki/Syntax-directed_translation
 
@@ -639,31 +639,40 @@ function above the code that defines it unless you have an explicit forward
 declaration that tells the compiler what it needs to know to generate code for a
 call to the later function.
 -->
-Pascal 语言与 C 语言就是采用了单遍扫描的设计方式。在 Pascal 与 C 诞生的那个年代，计算机内存极其宝贵，以至于编译器甚至都无法将一份*源代码文件*完整地载入到内存中，更不用说整支程序了。这就是为什么 Pascal 语法要求类型声明必须出现在程序块开头的位置。这也是为什么 C 语言无法调用代码下方定义的函数，除非做前向声明（forward declaration）显式告诉编译器此处调用函数的必要信息，编译器才能正确地生成代码。
+Pascal 语言与 C 语言就是采用了单遍扫描的设计方式。在 Pascal 与 C 诞生的那个年代，计算机内存极其宝贵，以至于编译器甚至都无法将一份*源代码文件*完整地载入到内存中，更不用说整支程序了。这就是为什么 Pascal 语法要求类型声明必须出现在程序块开头的位置。这也是为什么 C 语言无法调用代码下方定义的函数，除非做前向声明（forward declaration）显式告诉编译器此处调用函数的必要信息，编译器才能正确地生成出代码。
 
 <!--
 --- Tree-walk interpreters
 -->
 ### 树遍历解释器（Tree-walk interpreters）
 
+<!--
 Some programming languages begin executing code right after parsing it to an AST
 (with maybe a bit of static analysis applied). To run the program, the
 interpreter traverses the syntax tree one branch and leaf at a time, evaluating
 each node as it goes.
+-->
+一些程序语言在将代码解析为抽象语法树，再配合上一点静态分析后，就开始执行代码。执行程序的过程，就是解释器从头至尾遍历语法树的分支与叶子节点，对遍历到的每一个节点进行求值。
 
+<!--
 This implementation style is common for student projects and little languages,
 but is not widely used for <span name="ruby">general-purpose</span> languages
 since it tends to be slow. Some people use "interpreter" to mean only these
 kinds of implementations, but others define that word more generally, so I'll
 use the inarguably explicit **tree-walk interpreter** to refer to these. Our
 first interpreter rolls this way.
+-->
+这样的实现方式在学生项目与小语言中非常普遍，但在<span name="ruby">通用程序设计语言</span>中并不常用，因为语法树遍历的实现方式运行效率太慢。有些人认为“解释器”一词仅指语法树遍历的实现方式，另一些人则认为“解释器“一词有着更广泛的含义。我会使用明确无争议的 **树遍历解释器（Tree-walk interpreters）** 一词指代语法树遍历的实现方式。我们编写的第一支解释器就采用这种方式。
 
 <aside name="ruby">
 
+<!--
 A notable exception is early versions of Ruby, which were tree walkers. At 1.9,
 the canonical implementation of Ruby switched from the original MRI (Matz's Ruby
 Interpreter) to Koichi Sasada's YARV (Yet Another Ruby VM). YARV is a
 bytecode virtual machine.
+-->
+在通用程序设计语言中有一个值得注意的例外：Ruby 语言。在 Ruby 的早期版本，实现上就采用树遍历。在 Ruby 1.9 版本，其官方实现从树遍历解释器 MRI（Matz's Ruby Interpreter) 切换到 Koichi Sasada's YARV (Yet Another Ruby VM)。YARV 是一个字节码虚拟机。
 
 </aside>
 
