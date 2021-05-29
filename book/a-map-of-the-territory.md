@@ -592,12 +592,19 @@ JavaScript work.
 -->
 ## 捷径与可选道路
 
+<!--
 That's the long path covering every possible phase you might implement. Many
 languages do walk the entire route, but there are a few shortcuts and alternate
 paths.
+-->
+实现一门程序设计语言真是一条漫长的道路，你需要走过程序编译的每一个阶段。许多程序设计语言完完整整地走过了整条道路，但这其中也有些捷径和可选道路存在。
 
-### Single-pass compilers
+<!--
+--- Single-pass compilers
+-->
+### 单遍扫描编译器（Single-pass compilers）
 
+<!--
 Some simple compilers interleave parsing, analysis, and code generation so that
 they produce output code directly in the parser, without ever allocating any
 syntax trees or other IRs. These <span name="sdt">**single-pass
@@ -605,19 +612,25 @@ compilers**</span> restrict the design of the language. You have no intermediate
 data structures to store global information about the program, and you don't
 revisit any previously parsed part of the code. That means as soon as you see
 some expression, you need to know enough to correctly compile it.
+-->
+一些简单的编译器将词法解析、代码分析、代码生成这些步骤糅合到一起，直接在解析器中生成目标代码，而不生成任何语法树或其他 IR 中间代码。这些<span name="sdt">**单遍扫描编译器（Single-pass compilers）**</span>制约了程序语言的设计与发展。既没有任何中间数据结构存储关于程序的全局信息，也没有办法可以再访问先前已经解析过的代码部分。这就意味着，程序语言必须被设计为，当编译器首次看到程序表达式就能够正确编译的形式。
 
 <aside name="sdt">
 
+<!--
 [**Syntax-directed translation**][pass] is a structured technique for building
 these all-at-once compilers. You associate an *action* with each piece of the
 grammar, usually one that generates output code. Then, whenever the parser
 matches that chunk of syntax, it executes the action, building up the target
 code one rule at a time.
+-->
+[**语法制导翻译（Syntax-directed translation）**][pass] 是构建单遍扫描编译器一种结构化技术。将一个*动作（Action）*与一个语法片段关联起来，动作可以直接生成相应的目标代码。每当编译器遇到一个匹配的语法片段时，便执行该语法片段所绑定的动作，直接生成该语法片段的目标代码。
 
 [pass]: https://en.wikipedia.org/wiki/Syntax-directed_translation
 
 </aside>
 
+<!--
 Pascal and C were designed around this limitation. At the time, memory was so
 precious that a compiler might not even be able to hold an entire *source file*
 in memory, much less the whole program. This is why Pascal's grammar requires
@@ -625,8 +638,13 @@ type declarations to appear first in a block. It's why in C you can't call a
 function above the code that defines it unless you have an explicit forward
 declaration that tells the compiler what it needs to know to generate code for a
 call to the later function.
+-->
+Pascal 语言与 C 语言就是采用了单遍扫描的设计方式。在 Pascal 与 C 诞生的那个年代，计算机内存极其宝贵，以至于编译器甚至都无法将一份*源代码文件*完整地载入到内存中，更不用说整支程序了。这就是为什么 Pascal 语法要求类型声明必须出现在程序块开头的位置。这也是为什么 C 语言无法调用代码下方定义的函数，除非做前向声明（forward declaration）显式告诉编译器此处调用函数的必要信息，编译器才能正确地生成代码。
 
-### Tree-walk interpreters
+<!--
+--- Tree-walk interpreters
+-->
+### 树遍历解释器（Tree-walk interpreters）
 
 Some programming languages begin executing code right after parsing it to an AST
 (with maybe a bit of static analysis applied). To run the program, the
