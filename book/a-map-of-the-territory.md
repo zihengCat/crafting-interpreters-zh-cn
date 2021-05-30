@@ -541,7 +541,7 @@ machine, and how cloud providers give customers the user experience of
 controlling their own "server" without needing to physically allocate separate
 computers for each user.
 -->
-“虚拟机”一词在计算机领域还有另一个含义，同样代表了某种抽象：**系统虚拟机（虚拟化技术）**可以在软件层面完整模拟硬件平台体系结构以及运行在硬件平台之上的操作系统。这就是你为什么可以在 Linux 机器上玩到 Windows 游戏的原因。云服务商可以为每位客户提供完全由客户自主控制的服务器而无需为每位客户分配物理主机，也是得益于虚拟化技术。
+“虚拟机”一词在计算机领域还有另一个含义，同样代表了某种抽象：**系统虚拟机（虚拟化技术）** 可以在软件层面完整模拟硬件平台体系结构以及运行在硬件平台之上的操作系统。这就是你为什么可以在 Linux 机器上玩到 Windows 游戏的原因。云服务商可以为每位客户提供完全由客户自主控制的服务器而无需为每位客户分配物理主机，也是得益于虚拟化技术。
 
 <!--
 The kind of VMs we'll talk about in this book are **language virtual machines**
@@ -662,7 +662,7 @@ kinds of implementations, but others define that word more generally, so I'll
 use the inarguably explicit **tree-walk interpreter** to refer to these. Our
 first interpreter rolls this way.
 -->
-这样的实现方式在学生项目与小语言中非常普遍，但在<span name="ruby">通用程序设计语言</span>中并不常用，因为语法树遍历的实现方式运行效率太慢。有些人认为“解释器”一词仅指语法树遍历的实现方式，另一些人则认为“解释器“一词有着更广泛的含义。我会使用明确无争议的 **树遍历解释器（Tree-walk interpreters）** 一词指代语法树遍历的实现方式。我们编写的第一支解释器就采用这种方式。
+这样的实现方式在学生项目与小语言中非常普遍，但在<span name="ruby">通用程序设计语言</span>中并不常用，因为语法树遍历的实现方式运行效率太慢。有些人认为“解释器”一词仅指语法树遍历的实现方式，另一些人则认为“解释器“一词有着更广泛的含义。我会使用明确无争议的**树遍历解释器（Tree-walk interpreters）** 一词指代语法树遍历的实现方式。我们编写的第一支解释器就采用这种方式。
 
 <aside name="ruby">
 
@@ -676,91 +676,137 @@ bytecode virtual machine.
 
 </aside>
 
-### Transpilers
+<!--
+--- Transpilers
+-->
+### 转译器（Transpilers）
 
+<!--
 <span name="gary">Writing</span> a complete back end for a language can be a lot
 of work. If you have some existing generic IR to target, you could bolt your
 front end onto that. Otherwise, it seems like you're stuck. But what if you
 treated some other *source language* as if it were an intermediate
 representation?
+-->
+<span name="gary">完整编写</span>一门程序设计语言“后端”需要费上很大一番功夫。如果你选择一些已经存在的 IR 中间代码来帮忙实现“后端”，那么你只需要编写一个将程序语言编译到目标 IR 中间代码的“前端”就可以了。不然，你似乎就要被实现“后端”的艰深工作给难住，不知该如何继续了。但是如果，你将*其他程序语言*当作中间代码呢？
 
+<!--
 You write a front end for your language. Then, in the back end, instead of doing
 all the work to *lower* the semantics to some primitive target language, you
 produce a string of valid source code for some other language that's about as
 high level as yours. Then, you use the existing compilation tools for *that*
 language as your escape route off the mountain and down to something you can
 execute.
+-->
+你为你设计的程序语言编写一个“前端”，在语言“后端”部分，不选择完成将程序编译到目标平台机码的所有工作，取而代之的，生成一串语义相同的其他程序语言源代码字符串，这门程序语言和你的程序语言一样同为“高阶”语言。如此一来，你就可以复用*那门*目标程序语言的编译工具链，编译得到可执行程序了。
 
+<!--
 They used to call this a **source-to-source compiler** or a **transcompiler**.
 After the rise of languages that compile to JavaScript in order to run in the
 browser, they've affected the hipster sobriquet **transpiler**.
+-->
+这样的编译器通常被称为**源到源编译器（Source-to-source Compiler）** 或**转译器（Transcompiler）**。在许多编译到 JavaScript 程序语言（为了在浏览器中运行）大火之后，转译器这个时髦的名字也流行了起来。
 
 <aside name="gary">
 
+<!--
 The first transcompiler, XLT86, translated 8080 assembly into 8086 assembly.
 That might seem straightforward, but keep in mind the 8080 was an 8-bit chip and
 the 8086 a 16-bit chip that could use each register as a pair of 8-bit ones.
 XLT86 did data flow analysis to track register usage in the source program and
 then efficiently map it to the register set of the 8086.
+-->
+历史上的第一枚转译器 XLT86 用来将 8080 汇编转译到 8086 汇编。转译过程看起来非常简单直接，但是别忘了，8080 是一颗 8 位 CPU 芯片，而 8086 是一颗 16位 CPU 芯片，8086 可以将每个 16 位寄存器当作一对 8 位寄存器使用。XLT86 转译器做了数据流分析来追踪源程序对寄存器的使用情况，再高效地将 8080 寄存器操作映射为等效 8086 寄存器操作。
 
+<!--
 It was written by Gary Kildall, a tragic hero of computer science if there
 ever was one. One of the first people to recognize the promise of
 microcomputers, he created PL/M and CP/M, the first high-level language and OS
 for them.
+-->
+XLT86 转译器由加里·基尔代尔编写。他可真称得上是计算机科学历史上的一位悲剧英雄，他第一个看到微型计算机的广阔前景，他创造了 PL/M 和 CP/M，专为微型计算机打造的高级程序设计语言与操作系统。
 
+<!--
 He was a sea captain, business owner, licensed pilot, and motorcyclist. A TV
 host with the Kris Kristofferson-esque look sported by dashing bearded dudes in
 the '80s. He took on Bill Gates and, like many, lost, before meeting his end in
 a biker bar under mysterious circumstances. He died too young, but sure as hell
 lived before he did.
+-->
+他是一名船长，一名企业家，一名拥有飞行执照的飞行员，一名摩托车手，他还是一名电视主持人，有着克里斯·克里斯托佛森（注：著名美国乡村音乐歌手）般的外貌，留着帅气的大胡子。他曾挑战过比尔盖茨，可惜和其他人一样失败了。后来，他被一辆摩托机车撞到了脑袋，迎来了自己人生的终点，去世时年仅 52 岁，实在太过年轻，他的一生活得传奇而精彩。
 
 </aside>
 
+<!--
 While the first transcompiler translated one assembly language to another,
 today, most transpilers work on higher-level languages. After the viral spread
 of UNIX to machines various and sundry, there began a long tradition of
 compilers that produced C as their output language. C compilers were available
 everywhere UNIX was and produced efficient code, so targeting C was a good way
 to get your language running on a lot of architectures.
+-->
+虽然第一个转译器被设计用以转译汇编语言，但在目前，大部分转译器都用来将一门高阶语言转译到另一门高阶语言。在 UNIX 操作系统广为流传之后，将程序语言转译到 C 语言逐渐成为了一个传统。每个 UNIX 系统上都有提供 C 语言编译器，另外，C 语言贴近底层，能够生成高效的机器码。所以，把 C 语言作为转译目标语言，可以让你的程序语言在大部分体系结构下都可正常运行。
 
+<!--
 Web browsers are the "machines" of today, and their "machine code" is
 JavaScript, so these days it seems [almost every language out there][js] has a
 compiler that targets JS since that's the <span name="js">main</span> way to get
 your code running in a browser.
+-->
+Web 浏览器在如今也变得越来越流行了，Web 浏览器上的“机器语言”即是 JavaScript。[越来越多的程序语言][js]为了能将代码跑在浏览器里，开发了以 JavaScript 为目标转译语言的转译器。
 
 [js]: https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-js
 
 <aside name="js">
 
+<!--
 JS used to be the *only* way to execute code in a browser. Thanks to
 [WebAssembly][], compilers now have a second, lower-level language they can
 target that runs on the web.
+-->
+JavaScript 曾是浏览器所能运行的*唯一*一门程序语言，但是多亏了[WebAssembly][webassembly]，让我们有了第二种可以将代码跑在浏览器里的选择。
 
 [webassembly]: https://github.com/webassembly/
 
 </aside>
 
+<!--
 The front end -- scanner and parser -- of a transpiler looks like other
 compilers. Then, if the source language is only a simple syntactic skin over the
 target language, it may skip analysis entirely and go straight to outputting the
 analogous syntax in the destination language.
+-->
+转译器的“前端”部分（词法扫描、语法解析）和其他编译器的“前端”相差不多。如果源程序语言只是在目标转译语言之上套了一层语法皮，那么静态分析这步就可以忽略，直接生成目标转译语言的对应语法即可。
 
+<!--
 If the two languages are more semantically different, you'll see more of the
 typical phases of a full compiler including analysis and possibly even
 optimization. Then, when it comes to code generation, instead of outputting some
 binary language like machine code, you produce a string of grammatically correct
 source (well, destination) code in the target language.
+-->
+如果源语言和目标语言的语法相差很大，转译器就可能包含更多的编译阶段，如：静态分析，代码优化等。在代码生成阶段，转译器会生成语义相同的目标语言代码，而不是二进制机器码。
 
+<!--
 Either way, you then run that resulting code through the output language's
 existing compilation pipeline, and you're good to go.
+-->
+不管哪种方式，接下来你就可以让转译器生成的目标语言代码走过目标语言已存在的编译流程，拿到最终的可执行程序。
 
-### Just-in-time compilation
+<!--
+--- Just-in-time compilation
+-->
+### 即时编译（Just-in-time compilation）
 
+<!--
 This last one is less a shortcut and more a dangerous alpine scramble best
 reserved for experts. The fastest way to execute code is by compiling it to
 machine code, but you might not know what architecture your end user's machine
 supports. What to do?
+-->
+最后要叙述的这点，并不是一条捷径，而是一座留给程序语言专家攀登的高峰。代码运行效率最高的方式便是将其编译到机器码，但是如果事先并不知道代码最终将跑在哪个目标平台下，该怎么办呢？
 
+<!--
 You can do the same thing that the HotSpot Java Virtual Machine (JVM),
 Microsoft's Common Language Runtime (CLR), and most JavaScript interpreters do.
 On the end user's machine, when the program is loaded -- either from source in
@@ -768,19 +814,30 @@ the case of JS, or platform-independent bytecode for the JVM and CLR -- you
 compile it to native for the architecture their computer supports. Naturally
 enough, this is called **just-in-time compilation**. Most hackers just say
 "JIT", pronounced like it rhymes with "fit".
+-->
+你可以效仿 Java 虚拟机 HotSpot JVM，微软公共语言运行时（Microsoft's Common Language Runtime、CLR），大部分 JavaScript 解释器的做法。当程序在用户机器中被加载时（不管是 JS 代码还是 JVM／CLR 字节码），将代码编译为用户机器体系结构下的二进制机器码。大部分程序语言开发者把这种编译方法叫做：**即时编译（Just-in-time compilation）**，简称 “JIT”（发音类似单词“fit”）。
 
+<!--
 The most sophisticated JITs insert profiling hooks into the generated code to
 see which regions are most performance critical and what kind of data is flowing
 through them. Then, over time, they will automatically recompile those <span
 name="hot">hot spots</span> with more advanced optimizations.
+-->
+较为复杂的 JIT 实现中，会在生成的代码里插入性能监测探针，观察哪一块区域的代码是造成性能瓶颈的热点代码，以及都有什么类型的数据流经这些热点代码。观察一段时间后，对这些<span name="hot">热点代码</span>应用更高级的优化手段重新编译优化，提高程序运行效率。
 
 <aside name="hot">
 
+<!--
 This is, of course, exactly where the HotSpot JVM gets its name.
+-->
+Java 虚拟机 HotSpot JVM 得名于此。
 
 </aside>
 
-## Compilers and Interpreters
+<!--
+-- Compilers and Interpreters
+-->
+## 编译器与解释器
 
 Now that I've stuffed your head with a dictionary's worth of programming
 language jargon, we can finally address a question that's plagued coders since

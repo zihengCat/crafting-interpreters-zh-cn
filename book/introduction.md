@@ -105,7 +105,7 @@ know what it is about programming languages that causes such existential doubt.
 I don't think ornithology books worry about justifying their existence. They
 assume the reader loves birds and start teaching.
 -->
-似乎每一本关于编译原理的书都会在开头简介部分来上这么一段，告诉读者为什么要学习编译原理。我不知道造成这种"存在性怀疑"的程序设计语言是什么。
+似乎每一本有关编译原理的书都会在开头部分来上这么一段，告诉读者为什么要学习编译原理。我不知道造成这种“存在性怀疑”的程序设计语言是什么。
 <!--
 正如我不认为鸟类学书籍是为了证明鸟儿的存在性一样，作者会预设读者都是爱鸟之人，然后开始教学。
 -->
@@ -231,7 +231,7 @@ And its practitioners don't hesitate to play up this image. Two of the seminal
 texts on programming languages feature a [dragon][] and a [wizard][] on their
 covers.
 -->
-程序设计语言领域的奠基者们似乎从不吝啬饰演这一形象。两本在程序设计语言领域极富开创性的教科书分别选用了“龙”和“巫师”形象作为封面，即是大名鼎鼎的[《龙书》][dragon]与[《巫师书》][wizard]。
+程序设计语言领域的奠基者们似乎从不吝啬饰演这一形象。两本在程序设计语言领域极富开创性的教科书分别选用了“龙”和“巫师”形象作为封面，即大名鼎鼎的[《龙书》][dragon]与[《巫师书》][wizard]。
 
 [dragon]: https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools
 [wizard]: https://mitpress.mit.edu/sites/default/files/sicp/index.html
@@ -364,7 +364,7 @@ software. If I seem a little cavalier about, say, omitting `private` or
 declaring a global variable, understand I do so to keep the code easier on your
 eyes. The pages here aren't as wide as your IDE and every character counts.
 -->
-写在书中的代码与"真实世界"的代码总会有一些不同，某些代码风格也不是编写可维护软件代码的最佳方式。如果被你发现，比如说：漏写了个`private`，声明了一个全局变量，还请不要见怪。我力求代码简洁易懂，而且，在这里书页的宽度也比不上集成开发环境（IDE）。
+写在书中的代码与“真实世界”的代码总会有一些不同，某些代码风格也不是编写可维护软件代码的最佳方式。如果被你发现，比如说：漏写了个`private`，声明了一个全局变量，还请不要见怪。我力求代码简洁易懂，而且在这里书页的宽度也比不上集成开发环境（IDE）。
 
 <!--
 Also, the code doesn't have many comments. That's because each handful of lines
@@ -446,7 +446,7 @@ might be a little sad.
 Well, some asides do, at least. Most of them are just dumb jokes and amateurish
 drawings.
 -->
-好吧，有些旁注确实如我所言那般，但大多数都是一些小笑话和随手涂鸦罢了。
+好吧，有些旁注确实如我所言那般，但大多数都是一些小笑话和信手涂鸦罢了。
 
 </aside>
 
@@ -469,7 +469,7 @@ implement features, or otherwise get you out of your comfort zone.
 broader understanding and possibly a few bumps and scrapes. Or skip them if you
 want to stay inside the comfy confines of the tour bus. It's your book.
 -->
-努力<span name="warning">克服</span>这些挑战，你定然会有新的感悟与收获。亦或是，你也可以简单地跳过它们，继续前进。
+努力<span name="warning">克服</span>这些挑战，你定会有新的感悟与收获。亦或是，你也可以简单地跳过它们，继续前进。
 
 <aside name="warning">
 
@@ -623,7 +623,7 @@ minimal subset of it. I use the diamond operator from Java 7 to make things a
 little more terse, but that's about it as far as "advanced" features go. If you
 know another object-oriented language, like C# or C++, you can muddle through.
 -->
-最后，Java 非常流行，这意味着你或多或少有机会接触到它，也会写一点 Java 代码。这样一来你就不需要为阅读本书而重新学习一门程序设计语言了。如果你不太熟悉 Java 语言也不必担心，我会尽可能地使用 Java 语言最基本的特性。为了使代码看上去更加简洁干练，我使用到 Java 7 引入的钻石运算符`<>`，这就是我所使用的最“高级”的 Java 语言特性了。如果你熟悉其他面向对象的程序设计语言，如：C#，C++，相信你很快就能上手。
+最后，Java 非常流行，这意味着你或多或少有机会接触到它，也会写一点 Java 代码。这样一来你就不需要为阅读本书而重新学习一门程序设计语言了。如果你不太熟悉 Java 语言也不必担心，我会尽可能地使用 Java 语言最基本的特性。为了使代码看上去更加简洁干练，我使用了 Java 7 引入的钻石运算符`<>`，这就是我所使用的最“高级”的 Java 语言特性了。如果你熟悉其他面向对象的程序设计语言，如：C#，C++，相信你很快就能上手。
 
 <!--
 By the end of part II, we'll have a simple, readable implementation. It's not
