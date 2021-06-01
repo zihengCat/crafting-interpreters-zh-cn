@@ -839,16 +839,22 @@ Java 虚拟机 HotSpot JVM 得名于此。
 -->
 ## 编译器与解释器
 
+<!--
 Now that I've stuffed your head with a dictionary's worth of programming
 language jargon, we can finally address a question that's plagued coders since
 time immemorial: What's the difference between a compiler and an interpreter?
+-->
+我已经向你的脑袋里塞了一大堆程序设计语言相关的名词术语，现在，我们终于可以引出这个亘古常新困扰程序员们的问题了：编译器与解释器之间的区别是什么？
 
+<!--
 It turns out this is like asking the difference between a fruit and a vegetable.
 That seems like a binary either-or choice, but actually "fruit" is a *botanical*
 term and "vegetable" is *culinary*. One does not strictly imply the negation of
 the other. There are fruits that aren't vegetables (apples) and vegetables that
 aren't fruits (carrots), but also edible plants that are both fruits *and*
 vegetables, like tomatoes.
+-->
+这就像是在问水果与蔬菜之间的区别一样。看起来是个非是即否的二元选择问题，但是实际上，“水果”是个植物学词汇而“蔬菜”是个烹饪用语，这两者之间没有非是即否的二元关系，有的算水果不算是蔬菜（如：苹果），有的算蔬菜不算是水果（如：胡萝卜），但也有的既是水果也是蔬菜（如：西红柿）。
 
 <span name="veg"></span>
 
@@ -856,61 +862,97 @@ vegetables, like tomatoes.
 
 <aside name="veg">
 
+<!--
 Peanuts (which are not even nuts) and cereals like wheat are actually fruit, but
 I got this drawing wrong. What can I say, I'm a software engineer, not a
 botanist. I should probably erase the little peanut guy, but he's so cute that I
 can't bear to.
+-->
+花生（不算是坚果类）和谷物（如：小麦）实际是水果，我这张图可能画得有点问题，毕竟我只是名软件工程师而不是植物学家。也许我应该擦掉旁边那个花生小家伙，但是它实在太可爱了，我都不忍心擦掉它。
 
+<!--
 Now *pine nuts*, on the other hand, are plant-based foods that are neither
 fruits nor vegetables. At least as far as I can tell.
+-->
+另外，“松子”是植物性食物，既不是水果也不是蔬菜，至少在我的认知里是这样。
 
 </aside>
 
+<!--
 So, back to languages:
+-->
+让我们再回到程序语言领域：
 
+<!--
 * **Compiling** is an *implementation technique* that involves translating a
   source language to some other -- usually lower-level -- form. When you
   generate bytecode or machine code, you are compiling. When you transpile to
   another high-level language, you are compiling too.
+-->
+* **编译**是一种将源语言翻译为其他语言的*实现技术*。通常会将源语言翻译到更低阶形式，当你从源代码生成字节码或机器码时，你在做编译；当你从源代码生成另一门高级语言时，也是在做编译。
 
+<!--
 * When we say a language implementation "is a **compiler**", we mean it
   translates source code to some other form but doesn't execute it. The user has
   to take the resulting output and run it themselves.
+-->
+* 如果我们说一门程序语言的实现是一枚**编译器**，这意味着它是将源代码翻译为另一种形式，而并不执行代码。用户需要自己手动执行编译生成的程序。
 
+<!--
 * Conversely, when we say an implementation "is an **interpreter**", we mean it
   takes in source code and executes it immediately. It runs programs "from
   source".
+-->
+* 相对的，如果我们说一门程序语言的实现是一枚**解释器**，这意味着解释器接收源代码然后立即开始执行。从源代码开始，解释执行程序。
 
+<!--
 Like apples and oranges, some implementations are clearly compilers and *not*
 interpreters. GCC and Clang take your C code and compile it to machine code. An
 end user runs that executable directly and may never even know which tool was
 used to compile it. So those are *compilers* for C.
+-->
+就像苹果和橙子明显是水果而非蔬菜一样，一些程序语言的实现很明显是编译器而非解释器。GCC 和 Clang 将 C 程序源代码编译为二进制机器码。终端用户可以直接运行编译后的可执行程序，甚至不知道该程序是由什么工具编译出来的，所以 GCC 和 Clang 是 C 语言的*编译器*。
 
+<!--
 In older versions of Matz's canonical implementation of Ruby, the user ran Ruby
 from source. The implementation parsed it and executed it directly by traversing
 the syntax tree. No other translation occurred, either internally or in any
 user-visible form. So this was definitely an *interpreter* for Ruby.
+-->
+在 Ruby 语言的早期版本实现 MRI 中，用户执行 Ruby 编写的程序，MRI 实现将用户程序源代码解析为抽象语法树，通过语法树遍历的方式执行用户程序。无论在内部还是外部都没有发生任何翻译，所以 MRI 是 Ruby 语言的一枚“解释器”。
 
+<!--
 But what of CPython? When you run your Python program using it, the code is
 parsed and converted to an internal bytecode format, which is then executed
 inside the VM. From the user's perspective, this is clearly an interpreter --
 they run their program from source. But if you look under CPython's scaly skin,
 you'll see that there is definitely some compiling going on.
+-->
+对于 CPython 又是什么样的情况呢？当我们运行 Python 程序时，程序源代码被解析转化为一种内部字节码形式，字节码被装载到虚拟机中运行。从用户视角来看，这是解释器，从 Python 源代码直接执行程序而无需编译。但当我们绕开 CPython 表象窥探其内部实现时，我们看到确实有编译行为发生。
 
+<!--
 The answer is that it is <span name="go">both</span>. CPython *is* an
 interpreter, and it *has* a compiler. In practice, most scripting languages work
 this way, as you can see:
+-->
+所以答案就是：既有编译，又有解释，CPython 同时包含<span name="go">两者</span>。CPython *是*一个解释器，解释执行 Python 字节码；CPython 还*包含*了一个编译器，用以将 Python 程序编译为字节码。在具体实践中，大部分脚本语言都采用这样的实现方式，如图所示：
 
 <aside name="go">
 
+<!--
 The [Go tool][go] is even more of a horticultural curiosity. If you run `go
 build`, it compiles your Go source code to machine code and stops. If you type
 `go run`, it does that, then immediately executes the generated executable.
+-->
+Go 语言的[编译工具链][go]设计非常有意思。如果你键入`go build`命令，Go 编译器将 Go 程序源代码编译为机器码后停止；如果你键入`go run`命令，Go 编译工具先编译出可执行程序，然后立刻运行编译后的可执行程序。
 
+<!--
 So `go` *is* a compiler (you can use it as a tool to compile code without
 running it), *is* an interpreter (you can invoke it to immediately run a program
 from source), and also *has* a compiler (when you use it as an interpreter, it
 is still compiling internally).
+-->
+所以`go`是一个编译器（可以将 Go 代码编译为机器码），也是一个解释器（可以立即运行 Go 程序，当把它用作解释器时，它会在内部进行编译）。
 
 [go tool]: https://golang.org/cmd/go/
 
@@ -918,11 +960,17 @@ is still compiling internally).
 
 <img src="image/a-map-of-the-territory/venn.png" alt="A Venn diagram of compilers and interpreters" />
 
+<!--
 That overlapping region in the center is where our second interpreter lives too,
 since it internally compiles to bytecode. So while this book is nominally about
 interpreters, we'll cover some compilation too.
+-->
+我们的第二枚解释器也将位于图中交集区域。在内部将程序源代码编译为字节码，再通过虚拟机解释执行字节码。本书主要讲解解释器，但也会覆盖到部分编译相关的内容。
 
-## Our Journey
+<!--
+-- Our Journey
+-->
+## 我们的旅程
 
 That's a lot to take in all at once. Don't worry. This isn't the chapter where
 you're expected to *understand* all of these pieces and parts. I just want you
