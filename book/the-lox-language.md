@@ -1,6 +1,13 @@
+# Lox 程序设计语言
+
+<!--
 > What nicer thing can you do for somebody than make them breakfast?
 >
 > <cite>Anthony Bourdain</cite>
+-->
+> 有什么能比得上为饥肠辘辘的某人端上一份丰盛早餐更好的事呢?
+>
+> <cite>安东尼·波登（美国知名大厨）</cite>
 
 We'll spend the rest of this book illuminating every dark and sundry corner of
 the Lox language, but it seems cruel to have you immediately start grinding out

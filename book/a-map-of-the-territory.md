@@ -1,4 +1,5 @@
 # 程序语言世界的地图
+
 <!--
 > You must have a map, no matter how rough. Otherwise you wander all over the
 > place. In *The Lord of the Rings* I never made anyone go farther than he could
@@ -25,7 +26,7 @@ are nuts and bolts one particular implementation might use. From the user's
 perspective, as long as the resulting contraption faithfully follows the
 language's specification, it's all implementation detail.
 -->
-首先，让我来简单明确几点。本书大部分内容都是关于一门程序设计语言的*具体实现*，这与*程序设计语言本身*是完全不同的。像“栈”、“字节码”、“递归下降”这些听起来唬人的词语，不过是实现某门程序语言可能会采用的的技术方法。从程序语言使用者的视角来看，只要他们手中的“奇妙装置”（编译器 / 解释器）产出的结果符合程序设计语言定义的规范即可，并不太关心语言实现的具体细节。
+首先，让我来简单明确几点。本书大部分内容都是关于一门程序设计语言的*具体实现*，这与*程序设计语言本身*是完全不同的。像“栈”、“字节码”、“递归下降”这些听起来唬人的词汇，不过是实现某门程序语言可能会采用的的技术方法。从程序语言使用者的视角来看，只要他们手中的“奇妙装置”（编译器 / 解释器）产出的结果符合程序设计语言定义好的规范即可，并不太关心语言实现的具体细节。
 
 <!--
 We're going to spend a lot of time on those details, so if I have to write
@@ -47,7 +48,7 @@ hard, and we enlisted their help. I find it fascinating that even though today's
 machines are literally a million times faster and have orders of magnitude more
 storage, the way we build programming languages is virtually unchanged.
 -->
-早在计算机历史的洪荒时代，勤劳聪慧的计算机工程师们就开始着手构建计算机程序设计语言了。这是因为我们发现，直接与计算机沟通太过困难，计算机只认识二进制机器码，所以得寻求“程序语言”的帮助。现如今的计算机比起洪荒时代，运算速度快了百万倍千万倍，存储空间也有了几个数量级的提升，但构建计算机程序设计语言的方式却几乎没有太大变化，这真是很有趣。
+早在计算机历史的洪荒时代，勤劳聪慧的计算机工程师们就开始着手构建计算机程序设计语言了。因为我们发现，直接与计算机沟通太过困难，计算机只认识二进制机器码，所以得寻求“程序语言”的帮助。现如今的计算机比起洪荒时代，运算速度快了百万倍千万倍，存储空间也有了几个数量级的提升，但构建计算机程序设计语言的方式却几乎没有太大变化，这真是很有趣。
 
 <!--
 Though the area explored by language designers is vast, the trails they've
@@ -58,7 +59,7 @@ the way to some hot, new, transpile-to-JavaScript language whose "documentation"
 consists entirely of a single, poorly edited README in a Git repository
 somewhere.
 -->
-尽管程序语言设计师们探索过的领域如此广阔，但被他们留下足迹证明此路可通的道路却<span name="dead">少之又少</span>。虽然不是每一门程序语言都会走完全相同的实现道路（有的语言会省略其中几步，有的还会抄近路）。但令人欣慰的是，从海军准将葛丽丝·霍普女士的第一支 COBOL 编译器到时下大热的编译到 JavaScript 程序语言（它们中某些仅有一份躺在 Git 仓库中的简陋 README 自述文档），都遵循着一脉相承的道路。
+尽管程序语言设计师们探索过的领域如此广阔，但被他们留下足迹证明此路可达的道路却<span name="dead">少之又少</span>。虽然不是每一门程序语言都会走完全相同的实现道路（有的语言会省略其中几步，有的还会抄近路）。但令人欣慰的是，从海军准将葛丽丝·霍普女士的第一支 COBOL 编译器到时下大热的编译到 JavaScript 程序语言（它们中某些仅有一份躺在 Git 仓库中的简陋 README 自述文档），都遵循着一脉相承的道路。
 
 <aside name="dead">
 
@@ -141,7 +142,7 @@ often insignificant, and comments, by definition, are ignored by the language.
 The scanner usually discards these, leaving a clean sequence of meaningful
 tokens.
 -->
-程序源代码中的某些字符一般不表达任何含义，比如：空白字符、注释。词法扫描器通常简单的忽略它们，仅保留那些有意义的词法单元。
+程序源代码中的某些字符通常不表达任何含义，比如：空白字符、注释。词法扫描器通常简单地忽略它们，仅保留那些有意义的词法单元。
 
 <img src="image/a-map-of-the-territory/tokens.png" alt="[var] [average] [=] [(] [min] [+] [max] [)] [/] [2] [;]" />
 
@@ -157,7 +158,7 @@ you ever diagram sentences in English class? If so, you've done what a parser
 does, except that English has thousands and thousands of "keywords" and an
 overflowing cornucopia of ambiguity. Programming languages are much simpler.
 -->
-接下来的一步叫做**语法分析（Parsing）**。通过分析程序的词法从而得到**语法（Grammar）**，将相互关联的几个词法单元拼装组合变成更加复杂的表达式和语句的能力。还记得小时候上语法课时的情景吗，标注一句话的语法成分（主、谓、宾、定、状、补），你那时做的事便是“语法分析”。只是，英语这门语言包含着成千上万的“关键字（Keywords）”，以及大量意思相近的歧义词。程序语言则简单很多。
+接下来的一步叫做**语法分析（Parsing）**。通过分析程序的词法从而得到**语法（Grammar）**，将相互关联的几个词法单元拼装组合变成更加复杂的表达式和语句的能力。还记得小时候上文法课的情景吗，标注一句话的语法成分（主、谓、宾、定、状、补），你那时做的事便是“语法分析”。只是，英语这门语言包含着成千上万的“关键字（Keywords）”，以及大量意思相近的歧义词。程序语言则简单许多。
 
 <!--
 A **parser** takes the flat sequence of tokens and builds a tree structure that
@@ -177,7 +178,7 @@ artificial intelligence community. Many of the techniques used today to parse
 programming languages were originally conceived to parse *human* languages by AI
 researchers who were trying to get computers to talk to us.
 -->
-在计算机科学领域，语法解析技术有着漫长且丰富的历史。语法解析还与人工智能有着千丝万缕的联系。现如今程序语言所用的很多语法解析技术，最初都是 AI 研究者们为解析*人类语言*而发明的。他们想让计算机能够与我们交流对话。
+在计算机科学领域，语法解析技术有着漫长且丰富的历史。语法解析还与人工智能有着千丝万缕的联系。现如今程序语言所用的很多语法解析技术，最初都是 AI 研究者们为解析*人类语言*而发明的。他们想让计算机与我们交流对话。
 
 <!--
 It turns out human languages were too messy for the rigid grammars those parsers
@@ -215,7 +216,7 @@ and wire the two together. This is where **scope** comes into play -- the region
 of source code where a certain name can be used to refer to a certain
 declaration.
 -->
-对于大多数程序语言而言，分析语法树的第一步叫做 **标识符绑定（Binding）** 或 **标识符解析（Resolution）** ：对于语法树中的每个标识符，找到这枚标识符被定义的地方，把它和语法树中标识符所在的位置串连起来。这个时候 **作用域（Scope）** 就开始发挥作用了，作用域规定了一枚既定标识符在源代码中所能被正确解析的区域。
+对于大多数程序语言而言，分析语法树的第一步叫做 **标识符绑定（Binding）** 或 **标识符解析（Resolution）** ：对于语法树中的每个标识符，找到这枚标识符被定义的地方，把它和语法树中标识符所在的位置关联起来。这个时候 **作用域（Scope）** 就开始发挥作用了：作用域规定了一枚既定标识符在源代码中所能被正确解析的区域。
 
 <!--
 If the language is <span name="type">statically typed</span>, this is when we
@@ -438,7 +439,7 @@ it is a lot of work. Today's architectures have piles of instructions, complex
 pipelines, and enough <span name="aad">historical baggage</span> to fill a 747's
 luggage bay.
 -->
-这时候，我们就需要做个决定了。我们是要生成一枚真正 CPU 的机器指令，还是生成“虚拟” CPU 指令。如果我们选择生成真正 CPU 机器指令，我们将得到一份可执行程序，操作系统可以将这支程序装载到 CPU 芯片上执行。原始机器指令执行起来速度飞快，但是生成目标平台对应的机器指令要费上很大一番功夫。这是因为计算机体系结构发展到现如今，已经变得复杂异常：各式各样的机器指令，复杂的指令流水线，还有一大堆足以塞满波音 747 飞机行李箱的<span name="aad">历史遗留<span>问题。
+这时候，我们就需要做个决定了。我们是要生成一枚真正 CPU 的机器指令，还是生成“虚拟” CPU 指令。如果我们选择生成真正 CPU 机器指令，我们将得到一份可执行程序，操作系统可以将这支程序装载到 CPU 芯片上执行。原始机器指令执行起来速度飞快，但是生成目标平台对应的机器指令要费上很大一番功夫。这是因为计算机体系结构发展到现今，已经变得复杂异常：各式各样的机器指令，复杂的指令流水线，还有一大堆足以塞满波音 747 飞机行李箱的<span name="aad">历史遗留<span>问题。
 
 <!--
 Speaking the chip's language also means your compiler is tied to a specific
@@ -447,7 +448,7 @@ run on an [ARM][] device. All the way back in the '60s, during the
 Cambrian explosion of computer architectures, that lack of portability was a
 real obstacle.
 -->
-如果生成目标芯片的机器码，那意味着编译器会与某个特定体系结构绑定起来。如果编译器生成的是[x86][]机器码，那么编译出来的程序无法在 ARM 设备上运行。回到上世纪 60 年代，在那个计算机体系结构、芯片指令集层出不穷的年代，程序缺乏可移植性成了巨大的障碍。
+如果生成目标芯片的机器码，那意味着编译器会与某个特定体系结构绑定起来。如果编译器生成的是 [x86][] 机器码，那么编译出来的程序无法在 ARM 设备上运行。回到上世纪 60 年代，在那个计算机体系结构、芯片指令集层出不穷的年代，程序缺乏可移植性成了巨大的障碍。
 
 <aside name="aad">
 
@@ -776,7 +777,7 @@ compilers. Then, if the source language is only a simple syntactic skin over the
 target language, it may skip analysis entirely and go straight to outputting the
 analogous syntax in the destination language.
 -->
-转译器的“前端”部分（词法扫描、语法解析）和其他编译器的“前端”相差不多。如果源程序语言只是在目标转译语言之上套了一层语法皮，那么静态分析这步就可以忽略，直接生成目标转译语言的对应语法即可。
+转译器的“前端”部分（词法扫描、语法解析）与其他编译器“前端”相差不多。如果源程序语言只是在目标转译语言之上套了一层语法皮囊，那么静态分析这步就可以忽略，直接生成目标转译语言的对应语法即可。
 
 <!--
 If the two languages are more semantically different, you'll see more of the
@@ -785,13 +786,13 @@ optimization. Then, when it comes to code generation, instead of outputting some
 binary language like machine code, you produce a string of grammatically correct
 source (well, destination) code in the target language.
 -->
-如果源语言和目标语言的语法相差很大，转译器就可能包含更多的编译阶段，如：静态分析，代码优化等。在代码生成阶段，转译器会生成语义相同的目标语言代码，而不是二进制机器码。
+如果源语言和目标语言的语法相差很大，转译器就可能包含更多的编译阶段，如：静态分析、代码优化等。在代码生成阶段，转译器会生成语义相同的目标语言代码，而不是二进制机器码。
 
 <!--
 Either way, you then run that resulting code through the output language's
 existing compilation pipeline, and you're good to go.
 -->
-不管哪种方式，接下来你就可以让转译器生成的目标语言代码走过目标语言已存在的编译流程，拿到最终的可执行程序。
+不管哪种方式，接下来，你就可以让转译器生成的目标语言代码走过目标语言已存在的编译流程，拿到最终的可执行程序。
 
 <!--
 --- Just-in-time compilation
@@ -1028,6 +1029,6 @@ Henceforth, I promise to tone down the whole mountain metaphor thing.
 1. Most Lisp implementations that compile to C also contain an interpreter that
    lets them execute Lisp code on the fly as well. Why?
 -->
-3. 大部分 Lisp 语言的实现都可以将 Lisp 代码编译到 C ，但是它们同样也会包含一个可以直接执行 Lisp 代码的解释器，这是为什么呢？
+3. 大部分 Lisp 语言的实现都可以将 Lisp 代码编译到 C ，但是它们同样也会包含一枚可以直接执行 Lisp 代码的解释器，这是为什么呢？
 
 </div>

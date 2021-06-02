@@ -17,6 +17,7 @@ you!
 | Part I. Welcome | ✔️ |
 | 1. Introduction | ✔️ |
 | 2. A Map of the Territory | ✔️ |
+| 3. The Lox Language | ... |
 | ... | ... |
 
 > 表：翻译进度表
