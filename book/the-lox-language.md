@@ -5,33 +5,48 @@
 >
 > <cite>Anthony Bourdain</cite>
 -->
-> 有什么能比得上为饥肠辘辘的某人端上一份丰盛早餐更好的事呢?
+> 有什么能比得上为饥肠辘辘的人端上一份丰盛早餐更好的事呢？
 >
-> <cite>安东尼·波登（美国知名大厨）</cite>
+> <cite>安东尼·波登<em>（美国知名大厨）</em></cite>
 
+<!--
 We'll spend the rest of this book illuminating every dark and sundry corner of
 the Lox language, but it seems cruel to have you immediately start grinding out
 code for the interpreter without at least a glimpse of what we're going to end
 up with.
+-->
+在本书接下来的部分将仔细探索 Lox 程序语言实现的角角落落，但是在真正动手编写解释器代码之前，还是让我们来好好地认识一下这个我们将要实现的程序语言吧。
 
+<!--
 At the same time, I don't want to drag you through reams of language lawyering
 and specification-ese before you get to touch your text <span
 name="home">editor</span>. So this will be a gentle, friendly introduction to
 Lox. It will leave out a lot of details and edge cases. We've got plenty of time
 for those later.
+-->
+在当下，你还没有真正上手编写<span name="home">代码</span>之前，我不想先让你陷入到 Lox 程序语言的各种细节与语言规范里头去。所以本章是对 Lox 程序语言的一个温和、友好的介绍，大量语法细节与边界条件让我们放到后面具体实现时再详细阐述。
 
 <aside name="home">
 
+如果都不能上手编写几行 Lox 代码运行起来看一看，那本篇的内容也太枯燥乏味了，可是可是，你手上还没有一支 Lox 解释器呀，你都还没有开始构建它呢！
+
+不打紧，你可以用[我写好的 Lox 解释器][repo]上手尝试。
+
+<!--
 A tutorial isn't very fun if you can't try the code out yourself. Alas, you
 don't have a Lox interpreter yet, since you haven't built one!
 
 Fear not. You can use [mine][repo].
+-->
 
 [repo]: https://github.com/munificent/craftinginterpreters
 
 </aside>
 
-## Hello, Lox
+<!--
+-- Hello, Lox
+-->
+## 你好，Lox
 
 Here's your very first taste of <span name="salmon">Lox</span>:
 
