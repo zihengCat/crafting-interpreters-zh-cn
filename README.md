@@ -16,7 +16,7 @@ you!
 | :--- | :--- |
 | Part I. Welcome | ✔️ |
 | 1. Introduction | ✔️ |
-| 2. A Map of the Territory | ... |
+| 2. A Map of the Territory | ✔️ |
 | ... | ... |
 
 > 表：翻译进度表

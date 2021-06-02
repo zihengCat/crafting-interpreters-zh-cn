@@ -972,38 +972,62 @@ interpreters, we'll cover some compilation too.
 -->
 ## 我们的旅程
 
+<!--
 That's a lot to take in all at once. Don't worry. This isn't the chapter where
 you're expected to *understand* all of these pieces and parts. I just want you
 to know that they are out there and roughly how they fit together.
+-->
+在这一章，我们一下子引入了很多的知识与概念，不过无需担心，你不需要短短一章就完全*理解*这些内容，你只需要对这些内容有个大致的印象，知道内容之间大概是如何串联配合的就足够了。
 
+<!--
 This map should serve you well as you explore the territory beyond the guided
 path we take in this book. I want to leave you yearning to strike out on your
 own and wander all over that mountain.
+-->
+本章给出的地图会指引你探索本书内容之外更广阔的程序语言世界。我也希望你能突破本书所讲述的内容，探索更广阔的世界。
 
+<!--
 But, for now, it's time for our own journey to begin. Tighten your bootlaces,
 cinch up your pack, and come along. From <span name="here">here</span> on out,
 all you need to focus on is the path in front of you.
+-->
+现在，是时候开始我们的旅程了。系紧你的靴子，背好你的行囊，一起出发吧。从<span name="here">此刻</span>开始，你唯一要做的，就是盯紧你前方的道路。
 
 <aside name="here">
 
+<!--
 Henceforth, I promise to tone down the whole mountain metaphor thing.
+-->
+从这里之后，我保证尽量减少用山做比喻。
 
 </aside>
 
 <div class="challenges">
 
-## Challenges
+<!--
+-- Challenges
+-->
+## 挑战 
 
+<!--
 1. Pick an open source implementation of a language you like. Download the
    source code and poke around in it. Try to find the code that implements the
    scanner and parser. Are they handwritten, or generated using tools like
    Lex and Yacc? (`.l` or `.y` files usually imply the latter.)
+-->
+1. 选择一门你喜欢的程序语言的开源实现，下载它的源代码，四处浏览一下，试着在源代码中找到词法分析与语法分析的部分。它们是手写的，还是借助了 Lex 或 Yacc 这样的工具呢（如果发现存在`.l`或者`.y`后缀的文件，那基本就是后者）？
 
+<!--
 1. Just-in-time compilation tends to be the fastest way to implement dynamically
    typed languages, but not all of them use it. What reasons are there to *not*
    JIT?
+-->
+2. JIT 即时编译技术应该是运行动态类型程序语言的最快方式，但不是所有动态类型语言都使用了 JIT 技术，它们不使用 JIT 技术的原因有哪些？
 
+<!--
 1. Most Lisp implementations that compile to C also contain an interpreter that
    lets them execute Lisp code on the fly as well. Why?
+-->
+3. 大部分 Lisp 语言的实现都可以将 Lisp 代码编译到 C ，但是它们同样也会包含一个可以直接执行 Lisp 代码的解释器，这是为什么呢？
 
 </div>
