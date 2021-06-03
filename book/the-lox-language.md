@@ -48,12 +48,18 @@ Fear not. You can use [mine][repo].
 -->
 ## 你好，Lox
 
+<!--
 Here's your very first taste of <span name="salmon">Lox</span>:
+-->
+这是你首次<span name="salmon">接触</span> Lox 程序设计语言。
 
 <aside name="salmon">
 
+<!--
 Your first taste of Lox, the language, that is. I don't know if you've ever had
 the cured, cold-smoked salmon before. If not, give it a try too.
+-->
+这是你首次尝鲜 Lox 程序语言，不知道你之前有没有吃过腌制的冷熏三文鱼，没吃过可以尝试一下。
 
 </aside>
 
@@ -62,36 +68,54 @@ the cured, cold-smoked salmon before. If not, give it a try too.
 print "Hello, world!";
 ```
 
+<!--
 As that `//` line comment and the trailing semicolon imply, Lox's syntax is a
 member of the C family. (There are no parentheses around the string because
 `print` is a built-in statement, and not a library function.)
+-->
+行注释`//`与句末分号`;`标示着 Lox 语法偏向 C 系，Lox 是一门类 C 的程序语言（字符串两边没有带小括号，这是因为`print`是一个内建语句，而不是一个库函数）。
 
+<!--
 Now, I won't claim that <span name="c">C</span> has a *great* syntax. If we
 wanted something elegant, we'd probably mimic Pascal or Smalltalk. If we wanted
 to go full Scandinavian-furniture-minimalism, we'd do a Scheme. Those all have
 their virtues.
+-->
+我并不否认，<span name="c">C</span>有着令人惊叹的语法设计。如果我们想要更优雅的语法，Lox 可能偏向 Pascal 或者 Smalltalk 的语法风格；如果我们想要极简主义的语法，Lox 可能更偏向 Scheme 。这些程序语言都有各自的可取之处。
 
 <aside name="c">
 
+<!--
 I'm surely biased, but I think Lox's syntax is pretty clean. C's most egregious
 grammar problems are around types. Dennis Ritchie had this idea called
 "[declaration reflects use][use]", where variable declarations mirror the
 operations you would have to perform on the variable to get to a value of the
 base type. Clever idea, but I don't think it worked out great in practice.
+-->
+我的想法一定带有些主观情绪，但是我认为 Lox 的语法相当简洁清晰。C 语法最大的问题在于类型，丹尼斯·里奇将 C 语言类型的设计想法称为[”声明反映用法“][use]：变量声明直接反映出如果对变量取值应该采取的操作。这真是一个绝妙的想法，但在具体实践中工作得并不是很好，许多变量声明不够清晰难以理解。
 
 [use]: http://softwareengineering.stackexchange.com/questions/117024/why-was-the-c-syntax-for-arrays-pointers-and-functions-designed-this-way
 
+<!--
 Lox doesn't have static types, so we avoid that.
+-->
+Lox 并不是静态类型语言，所以我们可以很好地避免了这个问题。
 
 </aside>
 
+<!--
 What C-like syntax has instead is something you'll often find more valuable
 in a language: *familiarity*. I know you are already comfortable with that style
 because the two languages we'll be using to *implement* Lox -- Java and C --
 also inherit it. Using a similar syntax for Lox gives you one less thing to
 learn.
+-->
+类 C 语法最大的优势在于，它可以为读者带来：*熟悉感*。我知道你已经对我们将要用来*实现* Lox 的两门程序语言 Java、C 非常熟悉了，而 Lox 采用与 C、Java 相似的类 C 语法，这将为读者减少很多心智负担。
 
-## A High-Level Language
+<!--
+-- A High-Level Language
+-->
+## 一门高阶的程序语言
 
 While this book ended up bigger than I was hoping, it's still not big enough to
 fit a huge language like Java in it. In order to fit two complete

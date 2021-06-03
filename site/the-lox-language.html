@@ -39,7 +39,7 @@
 
 <ul>
     <li><a href="#你好，lox"><small>3.1</small> 你好，Lox</a></li>
-    <li><a href="#a-high-level-language"><small>3.2</small> A High-Level Language</a></li>
+    <li><a href="#一门高阶的程序语言"><small>3.2</small> 一门高阶的程序语言</a></li>
     <li><a href="#data-types"><small>3.3</small> Data Types</a></li>
     <li><a href="#expressions"><small>3.4</small> Expressions</a></li>
     <li><a href="#statements"><small>3.5</small> Statements</a></li>
@@ -77,7 +77,7 @@
 
 <ul>
     <li><a href="#你好，lox"><small>3.1</small> 你好，Lox</a></li>
-    <li><a href="#a-high-level-language"><small>3.2</small> A High-Level Language</a></li>
+    <li><a href="#一门高阶的程序语言"><small>3.2</small> 一门高阶的程序语言</a></li>
     <li><a href="#data-types"><small>3.3</small> Data Types</a></li>
     <li><a href="#expressions"><small>3.4</small> Expressions</a></li>
     <li><a href="#statements"><small>3.5</small> Statements</a></li>
@@ -157,36 +157,53 @@ Fear not. You can use [mine][repo].
 </aside><!--
 -- Hello, Lox
 -->
-<h2><a href="#你好，lox" name="你好，lox"><small>3&#8202;.&#8202;1</small>你好，Lox</a></h2>
-<p>Here&rsquo;s your very first taste of <span name="salmon">Lox</span>:</p>
-<aside name="salmon">
-<p>Your first taste of Lox, the language, that is. I don&rsquo;t know if you&rsquo;ve ever had
-the cured, cold-smoked salmon before. If not, give it a try too.</p>
+<h2><a href="#你好，lox" name="你好，lox"><small>3&#8202;.&#8202;1</small>你好，Lox</a></h2><!--
+Here's your very first taste of <span name="salmon">Lox</span>:
+-->
+<p>这是你首次<span name="salmon">接触</span> Lox 程序设计语言。</p>
+<aside name="salmon"><!--
+Your first taste of Lox, the language, that is. I don't know if you've ever had
+the cured, cold-smoked salmon before. If not, give it a try too.
+-->
+<p>这是你首次尝鲜 Lox 程序语言，不知道你之前有没有吃过腌制的冷熏三文鱼，没吃过可以尝试一下。</p>
 </aside>
 <div class="codehilite"><pre>
 <span class="c">// Your first Lox program!</span>
 <span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>;
-</pre></div>
-<p>As that <code>//</code> line comment and the trailing semicolon imply, Lox&rsquo;s syntax is a
+</pre></div><!--
+As that `//` line comment and the trailing semicolon imply, Lox's syntax is a
 member of the C family. (There are no parentheses around the string because
-<code>print</code> is a built-in statement, and not a library function.)</p>
-<p>Now, I won&rsquo;t claim that <span name="c">C</span> has a <em>great</em> syntax. If we
-wanted something elegant, we&rsquo;d probably mimic Pascal or Smalltalk. If we wanted
-to go full Scandinavian-furniture-minimalism, we&rsquo;d do a Scheme. Those all have
-their virtues.</p>
-<aside name="c">
-<p>I&rsquo;m surely biased, but I think Lox&rsquo;s syntax is pretty clean. C&rsquo;s most egregious
+`print` is a built-in statement, and not a library function.)
+-->
+<p>行注释<code>//</code>与句末分号<code>;</code>标示着 Lox 语法偏向 C 系，Lox 是一门类 C 的程序语言（字符串两边没有带小括号，这是因为<code>print</code>是一个内建语句，而不是一个库函数）。</p><!--
+Now, I won't claim that <span name="c">C</span> has a *great* syntax. If we
+wanted something elegant, we'd probably mimic Pascal or Smalltalk. If we wanted
+to go full Scandinavian-furniture-minimalism, we'd do a Scheme. Those all have
+their virtues.
+-->
+<p>我并不否认，<span name="c">C</span>有着令人惊叹的语法设计。如果我们想要更优雅的语法，Lox 可能偏向 Pascal 或者 Smalltalk 的语法风格；如果我们想要极简主义的语法，Lox 可能更偏向 Scheme 。这些程序语言都有各自的可取之处。</p>
+<aside name="c"><!--
+I'm surely biased, but I think Lox's syntax is pretty clean. C's most egregious
 grammar problems are around types. Dennis Ritchie had this idea called
-&ldquo;<a href="http://softwareengineering.stackexchange.com/questions/117024/why-was-the-c-syntax-for-arrays-pointers-and-functions-designed-this-way">declaration reflects use</a>&rdquo;, where variable declarations mirror the
+"[declaration reflects use][use]", where variable declarations mirror the
 operations you would have to perform on the variable to get to a value of the
-base type. Clever idea, but I don&rsquo;t think it worked out great in practice.</p>
-<p>Lox doesn&rsquo;t have static types, so we avoid that.</p>
-</aside>
-<p>What C-like syntax has instead is something you&rsquo;ll often find more valuable
-in a language: <em>familiarity</em>. I know you are already comfortable with that style
-because the two languages we&rsquo;ll be using to <em>implement</em> Lox<span class="em">&mdash;</span>Java and C<span class="em">&mdash;</span>also inherit it. Using a similar syntax for Lox gives you one less thing to
-learn.</p>
-<h2><a href="#a-high-level-language" name="a-high-level-language"><small>3&#8202;.&#8202;2</small>A High-Level Language</a></h2>
+base type. Clever idea, but I don't think it worked out great in practice.
+-->
+<p>我的想法一定带有些主观情绪，但是我认为 Lox 的语法相当简洁清晰。C 语法最大的问题在于类型，丹尼斯·里奇将 C 语言类型的设计想法称为<a href="http://softwareengineering.stackexchange.com/questions/117024/why-was-the-c-syntax-for-arrays-pointers-and-functions-designed-this-way">”声明反映用法“</a>：变量声明直接反映出如果对变量取值应该采取的操作。这真是一个绝妙的想法，但在具体实践中工作得并不是很好，许多变量声明不够清晰难以理解。</p><!--
+Lox doesn't have static types, so we avoid that.
+-->
+<p>Lox 并不是静态类型语言，所以我们可以很好地避免了这个问题。</p>
+</aside><!--
+What C-like syntax has instead is something you'll often find more valuable
+in a language: *familiarity*. I know you are already comfortable with that style
+because the two languages we'll be using to *implement* Lox -- Java and C --
+also inherit it. Using a similar syntax for Lox gives you one less thing to
+learn.
+-->
+<p>类 C 语法最大的优势在于，它可以为读者带来：<em>熟悉感</em>。我知道你已经对我们将要用来<em>实现</em> Lox 的两门程序语言 Java、C 非常熟悉了，而 Lox 采用与 C、Java 相似的类 C 语法，这将为读者减少很多心智负担。</p><!--
+-- A High-Level Language
+-->
+<h2><a href="#一门高阶的程序语言" name="一门高阶的程序语言"><small>3&#8202;.&#8202;2</small>一门高阶的程序语言</a></h2>
 <p>While this book ended up bigger than I was hoping, it&rsquo;s still not big enough to
 fit a huge language like Java in it. In order to fit two complete
 implementations of Lox in these pages, Lox itself has to be pretty compact.</p>
