@@ -117,39 +117,60 @@ learn.
 -->
 ## 一门高阶的程序语言
 
+<!--
 While this book ended up bigger than I was hoping, it's still not big enough to
 fit a huge language like Java in it. In order to fit two complete
 implementations of Lox in these pages, Lox itself has to be pretty compact.
+-->
+当我写完这本书时，书本的篇幅超出了我的预期，但这本书仍然没有达到够容纳类似 Java 这样大型程序语言实现的厚度。为了能在本书有限的篇幅里包含两种 Lox 语言的完整实现，Lox 语言本身必须被设计得小巧紧凑。
 
+<!--
 When I think of languages that are small but useful, what comes to mind are
 high-level "scripting" languages like <span name="js">JavaScript</span>, Scheme,
 and Lua. Of those three, Lox looks most like JavaScript, mainly because most
 C-syntax languages do. As we'll learn later, Lox's approach to scoping hews
 closely to Scheme. The C flavor of Lox we'll build in [Part III][] is heavily
 indebted to Lua's clean, efficient implementation.
+-->
+当我思考哪些程序语言既小巧又实用，我脑海中浮现的是像 <span name="js">JavaScript</span>、Scheme、Lua 这样的高级“脚本”语言。在这三者之中，Lox 与 JavaScript 最为相像，大多数类 C 语法的脚本语言都像 JavaScript。当我们继续深入之后，就会发现 Lox 的作用域界定与 Scheme 相似。而在本书[第三部分][part iii]，我们使用 C 语言构建 Lox 解释器，在具体实现细节上大量参考借鉴了 Lua 清晰高效的代码实现。
 
 [part iii]: a-bytecode-virtual-machine.html
 
 <aside name="js">
 
+<!--
 Now that JavaScript has taken over the world and is used to build ginormous
 applications, it's hard to think of it as a "little scripting language". But
 Brendan Eich hacked the first JS interpreter into Netscape Navigator in *ten
 days* to make buttons animate on web pages. JavaScript has grown up since then,
 but it was once a cute little language.
+-->
+如今，JavaScript 已经统治了世界，被用以构建超大型应用程序，认为 JavaScript 只是一门“小型脚本语言”的认知已经不太合适了。但在 JavaScript 最初诞生的那会儿，布兰登·艾奇为了能让网页上的按钮动起来，仅花了*十天*时间就设计实现了第一支 JS 解释器，放进网景浏览器里。在那时，JS 的却称得上是一支小巧可爱的小脚本语言，但随着 Web 技术的发展，如今的 JavaScript 已经变得异常庞大了。
 
+<!--
 Because Eich slapped JS together with roughly the same raw materials and time as
 an episode of MacGyver, it has some weird semantic corners where the duct tape
 and paper clips show through. Things like variable hoisting, dynamically bound
 `this`, holes in arrays, and implicit conversions.
+-->
+可能是因为艾奇当初设计 JavaScript 所花的时间与心思太少了，就像《玉面飞龙》电视连续剧那样，JS 语言在许多语法角落和实现细节方面都留下了不少坑，如：变量作用域、`this`动态绑定、数组方面的坑、隐式类型转换等等。
 
+<!--
 I had the luxury of taking my time on Lox, so it should be a little cleaner.
+-->
+我花了很多时间在 Lox 语言设计上，所以 Lox 应该会比 JavaScript 更清晰一些，嘻嘻。
 
 </aside>
 
+<!--
 Lox shares two other aspects with those three languages:
+-->
+在以下两个方面，Lox 也与这三门程序语言有着同样的理念。
 
-### Dynamic typing
+<!--
+--- Dynamic typing
+-->
+### 动态类型
 
 Lox is dynamically typed. Variables can store values of any type, and a single
 variable can even store values of different types at different times. If you try
