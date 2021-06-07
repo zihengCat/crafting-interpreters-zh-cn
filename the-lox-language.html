@@ -39,7 +39,7 @@
 
 <ul>
     <li><a href="#你好，lox"><small>3.1</small> 你好，Lox</a></li>
-    <li><a href="#一门高阶的程序语言"><small>3.2</small> 一门高阶的程序语言</a></li>
+    <li><a href="#一门高阶的程序设计语言"><small>3.2</small> 一门高阶的程序设计语言</a></li>
     <li><a href="#data-types"><small>3.3</small> Data Types</a></li>
     <li><a href="#expressions"><small>3.4</small> Expressions</a></li>
     <li><a href="#statements"><small>3.5</small> Statements</a></li>
@@ -77,7 +77,7 @@
 
 <ul>
     <li><a href="#你好，lox"><small>3.1</small> 你好，Lox</a></li>
-    <li><a href="#一门高阶的程序语言"><small>3.2</small> 一门高阶的程序语言</a></li>
+    <li><a href="#一门高阶的程序设计语言"><small>3.2</small> 一门高阶的程序设计语言</a></li>
     <li><a href="#data-types"><small>3.3</small> Data Types</a></li>
     <li><a href="#expressions"><small>3.4</small> Expressions</a></li>
     <li><a href="#statements"><small>3.5</small> Statements</a></li>
@@ -203,7 +203,7 @@ learn.
 <p>类 C 语法最大的优势在于，它可以为读者带来：<em>熟悉感</em>。我知道你已经对我们将要用来<em>实现</em> Lox 的两门程序语言 Java、C 非常熟悉了，而 Lox 采用与 C、Java 相似的类 C 语法，这将为读者减少很多心智负担。</p><!--
 -- A High-Level Language
 -->
-<h2><a href="#一门高阶的程序语言" name="一门高阶的程序语言"><small>3&#8202;.&#8202;2</small>一门高阶的程序语言</a></h2><!--
+<h2><a href="#一门高阶的程序设计语言" name="一门高阶的程序设计语言"><small>3&#8202;.&#8202;2</small>一门高阶的程序设计语言</a></h2><!--
 While this book ended up bigger than I was hoping, it's still not big enough to
 fit a huge language like Java in it. In order to fit two complete
 implementations of Lox in these pages, Lox itself has to be pretty compact.
@@ -216,7 +216,7 @@ C-syntax languages do. As we'll learn later, Lox's approach to scoping hews
 closely to Scheme. The C flavor of Lox we'll build in [Part III][] is heavily
 indebted to Lua's clean, efficient implementation.
 -->
-<p>当我思考哪些程序语言既小巧又实用，我脑海中浮现的是像 <span name="js">JavaScript</span>、Scheme、Lua 这样的高级“脚本”语言。在这三者之中，Lox 与 JavaScript 最为相像，大多数类 C 语法的脚本语言都像 JavaScript。当我们继续深入之后，就会发现 Lox 的作用域界定与 Scheme 相似。而在本书<a href="a-bytecode-virtual-machine.html">第三部分</a>，我们使用 C 语言构建 Lox 解释器，在具体实现细节上大量参考借鉴了 Lua 清晰高效的代码实现。</p>
+<p>当我思考哪些程序语言既小巧又实用的时候，我脑海中浮现出像 <span name="js">JavaScript</span>、Scheme、Lua 这样的高级“脚本”语言。在这三者之中，Lox 与 JavaScript 最为相像，大多数类 C 语法的脚本语言都像 JavaScript。当我们继续深入，就会发现 Lox 的作用域界定与 Scheme 相似。而在本书<a href="a-bytecode-virtual-machine.html">第三部分</a>，我们使用 C 语言编写的 Lox 解释器，在具体实现细节上大量参考借鉴了 Lua 清晰高效的代码实现。</p>
 <aside name="js"><!--
 Now that JavaScript has taken over the world and is used to build ginormous
 applications, it's hard to think of it as a "little scripting language". But
@@ -240,21 +240,29 @@ Lox shares two other aspects with those three languages:
 <p>在以下两个方面，Lox 也与这三门程序语言有着同样的理念。</p><!--
 --- Dynamic typing
 -->
-<h3><a href="#动态类型" name="动态类型"><small>3&#8202;.&#8202;2&#8202;.&#8202;1</small>动态类型</a></h3>
-<p>Lox is dynamically typed. Variables can store values of any type, and a single
+<h3><a href="#动态类型" name="动态类型"><small>3&#8202;.&#8202;2&#8202;.&#8202;1</small>动态类型</a></h3><!--
+Lox is dynamically typed. Variables can store values of any type, and a single
 variable can even store values of different types at different times. If you try
-to perform an operation on values of the wrong type<span class="em">&mdash;</span>say, dividing a number by
-a string<span class="em">&mdash;</span>then the error is detected and reported at runtime.</p>
-<p>There are plenty of reasons to like <span name="static">static</span> types, but
-they don&rsquo;t outweigh the pragmatic reasons to pick dynamic types for Lox. A
+to perform an operation on values of the wrong type -- say, dividing a number by
+a string -- then the error is detected and reported at runtime.
+-->
+<p>Lox 是一门动态类型的程序语言。变量可以存储任意类型的数据，也可以在程序运行的任意时刻改变其存储的数据类型。如果你在不兼容数据类型上执行了一个错误操作，比如说：将一个数字除以一枚字符串，那么该错误将在运行时被捕获和抛出。</p><!--
+There are plenty of reasons to like <span name="static">static</span> types, but
+they don't outweigh the pragmatic reasons to pick dynamic types for Lox. A
 static type system is a ton of work to learn and implement. Skipping it gives
-you a simpler language and a shorter book. We&rsquo;ll get our interpreter up and
-executing bits of code sooner if we defer our type checking to runtime.</p>
-<aside name="static">
-<p>After all, the two languages we&rsquo;ll be using to <em>implement</em> Lox are both
-statically typed.</p>
-</aside>
-<h3><a href="#automatic-memory-management" name="automatic-memory-management"><small>3&#8202;.&#8202;2&#8202;.&#8202;2</small>Automatic memory management</a></h3>
+you a simpler language and a shorter book. We'll get our interpreter up and
+executing bits of code sooner if we defer our type checking to runtime.
+-->
+<p><span name="static">静态类型</span>有着许多令人喜爱的理由，但在实践上，我还是为 Lox 选择了动态类型。实现一个完备的静态类型系统需要大量的背景知识、深厚的代码功底。忽略静态类型，程序语言会变得更加简单，这本书也会变得更薄一些。将类型检查下推到运行时，可以让我们快速构建起一支可以执行代码的语言解释器。</p>
+<aside name="static"><!--
+After all, the two languages we'll be using to *implement* Lox are both
+statically typed.
+-->
+<p>毕竟，两门我们用来<em>实现</em> Lox 的程序语言（Java、C）都是静态类型的。</p>
+</aside><!--
+--- Automatic memory management
+-->
+<h3><a href="#自动内存管理" name="自动内存管理"><small>3&#8202;.&#8202;2&#8202;.&#8202;2</small>自动内存管理</a></h3>
 <p>High-level languages exist to eliminate error-prone, low-level drudgery, and what
 could be more tedious than manually managing the allocation and freeing of
 storage? No one rises and greets the morning sun with, &ldquo;I can&rsquo;t wait to figure
