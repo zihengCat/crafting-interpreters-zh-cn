@@ -115,7 +115,7 @@ learn.
 <!--
 -- A High-Level Language
 -->
-## 一门高阶的程序语言
+## 一门高阶的程序设计语言
 
 <!--
 While this book ended up bigger than I was hoping, it's still not big enough to
@@ -132,7 +132,7 @@ C-syntax languages do. As we'll learn later, Lox's approach to scoping hews
 closely to Scheme. The C flavor of Lox we'll build in [Part III][] is heavily
 indebted to Lua's clean, efficient implementation.
 -->
-当我思考哪些程序语言既小巧又实用，我脑海中浮现的是像 <span name="js">JavaScript</span>、Scheme、Lua 这样的高级“脚本”语言。在这三者之中，Lox 与 JavaScript 最为相像，大多数类 C 语法的脚本语言都像 JavaScript。当我们继续深入之后，就会发现 Lox 的作用域界定与 Scheme 相似。而在本书[第三部分][part iii]，我们使用 C 语言构建 Lox 解释器，在具体实现细节上大量参考借鉴了 Lua 清晰高效的代码实现。
+当我思考哪些程序语言既小巧又实用的时候，我脑海中浮现出像 <span name="js">JavaScript</span>、Scheme、Lua 这样的高级“脚本”语言。在这三者之中，Lox 与 JavaScript 最为相像，大多数类 C 语法的脚本语言都像 JavaScript。当我们继续深入，就会发现 Lox 的作用域界定与 Scheme 相似。而在本书[第三部分][part iii]，我们使用 C 语言编写的 Lox 解释器，在具体实现细节上大量参考借鉴了 Lua 清晰高效的代码实现。
 
 [part iii]: a-bytecode-virtual-machine.html
 
@@ -172,25 +172,37 @@ Lox shares two other aspects with those three languages:
 -->
 ### 动态类型
 
+<!--
 Lox is dynamically typed. Variables can store values of any type, and a single
 variable can even store values of different types at different times. If you try
 to perform an operation on values of the wrong type -- say, dividing a number by
 a string -- then the error is detected and reported at runtime.
+-->
+Lox 是一门动态类型的程序语言。变量可以存储任意类型的数据，也可以在程序运行的任意时刻改变其存储的数据类型。如果你在不兼容数据类型上执行了一个错误操作，比如说：将一个数字除以一枚字符串，那么该错误将在运行时被捕获和抛出。
 
+<!--
 There are plenty of reasons to like <span name="static">static</span> types, but
 they don't outweigh the pragmatic reasons to pick dynamic types for Lox. A
 static type system is a ton of work to learn and implement. Skipping it gives
 you a simpler language and a shorter book. We'll get our interpreter up and
 executing bits of code sooner if we defer our type checking to runtime.
+-->
+<span name="static">静态类型</span>有着许多令人喜爱的理由，但在实践上，我还是为 Lox 选择了动态类型。实现一个完备的静态类型系统需要大量的背景知识、深厚的代码功底。忽略静态类型，程序语言会变得更加简单，这本书也会变得更薄一些。将类型检查下推到运行时，可以让我们快速构建起一支可以执行代码的语言解释器。
 
 <aside name="static">
 
+<!--
 After all, the two languages we'll be using to *implement* Lox are both
 statically typed.
+-->
+毕竟，两门我们用来*实现* Lox 的程序语言（Java、C）都是静态类型的。
 
 </aside>
 
-### Automatic memory management
+<!--
+--- Automatic memory management
+-->
+### 自动内存管理
 
 High-level languages exist to eliminate error-prone, low-level drudgery, and what
 could be more tedious than manually managing the allocation and freeing of
