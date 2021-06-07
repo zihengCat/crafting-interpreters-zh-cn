@@ -204,12 +204,16 @@ statically typed.
 -->
 ### 自动内存管理
 
+<!--
 High-level languages exist to eliminate error-prone, low-level drudgery, and what
 could be more tedious than manually managing the allocation and freeing of
 storage? No one rises and greets the morning sun with, "I can't wait to figure
 out the correct place to call `free()` for every byte of memory I allocate
 today!"
+-->
+高阶程序语言诞生的目的之一便是为了消除易出错的底层操作，还有什么比手动管理内存的分配释放更令人烦心的事情呢？没有人愿意早晨起来这么互相打招呼：“我迫不及待想为我今天申请的每块内存找个合适的地方调用`free()`函数啦！”
 
+<!--
 There are two main <span name="gc">techniques</span> for managing memory:
 **reference counting** and **tracing garbage collection** (usually just called
 **garbage collection** or **GC**). Ref counters are much simpler to implement --
@@ -217,28 +221,42 @@ I think that's why Perl, PHP, and Python all started out using them. But, over
 time, the limitations of ref counting become too troublesome. All of those
 languages eventually ended up adding a full tracing GC, or at least enough of
 one to clean up object cycles.
+-->
+目前主要有两类技术用以管理内存：**引用计数（Reference Counting）** 和 **垃圾回收（Tracing Garbage Collection、Garbage Collection、GC）**。引用计数在实现上更加简便，我想这也是为什么 Perl、PHP、Python 起初都使用引用计数管理内存的原因。但是随着语言的发展，引用计数的局限性越来越明显，所以到最后，这些程序语言都添加上了完整的垃圾回收器，用于在对象全流程生命周期里做好内存清理回收工作。
 
 <aside name="gc">
 
+<!--
 In practice, ref counting and tracing are more ends of a continuum than
 opposing sides. Most ref counting systems end up doing some tracing to handle
 cycles, and the write barriers of a generational collector look a bit like
 retain calls if you squint.
+-->
+在具体实践中，引用计数和垃圾跟踪收集这两种技术更像是硬币的一体两面。大部分引用计数系统最终都会添加上一些追踪技术管理对象生命周期，而分代垃圾回收机制更像是一种最后的保留手段。
 
+<!--
 For lots more on this, see "[A Unified Theory of Garbage Collection][gc]" (PDF).
+-->
+更多关于这方面的讨论，参看这篇论文：[A Unified Theory of Garbage Collection][gc] (PDF)。
 
 [gc]: https://researcher.watson.ibm.com/researcher/files/us-bacon/Bacon04Unified.pdf
 
 </aside>
 
+<!--
 Tracing garbage collection has a fearsome reputation. It *is* a little harrowing
 working at the level of raw memory. Debugging a GC can sometimes leave you
 seeing hex dumps in your dreams. But, remember, this book is about dispelling
 magic and slaying those monsters, so we *are* going to write our own garbage
 collector. I think you'll find the algorithm is quite simple and a lot of fun to
 implement.
+-->
+“垃圾回收（GC）”声名远播，让人心生畏惧，它需要开发者真正面向内存做一些细致的工作，调试垃圾回收器能让你做梦都能梦到程序的 16 进制转储调试信息。但是无需担心，本书就是为了揭开魔法、消灭怪兽的。我们将编写自己的垃圾回收器，你会发现，垃圾回收用到的算法其实非常简单，实现起来也非常有趣。
 
-## Data Types
+<!--
+-- Data Types
+-->
+## 数据类型
 
 In Lox's little universe, the atoms that make up all matter are the built-in
 data types. There are only a few:
