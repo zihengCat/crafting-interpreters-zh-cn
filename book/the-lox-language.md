@@ -81,7 +81,7 @@ wanted something elegant, we'd probably mimic Pascal or Smalltalk. If we wanted
 to go full Scandinavian-furniture-minimalism, we'd do a Scheme. Those all have
 their virtues.
 -->
-我并不否认，<span name="c">C</span>有着令人惊叹的语法设计。如果我们想要更优雅的语法，Lox 可能偏向 Pascal 或者 Smalltalk 的语法风格；如果我们想要极简主义的语法，Lox 可能更偏向 Scheme 。这些程序语言都有各自的可取之处。
+我毫不否认，<span name="c">C</span> 有着令人惊叹的语法设计。如果我们想要更加优雅的语法风格，Lox 可能偏向 Pascal 或者 Smalltalk ；如果我们想要极简主义的语法风格，Lox 可能更偏向 Scheme 。这些程序语言都有各自的可取之处。
 
 <aside name="c">
 
@@ -110,7 +110,7 @@ because the two languages we'll be using to *implement* Lox -- Java and C --
 also inherit it. Using a similar syntax for Lox gives you one less thing to
 learn.
 -->
-类 C 语法最大的优势在于，它可以为读者带来：*熟悉感*。我知道你已经对我们将要用来*实现* Lox 的两门程序语言 Java、C 非常熟悉了，而 Lox 采用与 C、Java 相似的类 C 语法，这将为读者减少很多心智负担。
+类 C 语法最大的优势在于，它可以为读者带来：*熟悉感*。我知道你已经对我们将要用来*实现*  Lox 的两门程序语言 Java、C 非常熟悉了，Lox 采用与 C、Java 一脉相承的类 C 语法，这将为读者减少很多心智负担。
 
 <!--
 -- A High-Level Language
@@ -258,47 +258,67 @@ implement.
 -->
 ## 数据类型
 
+<!--
 In Lox's little universe, the atoms that make up all matter are the built-in
 data types. There are only a few:
+-->
+在 Lox 的小小宇宙中，构成宇宙的原子即是内置数据类型。Lox 目前只有几种简单的内置数据类型：
 
+<!--
 *   **<span name="bool">Booleans</span>.** You can't code without logic and you
     can't logic without Boolean values. "True" and "false", the yin and yang of
     software. Unlike some ancient languages that repurpose an existing type to
     represent truth and falsehood, Lox has a dedicated Boolean type. We may
     be roughing it on this expedition, but we aren't *savages*.
+-->
+*   **<span name="bool">布尔类型（Boolean）</span>**。没有布尔类型，就无法表示逻辑，无法进行逻辑判断，就难以编写代码。“True” 与 “False” 就像是程序的“阴”与“阳”。许多古老的程序语言使用已经存在的数据类型表示逻辑真假（如：C 语言），Lox 没有选择这么做，Lox 有着专用的布尔类型，虽然实现上较为粗糙，但对比古老的程序语言们，我们足够先进，一点也不老土。
 
     <aside name="bool">
 
+    <!--
     Boolean variables are the only data type in Lox named after a person, George
     Boole, which is why "Boolean" is capitalized. He died in 1864, nearly a
     century before digital computers turned his algebra into electricity. I
     wonder what he'd think to see his name all over billions of lines of Java
     code.
+    -->
+    布尔类型是唯一一种使用人名来命名的数据类型：乔治·布尔（George Boole），人们使用“Boolean”一词（人名，首字母大写）纪念他。乔治·布尔于 1864 年去世，过了一个多世纪，人们将布尔代数在电路上实现，造出了现代电子计算机。我很好奇，如果乔治·布尔生活在现今，看到成千上万的代码行里都镌刻着他的名字（特别是 Java 代码），会作何感想呢。
 
     </aside>
 
+    <!--
     There are two Boolean values, obviously, and a literal for each one.
+    -->
+    显而易见的，布尔类型只有两个值：`true`和`false`。
 
     ```lox
     true;  // Not false.
     false; // Not *not* false.
     ```
 
+<!--
 *   **Numbers.** Lox has only one kind of number: double-precision floating
     point. Since floating-point numbers can also represent a wide range of
     integers, that covers a lot of territory, while keeping things simple.
+-->
+*   **数字类型（Numbers）**。Lox 程序语言只有一种数字类型：双精度浮点数。浮点数也可以覆盖很大范围的整数，为了让事情变得更加简单，我们只用这一种数。
 
+    <!--
     Full-featured languages have lots of syntax for numbers -- hexadecimal,
     scientific notation, octal, all sorts of fun stuff. We'll settle for basic
     integer and decimal literals.
+    -->
+    功能全面的通用程序设计语言通常有着很多表示数字的语法：十六进制数、科学计数法、八进制数等等，这些数字表示法挺有趣的，但在这里，我们只支持最基本的十进制整数与小数。
 
     ```lox
     1234;  // An integer.
     12.34; // A decimal number.
     ```
-
+<!--
 *   **Strings.** We've already seen one string literal in the first example.
     Like most languages, they are enclosed in double quotes.
+-->
+*   **字符串类型（String）**。在本章开头部分的第一个程序示例中，我们就已经见过字符串类型了。与大部分程序语言一样，字符串字面量由两个双引号包裹。
 
     ```lox
     "I am a string";
@@ -306,31 +326,46 @@ data types. There are only a few:
     "123"; // This is a string, not a number.
     ```
 
+    <!--
     As we'll see when we get to implementing them, there is quite a lot of
     complexity hiding in that innocuous sequence of <span
     name="char">characters</span>.
+    -->
+    当我们真正开始着手实现字符串类型时就会发现，在看似简单的<span name=char>字符序列</span>下，隐藏着许多复杂的实现细节。
 
     <aside name="char">
 
+    <!--
     Even that word "character" is a trickster. Is it ASCII? Unicode? A
     code point or a "grapheme cluster"? How are characters encoded? Is each
     character a fixed size, or can they vary?
+    -->
+    甚至是“字符”一词都极具欺骗性。字符是 ASCII 码还是 Unicode 万国码？是字符码点（Code Point）还是字形簇（Grapheme Cluster）？字符如何进行编码？单字符是定长还是变长？
 
     </aside>
 
+<!--
 *   **Nil.** There's one last built-in value who's never invited to the party
     but always seems to show up. It represents "no value". It's called "null" in
     many other languages. In Lox we spell it `nil`. (When we get to implementing
     it, that will help distinguish when we're talking about Lox's `nil` versus
     Java or C's `null`.)
+-->
+*   **空类型（Nil）**。 最后一个内置数据类型是空类型，虽然我们经常会忘记它，但空类型总是会在不经意间跳出来。空类型的含义是：没有值。在很多其他的程序语言里，空类型使用`null`表示，在 Lox 中，我们使用`nil`表示空类型（用以实现 Lox 的两门语言 Java、C 都保留了`null`关键字，所以我们换个词加以区分）。
 
+    <!--
     There are good arguments for not having a null value in a language since
     null pointer errors are the scourge of our industry. If we were doing a
     statically typed language, it would be worth trying to ban it. In a
     dynamically typed one, though, eliminating it is often more annoying
     than having it.
+    -->
+    有许多合理的理由告诉我们，不应该在程序语言中引入空值`null`，空指针异常（Null Pointer Errors）给工业界带来了巨大的灾难。如果我们构建的是一门静态类型语言，倒是可以尝试着消除空值`null`。但对于一门动态类型程序语言来说，消除空值`null`会令你陷入更大的麻烦之中，得不偿失，不如引入空值`null`。
 
-## Expressions
+<!--
+-- Expressions
+-->
+## 表达式
 
 If built-in data types and their literals are atoms, then **expressions** must
 be the molecules. Most of these will be familiar.
